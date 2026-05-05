@@ -3,20 +3,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brain Age Test — Anytime Anywhere Anyone Fitness</title>
+<title>Brain Age Test - Anytime Anywhere Anyone Fitness</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════
-   DESIGN SYSTEM (matches Brain Revival Guide)
-════════════════════════════════════════════ */
+
+DESIGN SYSTEM (matches Brain Revival Guide)
+
 :root {
-  --sage: #5C8E78; --sage-light: #A8C9B8; --sage-dark: #3A6B55;
-  --cream: #FAF7F2; --forest: #2C5F4A;
-  --gold: #C8A96A; --gold-light: #E8D5A8;
-  --coral: #E07B5A; --sky: #7AB3C8; --lavender: #9B8EC4;
-  --text-dark: #1E2D26; --text-mid: #3D5247; --text-light: #6B8577;
-  --border: #D4E6DC; --shadow: rgba(44,95,74,0.14);
+–sage: #5C8E78; –sage-light: #A8C9B8; –sage-dark: #3A6B55;
+–cream: #FAF7F2; –forest: #2C5F4A;
+–gold: #C8A96A; –gold-light: #E8D5A8;
+–coral: #E07B5A; –sky: #7AB3C8; –lavender: #9B8EC4;
+–text-dark: #1E2D26; –text-mid: #3D5247; –text-light: #6B8577;
+–border: #D4E6DC; –shadow: rgba(44,95,74,0.14);
 
 /* Test colours */
 –green: #3BB87F; –yellow: #F5C842; –red: #E04A4A; –blue: #4A90D9;
@@ -33,7 +34,7 @@ min-height: 100vh;
 overflow-x: hidden;
 }
 
-/* ─── NAV ─── */
+/*  NAV  */
 nav {
 position: fixed; top:0; left:0; right:0; z-index:1000;
 background: rgba(255,255,255,0.96);
@@ -62,14 +63,14 @@ transition:all .2s;
 }
 .nav-back:hover { background:var(–sage); color:white; border-color:var(–sage); }
 
-/* ─── SCREEN SYSTEM ─── */
+/*  SCREEN SYSTEM  */
 .screen {
 display:none; position:relative;
 min-height:100vh; padding:80px 20px 40px;
 }
 .screen.active { display:flex; flex-direction:column; align-items:center; justify-content:center; }
 
-/* ─── PROGRESS BAR ─── */
+/*  PROGRESS BAR  */
 .progress-wrap {
 position:fixed; top:60px; left:0; right:0; z-index:900;
 background:white; border-bottom:1px solid var(–border); padding:10px 24px;
@@ -92,9 +93,8 @@ margin-bottom:6px;
 .progress-label { font-size:12px; font-weight:700; color:var(–forest); }
 .progress-time  { font-size:12px; color:var(–text-light); }
 
-/* ═══════════════════════════════════════
 LANDING SCREEN
-════════════════════════════════════════ */
+
 #screen-landing {
 background: linear-gradient(160deg, var(–forest) 0%, var(–sage-dark) 40%, var(–sage) 70%, var(–sage-light) 100%);
 padding:80px 20px 60px;
@@ -144,9 +144,8 @@ transition:all .3s; letter-spacing:.3px;
 .start-btn:hover { background:var(–gold-light); transform:translateY(-3px); box-shadow:0 14px 40px rgba(200,169,106,.5); }
 .start-note { color:rgba(255,255,255,.6); font-size:12px; margin-top:14px; }
 
-/* ═══════════════════════════════════════
 SHARED TEST CARD
-════════════════════════════════════════ */
+
 .test-card {
 background:white; border-radius:28px; padding:36px 32px;
 box-shadow:0 8px 48px var(–shadow); max-width:680px; width:100%;
@@ -171,7 +170,7 @@ font-variant-numeric:tabular-nums;
 .test-timer.warning { background:var(–coral); animation:pulse .6s infinite; }
 @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
 
-/* ─── Action button shared ─── */
+/*  Action button shared  */
 .action-btn {
 display:inline-flex; align-items:center; gap:8px;
 padding:13px 32px; border-radius:40px; border:none; cursor:pointer;
@@ -187,9 +186,8 @@ border:2px solid var(–sage-light);
 .action-btn.secondary:hover { background:var(–sage-light); }
 .action-btn:disabled { opacity:.45; cursor:not-allowed; transform:none !important; }
 
-/* ═══════════════════════════════════════
-TEST 1 — REACTION SPEED
-════════════════════════════════════════ */
+TEST 1 - REACTION SPEED
+
 .reaction-arena {
 width:100%; height:200px; border-radius:20px;
 display:flex; align-items:center; justify-content:center;
@@ -247,9 +245,8 @@ transition:all .2s; font-size:10px; display:flex; align-items:center; justify-co
 .streak-dot.hit  { background:var(–green);  border-color:var(–green);  }
 .streak-dot.miss { background:var(–coral);  border-color:var(–coral);  }
 
-/* ═══════════════════════════════════════
-TEST 2 — MEMORY RECALL
-════════════════════════════════════════ */
+TEST 2 - MEMORY RECALL
+
 .word-grid {
 display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:20px 0;
 }
@@ -294,9 +291,8 @@ transition:all .2s; color:var(–text-mid);
 .recall-btn:hover   { border-color:var(–sage); background:var(–sage-light); }
 .recall-btn.selected{ border-color:var(–sage-dark); background:var(–sage); color:white; }
 
-/* ═══════════════════════════════════════
-TEST 3 — ATTENTION (count back by 7)
-════════════════════════════════════════ */
+TEST 3 - ATTENTION (count back by 7)
+
 .countdown-display {
 font-family:‘Playfair Display’,serif; font-size:72px; font-weight:700;
 color:var(–forest); line-height:1; margin:20px 0;
@@ -322,9 +318,8 @@ cursor:pointer; transition:all .15s;
 .num-key:active { transform:scale(.94); }
 .num-key.wide { grid-column:span 2; }
 
-/* ═══════════════════════════════════════
-TEST 4 — EXECUTIVE FUNCTION
-════════════════════════════════════════ */
+TEST 4 - EXECUTIVE FUNCTION
+
 .pattern-display {
 display:flex; align-items:center; justify-content:center; gap:12px;
 flex-wrap:wrap; margin:20px 0;
@@ -351,9 +346,8 @@ transition:all .2s; color:var(–text-dark); display:flex; align-items:center; j
 .pattern-opt.correct { background:var(–green); color:white; border-color:var(–green); }
 .pattern-opt.wrong   { background:var(–coral); color:white; border-color:var(–coral); }
 
-/* ═══════════════════════════════════════
-TEST 5 — LANGUAGE FLUENCY
-════════════════════════════════════════ */
+TEST 5 - LANGUAGE FLUENCY
+
 .lang-input-row {
 display:flex; gap:10px; margin:16px 0; flex-wrap:wrap; justify-content:center;
 }
@@ -377,9 +371,8 @@ font-weight:700; margin:10px 0;
 }
 .lang-hint { font-size:13px; color:var(–text-light); margin-bottom:12px; }
 
-/* ═══════════════════════════════════════
 TRANSITION CARD (between tests)
-════════════════════════════════════════ */
+
 .transition-card {
 background:white; border-radius:28px; padding:40px 32px;
 box-shadow:0 8px 48px var(–shadow); max-width:500px; width:100%;
@@ -394,9 +387,8 @@ color:var(–sage); animation:countPulse 1s ease-in-out;
 }
 @keyframes countPulse { 0%{transform:scale(1.4);opacity:0} 100%{transform:scale(1);opacity:1} }
 
-/* ═══════════════════════════════════════
 RESULTS SCREEN
-════════════════════════════════════════ */
+
 #screen-results {
 background: #2C5F4A;
 padding:80px 20px 60px;
@@ -453,7 +445,7 @@ border-radius:20px; padding:24px; margin:20px 0; text-align:left;
 .tip-row { display:flex; gap:10px; padding:7px 0; font-size:13px; color:rgba(255,255,255,.8); }
 .tip-row::before { content:‘💡’; flex-shrink:0; }
 
-/* ─── RICH DOMAIN TIP CARDS ─── */
+/*  RICH DOMAIN TIP CARDS  */
 .domain-tip-card {
 background:rgba(255,255,255,.07);
 border:1px solid rgba(255,255,255,.15);
@@ -508,7 +500,7 @@ transition:all .25s; text-decoration:none;
 .result-btn.ghost { background:rgba(255,255,255,.12); color:white; border:2px solid rgba(255,255,255,.3); }
 .result-btn:hover { transform:translateY(-3px); }
 
-/* ─── MISC UTILITY ─── */
+/*  MISC UTILITY  */
 .text-muted  { font-size:13px; color:var(–text-light); }
 .mt-16 { margin-top:16px; }
 .mt-24 { margin-top:24px; }
@@ -537,7 +529,7 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
 </head>
 <body>
 
-<!-- ═══════ NAV ═══════ -->
+<!--  NAV  -->
 
 <nav>
   <div class="nav-brand">
@@ -550,25 +542,25 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   <a href="brain-revival-guide.html" class="nav-back">← Back to Guide</a>
 </nav>
 
-<!-- ═══════ PROGRESS BAR ═══════ -->
+<!--  PROGRESS BAR  -->
 
 <div class="progress-wrap" id="progress-wrap">
   <div class="progress-info">
-    <span class="progress-label" id="progress-label">Test 1 of 6 — Reaction Speed</span>
+    <span class="progress-label" id="progress-label">Test 1 of 6 &mdash; Reaction Speed</span>
     <span class="progress-time" id="progress-time"></span>
   </div>
   <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- 
      SCREEN: LANDING
-════════════════════════════════════════ -->
+ -->
 
 <div class="screen active" id="screen-landing">
   <div class="landing-inner">
     <div class="landing-badge">🧠 Cognitive Assessment</div>
     <h1>Test Your<br><span>Brain Age</span></h1>
-    <p>A science-inspired mini cognitive assessment — 6 tests, ~5 minutes.<br>Measures reaction speed, memory, attention, logic, and language fluency.</p>
+    <p>A science-inspired mini cognitive assessment &mdash; 6 tests, ~5 minutes.<br>Measures reaction speed, memory, attention, logic, and language fluency.</p>
 
 ```
 <div class="test-preview">
@@ -590,23 +582,23 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- 
      SCREEN: TRANSITION (reusable)
-════════════════════════════════════════ -->
+ -->
 
 <div class="screen" id="screen-transition">
   <div class="transition-card">
     <div class="big-icon" id="trans-icon">⚡</div>
     <h2 id="trans-title">Reaction Speed Test</h2>
-    <p id="trans-desc">Watch the colour flash on screen — then tap the matching colour button below as fast as you can!</p>
+    <p id="trans-desc">Watch the colour flash on screen &mdash; then tap the matching colour button below as fast as you can!</p>
     <div id="trans-countdown" class="countdown-3" style="display:none;"></div>
     <button class="action-btn primary" id="trans-btn" onclick="startCountdown()">I'm Ready →</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SCREEN: TEST 1 — REACTION SPEED
-════════════════════════════════════════ -->
+<!-- 
+     SCREEN: TEST 1 &mdash; REACTION SPEED
+ -->
 
 <div class="screen" id="screen-reaction">
   <div class="test-card">
@@ -632,7 +624,7 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
 
 <div class="reaction-stats mt-16">
   <div class="reaction-stat">
-    <div class="val" id="avg-reaction">—</div>
+    <div class="val" id="avg-reaction">&mdash;</div>
     <div class="lbl">Avg Reaction (ms)</div>
   </div>
   <div class="reaction-stat">
@@ -645,14 +637,14 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SCREEN: TEST 2 — MEMORY SHOW
-════════════════════════════════════════ -->
+<!-- 
+     SCREEN: TEST 2 &mdash; MEMORY SHOW
+ -->
 
 <div class="screen" id="screen-memory-show">
   <div class="test-card">
     <span class="test-icon">🧠</span>
-    <div class="test-title">Memory — Memorise These</div>
+    <div class="test-title">Memory &mdash; Memorise These</div>
     <div class="test-subtitle">Remember these 5 words. You will be asked to recall them after a few quick questions.</div>
     <div class="test-timer" id="mem-show-timer">5</div>
     <div class="word-grid" id="word-grid"></div>
@@ -660,15 +652,15 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SCREEN: TEST 2B — DISTRACTION QUESTIONS
-════════════════════════════════════════ -->
+<!-- 
+     SCREEN: TEST 2B &mdash; DISTRACTION QUESTIONS
+ -->
 
 <div class="screen" id="screen-distract">
   <div class="test-card">
     <span class="test-icon">🔀</span>
     <div class="test-title">Quick Questions</div>
-    <div class="test-subtitle">Answer 5 quick questions — then you'll be asked to recall those words!</div>
+    <div class="test-subtitle">Answer 5 quick questions &mdash; then you'll be asked to recall those words!</div>
 
 ```
 <div class="distract-q" id="distract-box">
@@ -682,9 +674,9 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SCREEN: TEST 2C — RECALL
-════════════════════════════════════════ -->
+<!-- 
+     SCREEN: TEST 2C &mdash; RECALL
+ -->
 
 <div class="screen" id="screen-recall">
   <div class="test-card">
@@ -702,14 +694,14 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SCREEN: TEST 3 — ATTENTION (count back)
-════════════════════════════════════════ -->
+<!-- 
+     SCREEN: TEST 3 &mdash; ATTENTION (count back)
+ -->
 
 <div class="screen" id="screen-attention">
   <div class="test-card">
     <span class="test-icon">🎯</span>
-    <div class="test-title">Attention — Count Back by 7</div>
+    <div class="test-title">Attention &mdash; Count Back by 7</div>
     <div class="test-subtitle">What is the next number? Start from 100, subtract 7 each time.</div>
 
 ```
@@ -729,15 +721,15 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SCREEN: TEST 4 — EXECUTIVE FUNCTION
-════════════════════════════════════════ -->
+<!-- 
+     SCREEN: TEST 4 &mdash; EXECUTIVE FUNCTION
+ -->
 
 <div class="screen" id="screen-logic">
   <div class="test-card">
     <span class="test-icon">🔢</span>
     <div class="test-title">Logic & Patterns</div>
-    <div class="test-subtitle">Spot the pattern — what comes next?</div>
+    <div class="test-subtitle">Spot the pattern &mdash; what comes next?</div>
 
 ```
 <div class="test-timer" id="logic-timer">60</div>
@@ -754,9 +746,9 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SCREEN: TEST 5 — LANGUAGE FLUENCY
-════════════════════════════════════════ -->
+<!-- 
+     SCREEN: TEST 5 &mdash; LANGUAGE FLUENCY
+ -->
 
 <div class="screen" id="screen-language">
   <div class="test-card">
@@ -791,9 +783,9 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
+<!-- 
      SCREEN: RESULTS
-════════════════════════════════════════ -->
+ -->
 
 <div class="screen" id="screen-results">
   <div class="results-inner">
@@ -801,7 +793,7 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
 
 ```
 <div class="brain-age-display">
-  <span class="brain-age-num" id="result-brain-age">—</span>
+  <span class="brain-age-num" id="result-brain-age">&mdash;</span>
   <span class="brain-age-label">Estimated Brain Age</span>
 </div>
 
@@ -827,9 +819,9 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════
+<!-- 
      JAVASCRIPT ENGINE
-══════════════════════════════════════════════════════════ -->
+ -->
 
 <script>
 const state = {
@@ -867,11 +859,11 @@ function startTest() { showTransition(1); }
 
 var transData = [
   null,
-  { icon: '&#9889;', title: 'Test 1 — Reaction Speed', desc: 'Watch the coloured box flash — then tap the MATCHING colour button as fast as you can! You have 30 seconds.' },
-  { icon: '&#129504;', title: 'Test 2 — Memory', desc: "You'll see 5 words for 5 seconds. Memorise them! Then answer 5 quick questions, and recall the words." },
-  { icon: '&#127919;', title: 'Test 3 — Attention & Focus', desc: 'Start from 100 and keep subtracting 7. Tap the correct answer each time. You have 60 seconds.' },
-  { icon: '&#128290;', title: 'Test 4 — Logic & Patterns', desc: 'Spot the pattern and choose what comes next. 60 seconds, as many as you can.' },
-  { icon: '&#129409;', title: 'Test 5 — Language Fluency', desc: 'Name as many animals as you can in 30 seconds. Type each name and press Enter.' },
+  { icon: '&#9889;', title: 'Test 1 - Reaction Speed', desc: 'Watch the coloured box flash - then tap the MATCHING colour button as fast as you can! You have 30 seconds.' },
+  { icon: '&#129504;', title: 'Test 2 - Memory', desc: "You'll see 5 words for 5 seconds. Memorise them! Then answer 5 quick questions, and recall the words." },
+  { icon: '&#127919;', title: 'Test 3 - Attention & Focus', desc: 'Start from 100 and keep subtracting 7. Tap the correct answer each time. You have 60 seconds.' },
+  { icon: '&#128290;', title: 'Test 4 - Logic & Patterns', desc: 'Spot the pattern and choose what comes next. 60 seconds, as many as you can.' },
+  { icon: '&#129409;', title: 'Test 5 - Language Fluency', desc: 'Name as many animals as you can in 30 seconds. Type each name and press Enter.' },
 ];
 
 var countdownTimer = null;
@@ -940,7 +932,7 @@ var COLOURS = [
 
 function startReactionTest() {
   showScreen('reaction');
-  updateProgress(1, 'Test 1 — Reaction Speed', '30s');
+  updateProgress(1, 'Test 1 - Reaction Speed', '30s');
   state.reactHits = 0; state.reactTotal = 0; state.reactTimes = [];
   state.currentColour = null; state.colourStart = null;
 
@@ -1044,7 +1036,7 @@ function startMemoryShow() {
   state.memoryScore = 0;
 
   showScreen('memory-show');
-  updateProgress(2, 'Test 2 — Memory Recall', '5s memorise');
+  updateProgress(2, 'Test 2 - Memory Recall', '5s memorise');
 
   var wg = document.getElementById('word-grid');
   wg.innerHTML = state.memWords.map(function(w, i) {
@@ -1096,7 +1088,7 @@ function distractAnswer(btn) {
 
 function showRecall() {
   showScreen('recall');
-  updateProgress(2, 'Test 2 — Recall the Words', '');
+  updateProgress(2, 'Test 2 - Recall the Words', '');
   var decoys = WORD_BANK.filter(function(w) { return state.memWords.indexOf(w) === -1; })
     .sort(function() { return Math.random() - 0.5; }).slice(0, 5);
   var allOpts = state.memWords.concat(decoys).sort(function() { return Math.random() - 0.5; });
@@ -1125,7 +1117,7 @@ function submitRecall() {
 // ============================================================
 function startAttentionTest() {
   showScreen('attention');
-  updateProgress(3, 'Test 3 — Attention Focus', '60s');
+  updateProgress(3, 'Test 3 - Attention Focus', '60s');
   state.attnCurrent = 100;
   state.attnCorrect = 0;
   var disp = document.getElementById('attn-display');
@@ -1201,7 +1193,7 @@ var LOGIC_QS = [
 
 function startLogicTest() {
   showScreen('logic');
-  updateProgress(4, 'Test 4 — Logic & Patterns', '60s');
+  updateProgress(4, 'Test 4 - Logic & Patterns', '60s');
   state.logicQs = LOGIC_QS.slice().sort(function() { return Math.random() - 0.5; });
   state.logicIdx = 0;
   state.logicCorrect = 0;
@@ -1232,7 +1224,7 @@ function showLogicQ() {
     if (si < q.seq.length - 1) html += '<span class="pattern-arrow">-></span>';
   }
   pd.innerHTML = html;
-  document.getElementById('logic-q-type').textContent = q.type + ' Pattern — What is ?';
+  document.getElementById('logic-q-type').textContent = q.type + ' Pattern - What is ?';
   var po = document.getElementById('pattern-options');
   var shuffledOpts = q.opts.slice().sort(function() { return Math.random() - 0.5; });
   var ans = q.ans;
@@ -1272,7 +1264,7 @@ function endLogicTest() {
 // ============================================================
 function startLanguageTest() {
   showScreen('language');
-  updateProgress(5, 'Test 5 — Language Fluency', '30s');
+  updateProgress(5, 'Test 5 - Language Fluency', '30s');
   state.animals = [];
   state.langTimerInterval = null;
   state.langTestEnded = false;
@@ -1392,17 +1384,17 @@ function showResults() {
   var vEl = document.getElementById('result-verdict');
   var verdict, verdictCls, summary;
   if (overall >= 70) {
-    verdict = 'Excellent — Sharp Mind!';
+    verdict = 'Excellent - Sharp Mind!';
     verdictCls = 'brain-verdict verdict-good';
     summary = 'Your cognitive performance is strong! Your brain is responding well across all key areas. Keep maintaining your lifestyle habits and continue challenging your mind daily.';
   } else if (overall >= 45) {
-    verdict = 'Good — Room to Grow';
+    verdict = 'Good - Room to Grow';
     verdictCls = 'brain-verdict verdict-avg';
-    summary = 'Your brain is performing well in some areas and has room for improvement in others. Consistent lifestyle changes — especially sleep, diet, and exercise — can make a meaningful difference.';
+    summary = 'Your brain is performing well in some areas and has room for improvement in others. Consistent lifestyle changes - especially sleep, diet, and exercise - can make a meaningful difference.';
   } else {
-    verdict = 'Needs Attention — Start Today';
+    verdict = 'Needs Attention - Start Today';
     verdictCls = 'brain-verdict verdict-needs';
-    summary = 'Your results suggest some areas of cognitive function that could benefit from active improvement. This is not a diagnosis — it is a call to action. Every lifestyle change you make today builds a stronger brain tomorrow.';
+    summary = 'Your results suggest some areas of cognitive function that could benefit from active improvement. This is not a diagnosis - it is a call to action. Every lifestyle change you make today builds a stronger brain tomorrow.';
   }
   vEl.textContent = verdict;
   vEl.className = verdictCls;
@@ -1448,11 +1440,11 @@ function buildResultsTips(r, m, a, l, n, rN, mN, aN, lN, nN) {
     {
       icon: '&#9889;', title: 'Reaction Speed & Processing Speed', score: r, maxScore: 100, pct: rN,
       brainRegion: 'Brain Region: Prefrontal Cortex, White Matter Tracts, Cerebellum',
-      poorDesc: 'Your reaction time is slower than optimal. This reflects reduced efficiency in the brain\'s white matter — the neural pathways that carry signals between the prefrontal cortex and cerebellum. Slow processing speed is one of the earliest markers of cognitive aging and is strongly linked to cardiovascular health in the brain. Poor blood flow, inflammation, and myelin breakdown all slow signal transmission.',
+      poorDesc: 'Your reaction time is slower than optimal. This reflects reduced efficiency in the brain\'s white matter - the neural pathways that carry signals between the prefrontal cortex and cerebellum. Slow processing speed is one of the earliest markers of cognitive aging and is strongly linked to cardiovascular health in the brain. Poor blood flow, inflammation, and myelin breakdown all slow signal transmission.',
       avgDesc: 'Your reaction speed is moderate. Your white matter tracts and prefrontal networks are functional but could be sharper. Processing speed responds well to cardiovascular fitness and omega-3 supplementation, which help maintain myelin integrity.',
-      goodDesc: 'Excellent reaction speed! Your white matter integrity and prefrontal-cerebellar networks are working efficiently. Your brain is transmitting signals quickly and accurately — a sign of healthy vascular function and neural connectivity.',
+      goodDesc: 'Excellent reaction speed! Your white matter integrity and prefrontal-cerebellar networks are working efficiently. Your brain is transmitting signals quickly and accurately - a sign of healthy vascular function and neural connectivity.',
       actions: [
-        { icon: 'RUN', text: 'Daily aerobic exercise (30 min walk, swim or cycle) is the single most powerful intervention — it directly increases cerebral blood flow, promotes myelin repair, and raises BDNF, the brain\'s "fertiliser." Research from the Mayo Clinic shows measurable improvements in processing speed within 6-8 weeks.' },
+        { icon: 'RUN', text: 'Daily aerobic exercise (30 min walk, swim or cycle) is the single most powerful intervention - it directly increases cerebral blood flow, promotes myelin repair, and raises BDNF, the brain\'s "fertiliser." Research from the Mayo Clinic shows measurable improvements in processing speed within 6-8 weeks.' },
         { icon: 'FISH', text: 'Eat omega-3 rich oily fish 3x/week (salmon, sardines, mackerel). Omega-3 DHA is the main structural fat of myelin sheaths. Low omega-3 = poor signal speed. Daily fish oil (1-2g EPA/DHA) is evidence-backed for white matter protection.' },
         { icon: 'GAME', text: 'Play reaction-based sports: table tennis, badminton, or reaction apps. These train the cerebellum and fronto-parietal speed networks simultaneously. Even 15 minutes daily shows measurable improvement in 4 weeks.' },
         { icon: 'SLEEP', text: 'Prioritise 7-9 hours of sleep. Deep sleep is when the brain repairs myelin. Chronic sleep loss degrades white matter faster than almost any other single lifestyle factor.' },
@@ -1462,61 +1454,61 @@ function buildResultsTips(r, m, a, l, n, rN, mN, aN, lN, nN) {
     {
       icon: '&#129504;', title: 'Short-Term Memory', score: m, maxScore: 5, pct: mN,
       brainRegion: 'Brain Region: Hippocampus, Entorhinal Cortex, Prefrontal Cortex',
-      poorDesc: 'Your memory recall score suggests your hippocampus — the brain\'s primary memory formation centre — may be under stress. The hippocampus is the first brain region to show damage in Alzheimer\'s disease, but also one of the most responsive to lifestyle intervention. Poor short-term memory can result from sleep deprivation, high cortisol from stress, low omega-3, or insufficient blood flow. The hippocampus is one of only two brain regions capable of growing NEW neurons at any age through neurogenesis — and exercise is its most powerful trigger.',
+      poorDesc: 'Your memory recall score suggests your hippocampus - the brain\'s primary memory formation centre - may be under stress. The hippocampus is the first brain region to show damage in Alzheimer\'s disease, but also one of the most responsive to lifestyle intervention. Poor short-term memory can result from sleep deprivation, high cortisol from stress, low omega-3, or insufficient blood flow. The hippocampus is one of only two brain regions capable of growing NEW neurons at any age through neurogenesis - and exercise is its most powerful trigger.',
       avgDesc: 'Your memory is functional but inconsistent. Your hippocampus is working but may be affected by poor sleep, moderate stress, or suboptimal nutrition. Strengthening memory encoding and recall circuits requires targeted daily practice combined with lifestyle improvement.',
-      goodDesc: 'Your memory recall is strong! Your hippocampus and prefrontal memory circuits are working well. You are encoding and retrieving information effectively. Maintain this by continuing to challenge your memory actively — learn new skills, socialise regularly, and protect your sleep above all else.',
+      goodDesc: 'Your memory recall is strong! Your hippocampus and prefrontal memory circuits are working well. You are encoding and retrieving information effectively. Maintain this by continuing to challenge your memory actively - learn new skills, socialise regularly, and protect your sleep above all else.',
       actions: [
-        { icon: 'SWIM', text: 'Aerobic exercise 4-5x/week is the gold-standard for hippocampal health. The landmark Erickson et al. study (2011) showed the hippocampus GREW by 1-2% per year with walking 40 min/day — while the control group\'s hippocampus shrank. This is the closest thing to a proven memory reversal treatment.' },
+        { icon: 'SWIM', text: 'Aerobic exercise 4-5x/week is the gold-standard for hippocampal health. The landmark Erickson et al. study (2011) showed the hippocampus GREW by 1-2% per year with walking 40 min/day - while the control group\'s hippocampus shrank. This is the closest thing to a proven memory reversal treatment.' },
         { icon: 'BERRY', text: 'Eat blueberries daily (half to one cup). Flavonoids in blueberries cross the blood-brain barrier and directly stimulate neurogenesis in the hippocampus. Animal studies showed reversal of existing short-term memory loss with consistent blueberry consumption. Also: walnuts, dark chocolate, turmeric.' },
         { icon: 'MEMORY', text: 'Practice the Memory Palace (Method of Loci): assign items you want to remember to specific rooms in a familiar place. This technique directly trains the hippocampal-spatial memory network. Start with your shopping list and build up.' },
         { icon: 'SLEEP', text: 'Sleep is not optional for memory. During deep sleep (NREM Stage 3), the brain transfers information from short-term to long-term storage. One night of poor sleep halves memory retention. Aim for consistent sleep in a dark, cool room.' },
         { icon: 'ZEN', text: 'Reduce cortisol through daily meditation or breathing exercises. Chronic stress releases cortisol which physically erodes hippocampal volume over time. Even 10 minutes per day of slow breathing reduces cortisol significantly.' },
-        { icon: 'EGG', text: 'Eat choline-rich foods: eggs (yolk), liver, salmon. Choline is the precursor to acetylcholine — the neurotransmitter most critical for memory. Vitamin D from sunlight or supplements also has the highest receptor density in the hippocampus of any brain region.' },
+        { icon: 'EGG', text: 'Eat choline-rich foods: eggs (yolk), liver, salmon. Choline is the precursor to acetylcholine - the neurotransmitter most critical for memory. Vitamin D from sunlight or supplements also has the highest receptor density in the hippocampus of any brain region.' },
       ]
     },
     {
       icon: '&#127919;', title: 'Attention & Working Memory', score: a, maxScore: 10, pct: aN,
       brainRegion: 'Brain Region: Dorsolateral Prefrontal Cortex, Anterior Cingulate Cortex, Parietal Lobe',
-      poorDesc: 'Your attention and working memory score is low. Working memory — the ability to hold and mentally manipulate information in real time — is primarily controlled by the dorsolateral prefrontal cortex (dlPFC). These regions are highly sensitive to stress, poor sleep, lack of physical activity, and ultra-processed food diets that cause neuroinflammation. Critically, the prefrontal cortex is one of the most responsive brain regions to lifestyle change — it genuinely regrows with the right inputs.',
+      poorDesc: 'Your attention and working memory score is low. Working memory - the ability to hold and mentally manipulate information in real time - is primarily controlled by the dorsolateral prefrontal cortex (dlPFC). These regions are highly sensitive to stress, poor sleep, lack of physical activity, and ultra-processed food diets that cause neuroinflammation. Critically, the prefrontal cortex is one of the most responsive brain regions to lifestyle change - it genuinely regrows with the right inputs.',
       avgDesc: 'Your attention is moderate. You can focus but struggle under mental load or when information must be held and processed simultaneously. Your prefrontal cortex is functional but would benefit from targeted strengthening through meditation, better stress management, and sleep consistency.',
       goodDesc: 'Your attention and working memory are excellent! Your prefrontal cortex and anterior cingulate circuits are performing strongly. This is a powerful cognitive asset. Protect it by managing stress, sleeping consistently, and continuing to challenge your working memory with complex tasks.',
       actions: [
         { icon: 'ZEN', text: 'Meditation is the single most direct way to strengthen the prefrontal cortex. A Harvard study showed that 8 weeks of mindfulness meditation (average 27 min/day) measurably increased grey matter density in the dlPFC and anterior cingulate. Start with 10 minutes of focused breathing daily.' },
         { icon: 'CHESS', text: 'Play strategy games that demand sustained mental effort: chess, mahjong, bridge, or complex board games. These force the prefrontal cortex to plan ahead, inhibit impulses, and hold multiple variables simultaneously. A randomised trial found 15 min/day of brain training improved executive function in elderly participants in just 4 weeks.' },
-        { icon: 'FOCUS', text: 'Remove digital distraction: constant smartphone checking trains the brain for shallow attention. Set 25-minute "focus blocks" with no notifications — the Pomodoro technique. This conditions the prefrontal cortex to sustain deep concentration.' },
+        { icon: 'FOCUS', text: 'Remove digital distraction: constant smartphone checking trains the brain for shallow attention. Set 25-minute "focus blocks" with no notifications - the Pomodoro technique. This conditions the prefrontal cortex to sustain deep concentration.' },
         { icon: 'GREEN', text: 'Feed the prefrontal cortex: leafy greens (spinach, rocket, kale), fatty fish, avocados, and eggs provide folate, omega-3s, and choline that the dlPFC depends on. Avoid refined sugar and ultra-processed foods that trigger neuroinflammation.' },
         { icon: 'SLEEP', text: 'Sleep is the prefrontal cortex\'s recovery window. Even mild sleep deprivation (6 hours instead of 8) measurably impairs working memory, decision-making, and impulse control within 24 hours. The prefrontal cortex is the last brain region to recover from sleep loss.' },
-        { icon: 'WALK', text: 'Manage stress actively. Chronic stress shrinks prefrontal grey matter while enlarging the amygdala — the opposite of what you want. Daily walks in nature, journalling, or tai chi measurably lower cortisol and restore prefrontal function over 6-8 weeks.' },
+        { icon: 'WALK', text: 'Manage stress actively. Chronic stress shrinks prefrontal grey matter while enlarging the amygdala - the opposite of what you want. Daily walks in nature, journalling, or tai chi measurably lower cortisol and restore prefrontal function over 6-8 weeks.' },
       ]
     },
     {
       icon: '&#128290;', title: 'Logic, Patterns & Executive Function', score: l, maxScore: 10, pct: lN,
       brainRegion: 'Brain Region: Prefrontal Cortex, Parietal Lobe, Frontoparietal Network',
-      poorDesc: 'Your logic and pattern recognition score suggests your frontoparietal executive network — the collaboration between the prefrontal cortex and parietal lobe — may need strengthening. This network handles abstract reasoning, pattern detection, problem-solving, and cognitive flexibility. Weaknesses often reflect a combination of reduced prefrontal activation and impaired parietal integration, caused by poor sleep, low omega-3 intake, insufficient mental challenge, or vascular issues.',
+      poorDesc: 'Your logic and pattern recognition score suggests your frontoparietal executive network - the collaboration between the prefrontal cortex and parietal lobe - may need strengthening. This network handles abstract reasoning, pattern detection, problem-solving, and cognitive flexibility. Weaknesses often reflect a combination of reduced prefrontal activation and impaired parietal integration, caused by poor sleep, low omega-3 intake, insufficient mental challenge, or vascular issues.',
       avgDesc: 'Your pattern recognition and logical reasoning is moderate. You can identify simple patterns but struggle with complex sequences. This reflects a partially trained frontoparietal network. Consistent mental challenges, quality sleep, and an anti-inflammatory diet will meaningfully improve this domain.',
-      goodDesc: 'Excellent logical reasoning and pattern recognition! Your frontoparietal executive network is working fluidly — you can detect complex patterns, reason abstractly, and switch strategies efficiently. Keep challenging yourself with novel, complex problems to maintain this network\'s strength.',
+      goodDesc: 'Excellent logical reasoning and pattern recognition! Your frontoparietal executive network is working fluidly - you can detect complex patterns, reason abstractly, and switch strategies efficiently. Keep challenging yourself with novel, complex problems to maintain this network\'s strength.',
       actions: [
         { icon: 'SUDOKU', text: 'Practice number and pattern puzzles daily: Sudoku trains pattern recognition and logical deduction. A study in the Journal of the International Neuropsychological Society showed regular puzzle use directly slows cognitive decline, with frequent players showing brain function 10 years younger than non-players.' },
-        { icon: 'LEARN', text: 'Learn something structurally new — a new language, instrument, or skill like coding, chess, or calligraphy. Learning novel rule systems is the strongest known activator of the frontoparietal network. The brain must form entirely new connections when learning from scratch.' },
+        { icon: 'LEARN', text: 'Learn something structurally new - a new language, instrument, or skill like coding, chess, or calligraphy. Learning novel rule systems is the strongest known activator of the frontoparietal network. The brain must form entirely new connections when learning from scratch.' },
         { icon: 'CHESS', text: 'Play strategy games requiring multi-step planning: chess, Go, or real-time strategy video games. Chess specifically requires holding multiple future scenarios in mind simultaneously, training the exact prefrontal-parietal circuits tested here.' },
-        { icon: 'SLEEP', text: 'Sleep is where pattern consolidation happens. Complex problem-solving dramatically improves after sleep — the brain literally processes and organises patterns during NREM sleep. If you find puzzles harder in the evening, sleep on them; your brain will work on them overnight.' },
+        { icon: 'SLEEP', text: 'Sleep is where pattern consolidation happens. Complex problem-solving dramatically improves after sleep - the brain literally processes and organises patterns during NREM sleep. If you find puzzles harder in the evening, sleep on them; your brain will work on them overnight.' },
         { icon: 'FISH', text: 'DHA omega-3 (from oily fish or algae supplements) directly supports synaptic plasticity in parietal and prefrontal cortex. Studies link low DHA to impaired abstract reasoning and slower pattern detection. Aim for 2-3 servings of SMASH fish weekly.' },
-        { icon: 'TRAIN', text: 'Try "dual n-back" training — a research-backed working memory task where you track sequences across two channels simultaneously. Multiple studies show transfer effects to fluid intelligence — one of the few brain training tasks with proven generalisation.' },
+        { icon: 'TRAIN', text: 'Try "dual n-back" training - a research-backed working memory task where you track sequences across two channels simultaneously. Multiple studies show transfer effects to fluid intelligence - one of the few brain training tasks with proven generalisation.' },
       ]
     },
     {
       icon: '&#129409;', title: 'Language Fluency & Verbal Memory', score: n, maxScore: 10, pct: nN,
       brainRegion: "Brain Region: Left Temporal Lobe, Broca's Area (left frontal), Wernicke's Area",
-      poorDesc: "Your verbal fluency score is low, suggesting reduced activation in the left hemisphere's language network — particularly the left temporal lobe (where word meanings are stored) and Broca's area in the frontal lobe (where words are retrieved and produced). Verbal fluency is one of the earliest cognitive functions to decline in Alzheimer's disease. Low scores have been linked to social isolation, infrequent reading, low B12 or folate levels, and reduced left-hemisphere blood flow. Critical finding: bilingualism delays dementia onset by 4-5 years.",
+      poorDesc: "Your verbal fluency score is low, suggesting reduced activation in the left hemisphere's language network - particularly the left temporal lobe (where word meanings are stored) and Broca's area in the frontal lobe (where words are retrieved and produced). Verbal fluency is one of the earliest cognitive functions to decline in Alzheimer's disease. Low scores have been linked to social isolation, infrequent reading, low B12 or folate levels, and reduced left-hemisphere blood flow. Critical finding: bilingualism delays dementia onset by 4-5 years.",
       avgDesc: "Your verbal fluency is moderate. You can access vocabulary but may experience 'tip-of-the-tongue' moments or slowed word retrieval under time pressure. Reading, conversation, and vocabulary-building activities directly strengthen these circuits and are among the most effective dementia-prevention strategies available.",
-      goodDesc: "Excellent verbal fluency! Your left temporal and frontal language networks are highly active and well-connected. Strong verbal fluency is one of the best protective factors against cognitive decline — it reflects a dense, well-exercised language network that builds powerful cognitive reserve.",
+      goodDesc: "Excellent verbal fluency! Your left temporal and frontal language networks are highly active and well-connected. Strong verbal fluency is one of the best protective factors against cognitive decline - it reflects a dense, well-exercised language network that builds powerful cognitive reserve.",
       actions: [
-        { icon: 'READ', text: 'Read every day for at least 20 minutes — especially fiction, which engages language, empathy networks, and narrative memory simultaneously. Regular readers show significantly slower cognitive decline. Choose books that challenge your vocabulary rather than only comfortable genres.' },
-        { icon: 'TALK', text: 'Have at least one meaningful conversation daily. Social isolation is directly linked to verbal fluency decline — the language networks need regular activation through real dialogue. Join a group, class, or volunteer — environments that require you to articulate your thoughts regularly.' },
-        { icon: 'LANGUAGE', text: 'Learn a second language — even partially. Bilingualism is one of the most powerful dementia-protective factors known to science. It delays onset by 4-5 years by building a denser, more resilient language network. Apps like Duolingo or language exchange groups are accessible starting points.' },
-        { icon: 'WRITE', text: 'Write regularly: journalling, letters, or creative writing. Writing forces word retrieval, sentence construction, and memory recall simultaneously — training the full left-hemisphere language circuit. Even 10 minutes daily of writing about your day measurably improves word retrieval speed over weeks.' },
+        { icon: 'READ', text: 'Read every day for at least 20 minutes - especially fiction, which engages language, empathy networks, and narrative memory simultaneously. Regular readers show significantly slower cognitive decline. Choose books that challenge your vocabulary rather than only comfortable genres.' },
+        { icon: 'TALK', text: 'Have at least one meaningful conversation daily. Social isolation is directly linked to verbal fluency decline - the language networks need regular activation through real dialogue. Join a group, class, or volunteer - environments that require you to articulate your thoughts regularly.' },
+        { icon: 'LANGUAGE', text: 'Learn a second language - even partially. Bilingualism is one of the most powerful dementia-protective factors known to science. It delays onset by 4-5 years by building a denser, more resilient language network. Apps like Duolingo or language exchange groups are accessible starting points.' },
+        { icon: 'WRITE', text: 'Write regularly: journalling, letters, or creative writing. Writing forces word retrieval, sentence construction, and memory recall simultaneously - training the full left-hemisphere language circuit. Even 10 minutes daily of writing about your day measurably improves word retrieval speed over weeks.' },
         { icon: 'SING', text: "Sing, read aloud, or join a speaking group. Vocal language production activates motor-language circuits in Broca's area that silent reading does not. Singing in particular engages both hemispheres and has been shown to preserve language function even in advanced dementia." },
-        { icon: 'B12', text: 'Check your B12 and folate levels. B12 deficiency — extremely common in adults over 50 — directly damages the myelin sheaths on language nerve pathways, slowing word retrieval. Eat eggs, fish, dairy, or supplement B12 regularly. Folate (from leafy greens and legumes) supports the same pathways.' },
+        { icon: 'B12', text: 'Check your B12 and folate levels. B12 deficiency - extremely common in adults over 50 - directly damages the myelin sheaths on language nerve pathways, slowing word retrieval. Eat eggs, fish, dairy, or supplement B12 regularly. Folate (from leafy greens and legumes) supports the same pathways.' },
       ]
     },
   ];
