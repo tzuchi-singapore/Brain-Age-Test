@@ -8,47 +8,32 @@
 <title>Brain Age Test - Anytime Anywhere Anyone Fitness</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-
-DESIGN SYSTEM (matches Brain Revival Guide)
-
+/* === DESIGN TOKENS === */
 :root {
-–sage: #5C8E78; –sage-light: #A8C9B8; –sage-dark: #3A6B55;
-–cream: #FAF7F2; –forest: #2C5F4A;
-–gold: #C8A96A; –gold-light: #E8D5A8;
-–coral: #E07B5A; –sky: #7AB3C8; –lavender: #9B8EC4;
-–text-dark: #1E2D26; –text-mid: #3D5247; –text-light: #6B8577;
-–border: #D4E6DC; –shadow: rgba(44,95,74,0.14);
-
-/* Test colours */
-–green: #3BB87F; –yellow: #F5C842; –red: #E04A4A; –blue: #4A90D9;
+  --sage:#5C8E78; --sage-light:#A8C9B8; --sage-dark:#3A6B55;
+  --cream:#FAF7F2; --forest:#2C5F4A;
+  --gold:#C8A96A; --gold-light:#E8D5A8;
+  --coral:#E07B5A; --sky:#7AB3C8; --lavender:#9B8EC4;
+  --text-dark:#1E2D26; --text-mid:#3D5247; --text-light:#6B8577;
+  --border:#D4E6DC; --shadow:rgba(44,95,74,0.14);
+  --green:#3BB87F; --yellow:#F5C842; --red:#E04A4A; --blue:#4A90D9;
 }
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Nunito',sans-serif; background:var(--cream); color:var(--text-dark); min-height:100vh; overflow-x:hidden; }
 
-- { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-
-body {
-font-family: ‘Nunito’, sans-serif;
-background: var(–cream);
-color: var(–text-dark);
-min-height: 100vh;
-overflow-x: hidden;
-}
-
-/*  NAV  */
+/* === NAV === */
 nav {
-position: fixed; top:0; left:0; right:0; z-index:1000;
-background: rgba(255,255,255,0.96);
-backdrop-filter: blur(12px);
-border-bottom: 2px solid var(–border);
-padding: 0 24px;
-display: flex; align-items: center; justify-content: space-between;
-height: 60px;
-box-shadow: 0 2px 20px var(–shadow);
+position:fixed; top:0; left:0; right:0; z-index:1000;
+background:rgba(255,255,255,0.96); backdrop-filter:blur(12px);
+border-bottom:2px solid var(–border); padding:0 24px;
+display:flex; align-items:center; justify-content:space-between;
+height:60px; box-shadow:0 2px 20px var(–shadow);
 }
 .nav-brand { display:flex; align-items:center; gap:10px; }
 .nav-logo {
 width:36px; height:36px; border-radius:50%;
-background: linear-gradient(135deg, var(–sage), var(–forest));
+background:linear-gradient(135deg,var(–sage),var(–forest));
 display:flex; align-items:center; justify-content:center;
 font-size:17px; color:white;
 }
@@ -58,334 +43,164 @@ font-size:17px; color:white;
 display:inline-flex; align-items:center; gap:6px;
 font-size:13px; font-weight:700; color:var(–sage-dark);
 text-decoration:none; padding:7px 16px;
-border:2px solid var(–sage-light); border-radius:20px;
-transition:all .2s;
+border:2px solid var(–sage-light); border-radius:20px; transition:all .2s;
 }
 .nav-back:hover { background:var(–sage); color:white; border-color:var(–sage); }
 
-/*  SCREEN SYSTEM  */
-.screen {
-display:none; position:relative;
-min-height:100vh; padding:80px 20px 40px;
-}
+/* === SCREEN SYSTEM === */
+.screen { display:none; position:relative; min-height:100vh; padding:80px 20px 40px; }
 .screen.active { display:flex; flex-direction:column; align-items:center; justify-content:center; }
 
-/*  PROGRESS BAR  */
+/* === PROGRESS BAR === */
 .progress-wrap {
 position:fixed; top:60px; left:0; right:0; z-index:900;
-background:white; border-bottom:1px solid var(–border); padding:10px 24px;
-display:none;
+background:white; border-bottom:1px solid var(–border); padding:10px 24px; display:none;
 }
 .progress-wrap.visible { display:block; }
-.progress-track {
-height:6px; border-radius:10px; background:var(–border);
-overflow:hidden;
-}
+.progress-track { height:6px; border-radius:10px; background:var(–border); overflow:hidden; }
 .progress-fill {
 height:100%; border-radius:10px;
-background:linear-gradient(90deg, var(–sage), var(–forest));
+background:linear-gradient(90deg,var(–sage),var(–forest));
 transition:width .5s cubic-bezier(.4,0,.2,1);
 }
-.progress-info {
-display:flex; justify-content:space-between; align-items:center;
-margin-bottom:6px;
-}
+.progress-info { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
 .progress-label { font-size:12px; font-weight:700; color:var(–forest); }
 .progress-time  { font-size:12px; color:var(–text-light); }
 
-LANDING SCREEN - NEURO TECH REDESIGN
-
-/* Full dark neuro background for landing */
+/* === LANDING - NEURO TECH DARK === */
 #screen-landing {
-background: #050d14;
-padding: 80px 20px 60px;
-overflow: hidden;
-position: relative;
-justify-content: center;
-align-items: center;
+background:#050d14;
+padding:80px 20px 60px;
+overflow:hidden;
 }
-
-/* Canvas for neural network animation sits behind everything */
 #neuro-canvas {
-position: absolute;
-inset: 0;
-width: 100%;
-height: 100%;
-z-index: 0;
+position:absolute; inset:0; width:100%; height:100%; z-index:0; display:block;
 }
-
-/* Radial green glow in centre */
 #screen-landing::after {
-content: ‘’;
-position: absolute;
-top: 40%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 600px;
-height: 600px;
-border-radius: 50%;
-background: radial-gradient(ellipse, rgba(92,142,120,0.18) 0%, rgba(44,95,74,0.08) 50%, transparent 70%);
-pointer-events: none;
-z-index: 0;
+content:’’; position:absolute; top:40%; left:50%;
+transform:translate(-50%,-50%);
+width:600px; height:600px; border-radius:50%;
+background:radial-gradient(ellipse,rgba(92,142,120,0.18) 0%,rgba(44,95,74,0.08) 50%,transparent 70%);
+pointer-events:none; z-index:0;
 }
-
-.landing-inner {
-position: relative;
-z-index: 2;
-text-align: center;
-max-width: 640px;
-width: 100%;
-}
-
-/* Animated badge with pulse ring */
-.landing-badge {
-display: inline-flex;
-align-items: center;
-gap: 8px;
-background: rgba(92,142,120,0.15);
-border: 1px solid rgba(92,142,120,0.5);
-color: #7ecfb0;
-font-size: 11px;
-font-weight: 800;
-letter-spacing: 3px;
-text-transform: uppercase;
-padding: 8px 20px;
-border-radius: 30px;
-margin-bottom: 28px;
-position: relative;
-box-shadow: 0 0 20px rgba(92,142,120,0.2), inset 0 0 20px rgba(92,142,120,0.05);
-}
-.landing-badge::before {
-content: ‘’;
-position: absolute;
-inset: -3px;
-border-radius: 33px;
-border: 1px solid rgba(92,142,120,0.3);
-animation: badgePulse 2.5s ease-in-out infinite;
-}
-@keyframes badgePulse {
-0%, 100% { opacity: 0.4; transform: scale(1); }
-50% { opacity: 1; transform: scale(1.02); }
-}
-
-/* Hero headline - glowing text */
-.landing-inner h1 {
-font-family: ‘Playfair Display’, serif;
-font-size: clamp(40px, 9vw, 80px);
-color: #ffffff;
-line-height: 1.05;
-margin-bottom: 16px;
-text-shadow: 0 0 60px rgba(126,207,176,0.2);
-letter-spacing: -1px;
-}
-.landing-inner h1 .word-brain { display: block; }
-.landing-inner h1 span {
-background: linear-gradient(135deg, #C8A96A, #E8D5A8, #C8A96A);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-text-shadow: none;
-animation: goldShimmer 3s ease-in-out infinite;
-background-size: 200% auto;
-}
-@keyframes goldShimmer {
-0%, 100% { background-position: 0% center; }
-50% { background-position: 100% center; }
-}
-
-.landing-inner p {
-font-size: clamp(14px, 2.2vw, 17px);
-color: rgba(180, 220, 205, 0.8);
-margin-bottom: 36px;
-line-height: 1.8;
-max-width: 480px;
-margin-left: auto;
-margin-right: auto;
-}
-
-/* Brain stats strip */
-.brain-stats-strip {
-display: flex;
-justify-content: center;
-gap: 24px;
-margin-bottom: 32px;
-flex-wrap: wrap;
-}
-.brain-stat-item {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 2px;
-}
-.brain-stat-num {
-font-family: ‘Playfair Display’, serif;
-font-size: 22px;
-font-weight: 700;
-color: #7ecfb0;
-line-height: 1;
-}
-.brain-stat-label {
-font-size: 10px;
-color: rgba(180,220,205,0.55);
-font-weight: 700;
-letter-spacing: 1px;
-text-transform: uppercase;
-}
-
-/* 6 test cards - dark glass */
-.test-preview {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 10px;
-margin: 0 auto 36px;
-max-width: 500px;
-}
-.test-prev-card {
-background: rgba(255,255,255,0.04);
-border: 1px solid rgba(92,142,120,0.25);
-border-radius: 16px;
-padding: 16px 10px;
-text-align: center;
-backdrop-filter: blur(8px);
-transition: all 0.3s;
-position: relative;
-overflow: hidden;
-}
-.test-prev-card::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0;
-height: 1px;
-background: linear-gradient(90deg, transparent, rgba(126,207,176,0.4), transparent);
-}
-.test-prev-card:hover {
-background: rgba(92,142,120,0.12);
-border-color: rgba(92,142,120,0.5);
-transform: translateY(-3px);
-}
-.test-prev-card .icon {
-font-size: 28px;
-margin-bottom: 8px;
-display: block;
-filter: drop-shadow(0 0 8px rgba(126,207,176,0.3));
-}
-.test-prev-card .lbl {
-font-size: 10px;
-color: rgba(180,220,205,0.8);
-font-weight: 700;
-line-height: 1.3;
-letter-spacing: 0.5px;
-text-transform: uppercase;
-}
-
-/* CTA Button - glowing green pulse */
-.start-btn {
-display: inline-flex;
-align-items: center;
-gap: 12px;
-background: linear-gradient(135deg, #3A8C6E, #2C6B52);
-color: #ffffff;
-font-family: ‘Nunito’, sans-serif;
-font-size: 17px;
-font-weight: 800;
-padding: 18px 48px;
-border-radius: 60px;
-border: 1px solid rgba(126,207,176,0.4);
-cursor: pointer;
-letter-spacing: 0.5px;
-position: relative;
-overflow: hidden;
-box-shadow: 0 0 40px rgba(58,140,110,0.4), 0 0 80px rgba(58,140,110,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
-transition: all 0.3s;
-}
-.start-btn::before {
-content: ‘’;
-position: absolute;
-top: -50%; left: -50%;
-width: 200%; height: 200%;
-background: conic-gradient(transparent, rgba(126,207,176,0.15), transparent 30%);
-animation: btnRotate 3s linear infinite;
-}
-.start-btn::after {
-content: ‘’;
-position: absolute;
-inset: 1px;
-border-radius: 59px;
-background: linear-gradient(135deg, #3A8C6E, #2C6B52);
-}
-.start-btn span, .start-btn .btn-text { position: relative; z-index: 1; }
-.start-btn:hover {
-transform: translateY(-3px) scale(1.02);
-box-shadow: 0 0 60px rgba(58,140,110,0.6), 0 0 100px rgba(58,140,110,0.25);
-}
-@keyframes btnRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-.start-note {
-color: rgba(180,220,205,0.45);
-font-size: 11px;
-margin-top: 16px;
-letter-spacing: 0.3px;
-}
-
-/* Floating orbs behind content */
 .orb {
-position: absolute;
-border-radius: 50%;
-pointer-events: none;
-z-index: 1;
-filter: blur(40px);
+position:absolute; border-radius:50%;
+pointer-events:none; z-index:1; filter:blur(40px);
 }
 .orb-1 {
-width: 300px; height: 300px;
-background: radial-gradient(circle, rgba(58,107,85,0.35), transparent 70%);
-top: 5%; left: -10%;
-animation: orbFloat1 8s ease-in-out infinite;
+width:300px; height:300px;
+background:radial-gradient(circle,rgba(58,107,85,0.35),transparent 70%);
+top:5%; left:-10%; animation:orbFloat1 8s ease-in-out infinite;
 }
 .orb-2 {
-width: 250px; height: 250px;
-background: radial-gradient(circle, rgba(74,144,217,0.15), transparent 70%);
-top: 10%; right: -8%;
-animation: orbFloat2 10s ease-in-out infinite;
+width:250px; height:250px;
+background:radial-gradient(circle,rgba(74,144,217,0.15),transparent 70%);
+top:10%; right:-8%; animation:orbFloat2 10s ease-in-out infinite;
 }
 .orb-3 {
-width: 200px; height: 200px;
-background: radial-gradient(circle, rgba(200,169,106,0.12), transparent 70%);
-bottom: 20%; left: 10%;
-animation: orbFloat3 12s ease-in-out infinite;
+width:200px; height:200px;
+background:radial-gradient(circle,rgba(200,169,106,0.12),transparent 70%);
+bottom:20%; left:10%; animation:orbFloat3 12s ease-in-out infinite;
 }
-@keyframes orbFloat1 {
-0%, 100% { transform: translate(0,0) scale(1); }
-33% { transform: translate(30px, 20px) scale(1.05); }
-66% { transform: translate(-20px, 40px) scale(0.95); }
-}
-@keyframes orbFloat2 {
-0%, 100% { transform: translate(0,0); }
-50% { transform: translate(-40px, 30px); }
-}
-@keyframes orbFloat3 {
-0%, 100% { transform: translate(0,0); }
-50% { transform: translate(20px, -30px); }
-}
-
-/* Scan line effect */
+@keyframes orbFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(30px,20px) scale(1.05)} 66%{transform:translate(-20px,40px) scale(0.95)} }
+@keyframes orbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,30px)} }
+@keyframes orbFloat3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-30px)} }
 .scan-line {
-position: absolute;
-left: 0; right: 0;
-height: 2px;
-background: linear-gradient(90deg, transparent, rgba(126,207,176,0.3), transparent);
-z-index: 1;
-animation: scanMove 6s linear infinite;
-pointer-events: none;
+position:absolute; left:0; right:0; height:2px;
+background:linear-gradient(90deg,transparent,rgba(126,207,176,0.3),transparent);
+z-index:1; animation:scanMove 6s linear infinite; pointer-events:none;
 }
-@keyframes scanMove {
-0% { top: 0%; opacity: 0; }
-5% { opacity: 1; }
-95% { opacity: 1; }
-100% { top: 100%; opacity: 0; }
+@keyframes scanMove { 0%{top:0%;opacity:0} 5%{opacity:1} 95%{opacity:1} 100%{top:100%;opacity:0} }
+.landing-inner { position:relative; z-index:2; text-align:center; max-width:640px; width:100%; }
+.landing-badge {
+display:inline-flex; align-items:center; gap:8px;
+background:rgba(92,142,120,0.15); border:1px solid rgba(92,142,120,0.5);
+color:#7ecfb0; font-size:11px; font-weight:800; letter-spacing:3px;
+text-transform:uppercase; padding:8px 20px; border-radius:30px;
+margin-bottom:28px; position:relative;
+box-shadow:0 0 20px rgba(92,142,120,0.2),inset 0 0 20px rgba(92,142,120,0.05);
 }
+.landing-badge::before {
+content:’’; position:absolute; inset:-3px; border-radius:33px;
+border:1px solid rgba(92,142,120,0.3); animation:badgePulse 2.5s ease-in-out infinite;
+}
+.badge-dot {
+display:inline-block; width:7px; height:7px; border-radius:50%;
+background:#7ecfb0; animation:badgePulse 1.5s ease-in-out infinite;
+}
+@keyframes badgePulse { 0%,100%{opacity:0.4;transform:scale(1)} 50%{opacity:1;transform:scale(1.02)} }
+.landing-inner h1 {
+font-family:‘Playfair Display’,serif;
+font-size:clamp(40px,9vw,80px); color:#ffffff;
+line-height:1.05; margin-bottom:16px;
+text-shadow:0 0 60px rgba(126,207,176,0.2); letter-spacing:-1px;
+}
+.gold-text {
+display:block;
+background:linear-gradient(135deg,#C8A96A,#E8D5A8,#C8A96A);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text; background-size:200% auto;
+animation:goldShimmer 3s ease-in-out infinite;
+}
+@keyframes goldShimmer { 0%,100%{background-position:0% center} 50%{background-position:100% center} }
+.landing-inner p {
+font-size:clamp(14px,2.2vw,17px); color:rgba(180,220,205,0.8);
+margin:0 auto 32px; line-height:1.8; max-width:480px;
+}
+.brain-stats-strip {
+display:flex; justify-content:center; gap:0; margin-bottom:32px; flex-wrap:wrap;
+}
+.brain-stat-item {
+display:flex; flex-direction:column; align-items:center; gap:2px;
+padding:0 20px; border-right:1px solid rgba(126,207,176,0.2);
+}
+.brain-stat-item:last-child { border-right:none; }
+.brain-stat-num {
+font-family:‘Playfair Display’,serif; font-size:24px; font-weight:700;
+color:#7ecfb0; line-height:1;
+}
+.brain-stat-label {
+font-size:10px; color:rgba(180,220,205,0.5); font-weight:700;
+letter-spacing:1px; text-transform:uppercase;
+}
+.test-preview {
+display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+margin:0 auto 36px; max-width:500px;
+}
+.test-prev-card {
+background:rgba(255,255,255,0.04); border:1px solid rgba(92,142,120,0.25);
+border-radius:16px; padding:16px 10px; text-align:center;
+backdrop-filter:blur(8px); transition:all 0.3s; position:relative; overflow:hidden;
+}
+.test-prev-card::before {
+content:’’; position:absolute; top:0; left:0; right:0; height:1px;
+background:linear-gradient(90deg,transparent,rgba(126,207,176,0.4),transparent);
+}
+.test-prev-card:hover { background:rgba(92,142,120,0.12); border-color:rgba(92,142,120,0.5); transform:translateY(-3px); }
+.test-prev-card .icon { font-size:28px; margin-bottom:8px; display:block; filter:drop-shadow(0 0 8px rgba(126,207,176,0.3)); }
+.test-prev-card .lbl { font-size:10px; color:rgba(180,220,205,0.85); font-weight:700; line-height:1.3; letter-spacing:0.5px; text-transform:uppercase; }
+.start-btn {
+display:inline-flex; align-items:center; gap:12px;
+background:linear-gradient(135deg,#3A8C6E,#2C6B52); color:#ffffff;
+font-family:‘Nunito’,sans-serif; font-size:17px; font-weight:800;
+padding:18px 48px; border-radius:60px;
+border:1px solid rgba(126,207,176,0.4); cursor:pointer; letter-spacing:0.5px;
+position:relative; overflow:hidden;
+box-shadow:0 0 40px rgba(58,140,110,0.4),0 0 80px rgba(58,140,110,0.15),inset 0 1px 0 rgba(255,255,255,0.1);
+transition:all 0.3s;
+}
+.start-btn::before {
+content:’’; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+background:conic-gradient(transparent,rgba(126,207,176,0.15),transparent 30%);
+animation:btnRotate 3s linear infinite; z-index:0;
+}
+.start-btn-text { position:relative; z-index:1; }
+.start-btn-icon { position:relative; z-index:1; }
+.start-btn:hover { transform:translateY(-3px) scale(1.02); box-shadow:0 0 60px rgba(58,140,110,0.6),0 0 100px rgba(58,140,110,0.25); }
+@keyframes btnRotate { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.start-note { color:rgba(180,220,205,0.4); font-size:11px; margin-top:14px; letter-spacing:0.3px; }
 
-SHARED TEST CARD
-
+/* === SHARED TEST CARD === */
 .test-card {
 background:white; border-radius:28px; padding:36px 32px;
 box-shadow:0 8px 48px var(–shadow); max-width:680px; width:100%;
@@ -396,10 +211,7 @@ content:’’; position:absolute; top:0; left:0; right:0; height:5px;
 background:linear-gradient(90deg,var(–sage),var(–forest));
 }
 .test-icon { font-size:52px; margin-bottom:10px; display:block; }
-.test-title {
-font-family:‘Playfair Display’,serif;
-font-size:clamp(22px,4vw,30px); color:var(–forest); margin-bottom:8px;
-}
+.test-title { font-family:‘Playfair Display’,serif; font-size:clamp(22px,4vw,30px); color:var(–forest); margin-bottom:8px; }
 .test-subtitle { font-size:14px; color:var(–text-light); margin-bottom:24px; line-height:1.6; }
 .test-timer {
 display:inline-flex; align-items:center; gap:6px;
@@ -409,8 +221,6 @@ font-variant-numeric:tabular-nums;
 }
 .test-timer.warning { background:var(–coral); animation:pulse .6s infinite; }
 @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-
-/*  Action button shared  */
 .action-btn {
 display:inline-flex; align-items:center; gap:8px;
 padding:13px 32px; border-radius:40px; border:none; cursor:pointer;
@@ -419,37 +229,19 @@ transition:all .25s; letter-spacing:.3px;
 }
 .action-btn.primary { background:var(–sage); color:white; }
 .action-btn.primary:hover { background:var(–forest); transform:translateY(-2px); }
-.action-btn.secondary {
-background:transparent; color:var(–sage-dark);
-border:2px solid var(–sage-light);
-}
-.action-btn.secondary:hover { background:var(–sage-light); }
 .action-btn:disabled { opacity:.45; cursor:not-allowed; transform:none !important; }
 
-TEST 1 - REACTION SPEED
-
+/* === TEST 1 - REACTION === */
 .reaction-arena {
 width:100%; height:200px; border-radius:20px;
 display:flex; align-items:center; justify-content:center;
-font-family:‘Playfair Display’,serif; font-size:28px;
-font-weight:700; color:white; cursor:pointer;
-transition:background .12s, transform .08s;
-user-select:none; margin:18px 0;
-background:var(–border);
-position:relative; overflow:hidden;
+font-family:‘Playfair Display’,serif; font-size:28px; font-weight:700;
+color:white; cursor:pointer; transition:background .12s,transform .08s;
+user-select:none; margin:18px 0; background:var(–border); position:relative;
 }
 .reaction-arena:active { transform:scale(.97); }
-.reaction-arena .arena-txt { pointer-events:none; }
-.reaction-arena::after {
-content:’’; position:absolute; inset:0;
-background:rgba(255,255,255,0); transition:background .1s;
-}
-.reaction-arena:active::after { background:rgba(255,255,255,.15); }
-
-/* colour buttons at bottom */
-.colour-pad {
-display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px;
-}
+.arena-txt { pointer-events:none; }
+.colour-pad { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
 .colour-btn {
 height:56px; border-radius:14px; border:3px solid transparent;
 cursor:pointer; font-size:13px; font-weight:800; color:white;
@@ -457,72 +249,43 @@ transition:all .15s; display:flex; align-items:center; justify-content:center;
 text-shadow:0 1px 3px rgba(0,0,0,.3);
 }
 .colour-btn:hover { transform:translateY(-3px); filter:brightness(1.1); }
-.colour-btn.green  { background:var(–green);  }
+.colour-btn.green  { background:var(–green); }
 .colour-btn.yellow { background:var(–yellow); color:var(–text-dark); text-shadow:none; }
-.colour-btn.red    { background:var(–red);    }
-.colour-btn.blue   { background:var(–blue);   }
-
-.reaction-stats {
-display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px;
-}
-.reaction-stat {
-background:var(–cream); border-radius:14px; padding:14px;
-border:2px solid var(–border);
-}
-.reaction-stat .val {
-font-family:‘Playfair Display’,serif; font-size:26px; color:var(–forest); font-weight:700;
-}
+.colour-btn.red    { background:var(–red); }
+.colour-btn.blue   { background:var(–blue); }
+.reaction-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }
+.reaction-stat { background:var(–cream); border-radius:14px; padding:14px; border:2px solid var(–border); }
+.reaction-stat .val { font-family:‘Playfair Display’,serif; font-size:26px; color:var(–forest); font-weight:700; }
 .reaction-stat .lbl { font-size:11px; color:var(–text-light); font-weight:600; margin-top:2px; }
+.streak-bar { display:flex; gap:4px; justify-content:center; margin-top:10px; flex-wrap:wrap; }
+.streak-dot { width:20px; height:20px; border-radius:50%; border:2px solid var(–border); background:var(–cream); transition:all .2s; }
+.streak-dot.hit  { background:var(–green); border-color:var(–green); }
+.streak-dot.miss { background:var(–coral); border-color:var(–coral); }
 
-.streak-bar {
-display:flex; gap:4px; justify-content:center; margin-top:10px; flex-wrap:wrap;
-}
-.streak-dot {
-width:20px; height:20px; border-radius:50%;
-border:2px solid var(–border); background:var(–cream);
-transition:all .2s; font-size:10px; display:flex; align-items:center; justify-content:center;
-}
-.streak-dot.hit  { background:var(–green);  border-color:var(–green);  }
-.streak-dot.miss { background:var(–coral);  border-color:var(–coral);  }
-
-TEST 2 - MEMORY RECALL
-
-.word-grid {
-display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:20px 0;
-}
+/* === TEST 2 - MEMORY === */
+.word-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:20px 0; }
 .word-chip {
 background:linear-gradient(135deg,var(–forest),var(–sage-dark));
 color:white; padding:10px 20px; border-radius:40px;
 font-size:16px; font-weight:700; letter-spacing:.5px;
-animation: popIn .4s cubic-bezier(.34,1.56,.64,1) both;
+animation:popIn .4s cubic-bezier(.34,1.56,.64,1) both;
 }
-@keyframes popIn {
-from { transform:scale(0) rotate(-5deg); opacity:0; }
-to   { transform:scale(1) rotate(0);    opacity:1; }
-}
-.word-chip:nth-child(2) { animation-delay:.1s; }
-.word-chip:nth-child(3) { animation-delay:.2s; }
-.word-chip:nth-child(4) { animation-delay:.3s; }
-.word-chip:nth-child(5) { animation-delay:.4s; }
-
+@keyframes popIn { from{transform:scale(0) rotate(-5deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
 .distract-q {
 background:linear-gradient(135deg,#F0F7F3,#E8F4EE);
 border:2px solid var(–sage-light); border-radius:16px; padding:20px 24px; margin:16px 0;
 }
-.distract-q .q-text { font-size:18px; font-weight:700; color:var(–forest); margin-bottom:12px; }
+.q-text { font-size:18px; font-weight:700; color:var(–forest); margin-bottom:12px; }
 .distract-options { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
 .distract-opt {
 padding:9px 20px; border-radius:30px; border:2px solid var(–border);
 background:white; cursor:pointer; font-size:14px; font-weight:600;
 transition:all .2s; color:var(–text-mid);
 }
-.distract-opt:hover  { border-color:var(–sage); background:var(–sage-light); }
+.distract-opt:hover { border-color:var(–sage); background:var(–sage-light); }
 .distract-opt.correct-flash { background:var(–green); color:white; border-color:var(–green); }
 .distract-opt.wrong-flash   { background:var(–coral); color:white; border-color:var(–coral); }
-
-.recall-grid {
-display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:20px 0;
-}
+.recall-grid { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:20px 0; }
 .recall-btn {
 padding:10px 20px; border-radius:30px; border:2px solid var(–border);
 background:white; cursor:pointer; font-size:15px; font-weight:700;
@@ -531,24 +294,18 @@ transition:all .2s; color:var(–text-mid);
 .recall-btn:hover   { border-color:var(–sage); background:var(–sage-light); }
 .recall-btn.selected{ border-color:var(–sage-dark); background:var(–sage); color:white; }
 
-TEST 3 - ATTENTION (count back by 7)
-
+/* === TEST 3 - ATTENTION === */
 .countdown-display {
 font-family:‘Playfair Display’,serif; font-size:72px; font-weight:700;
 color:var(–forest); line-height:1; margin:20px 0;
 background:linear-gradient(135deg,var(–sage-light),var(–border));
-border-radius:24px; padding:24px 40px;
-transition:all .2s;
+border-radius:24px; padding:24px 40px; transition:all .2s;
 }
 .countdown-display.wrong { background:linear-gradient(135deg,#FFE0D4,#FECEC4); color:var(–coral); animation:shake .4s; }
 .countdown-display.right { background:linear-gradient(135deg,#C8F0DC,#A8E0C0); color:var(–green); animation:bumpUp .3s; }
 @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 60%{transform:translateX(8px)} }
-@keyframes bumpUp{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-
-.num-pad {
-display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
-max-width:360px; margin:0 auto;
-}
+@keyframes bumpUp { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+.num-pad { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; max-width:360px; margin:0 auto; }
 .num-key {
 height:60px; border-radius:14px; border:2px solid var(–border);
 background:white; font-size:20px; font-weight:800; color:var(–text-dark);
@@ -556,26 +313,19 @@ cursor:pointer; transition:all .15s;
 }
 .num-key:hover  { background:var(–sage-light); border-color:var(–sage); transform:translateY(-2px); }
 .num-key:active { transform:scale(.94); }
-.num-key.wide { grid-column:span 2; }
 
-TEST 4 - EXECUTIVE FUNCTION
-
-.pattern-display {
-display:flex; align-items:center; justify-content:center; gap:12px;
-flex-wrap:wrap; margin:20px 0;
-}
+/* === TEST 4 - LOGIC === */
+.pattern-display { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; margin:20px 0; }
 .pattern-item {
 width:52px; height:52px; border-radius:50%;
 display:flex; align-items:center; justify-content:center;
 font-size:22px; font-weight:800;
-border:3px solid var(–border); background:var(–cream);
-transition:all .3s;
+border:3px solid var(–border); background:var(–cream); transition:all .3s;
 }
 .pattern-item.number { border-radius:14px; background:linear-gradient(135deg,var(–forest),var(–sage-dark)); color:white; border:none; }
 .pattern-item.shape  { font-size:28px; }
 .pattern-item.ques   { background:linear-gradient(135deg,var(–gold),var(–coral)); color:white; border:none; font-size:26px; }
 .pattern-arrow { font-size:22px; color:var(–text-light); }
-
 .pattern-options { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:16px 0; }
 .pattern-opt {
 min-width:70px; height:70px; border-radius:16px; border:3px solid var(–border);
@@ -586,11 +336,8 @@ transition:all .2s; color:var(–text-dark); display:flex; align-items:center; j
 .pattern-opt.correct { background:var(–green); color:white; border-color:var(–green); }
 .pattern-opt.wrong   { background:var(–coral); color:white; border-color:var(–coral); }
 
-TEST 5 - LANGUAGE FLUENCY
-
-.lang-input-row {
-display:flex; gap:10px; margin:16px 0; flex-wrap:wrap; justify-content:center;
-}
+/* === TEST 5 - LANGUAGE === */
+.lang-input-row { display:flex; gap:10px; margin:16px 0; flex-wrap:wrap; justify-content:center; }
 .lang-input {
 padding:12px 18px; border:2px solid var(–border); border-radius:14px;
 font-family:‘Nunito’,sans-serif; font-size:16px; font-weight:600;
@@ -599,44 +346,24 @@ transition:border-color .2s; outline:none;
 }
 .lang-input:focus { border-color:var(–sage); }
 .lang-chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:12px 0; }
-.lang-chip {
-background:var(–sage); color:white; padding:7px 16px;
-border-radius:30px; font-size:14px; font-weight:700;
-animation: popIn .3s ease both;
-}
+.lang-chip { background:var(–sage); color:white; padding:7px 16px; border-radius:30px; font-size:14px; font-weight:700; animation:popIn .3s ease both; }
 .lang-chips-wrap { min-height:48px; }
-.lang-counter {
-font-family:‘Playfair Display’,serif; font-size:40px; color:var(–forest);
-font-weight:700; margin:10px 0;
-}
+.lang-counter { font-family:‘Playfair Display’,serif; font-size:40px; color:var(–forest); font-weight:700; margin:10px 0; }
 .lang-hint { font-size:13px; color:var(–text-light); margin-bottom:12px; }
 
-TRANSITION CARD (between tests)
-
+/* === TRANSITION CARD === */
 .transition-card {
 background:white; border-radius:28px; padding:40px 32px;
-box-shadow:0 8px 48px var(–shadow); max-width:500px; width:100%;
-text-align:center;
+box-shadow:0 8px 48px var(–shadow); max-width:500px; width:100%; text-align:center;
 }
 .transition-card .big-icon { font-size:64px; margin-bottom:16px; }
 .transition-card h2 { font-family:‘Playfair Display’,serif; font-size:26px; color:var(–forest); margin-bottom:10px; }
 .transition-card p { font-size:15px; color:var(–text-mid); line-height:1.7; margin-bottom:24px; }
-.countdown-3 {
-font-family:‘Playfair Display’,serif; font-size:80px; font-weight:700;
-color:var(–sage); animation:countPulse 1s ease-in-out;
-}
+.countdown-3 { font-family:‘Playfair Display’,serif; font-size:80px; font-weight:700; color:var(–sage); animation:countPulse 1s ease-in-out; }
 @keyframes countPulse { 0%{transform:scale(1.4);opacity:0} 100%{transform:scale(1);opacity:1} }
 
-RESULTS SCREEN
-
-#screen-results {
-background: #2C5F4A;
-padding:80px 20px 60px;
-}
-#screen-results::before {
-content:’’; position:absolute; inset:0;
-background:url(“data:image/svg+xml,%3Csvg width=‘60’ height=‘60’ viewBox=‘0 0 60 60’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cg fill=‘none’ fill-rule=‘evenodd’%3E%3Cg fill=’%23ffffff’ fill-opacity=‘0.04’%3E%3Cpath d=‘M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z’/%3E%3C/g%3E%3C/g%3E%3C/svg%3E”);
-}
+/* === RESULTS === */
+#screen-results { background:#2C5F4A; padding:80px 20px 60px; }
 .results-inner { position:relative; z-index:1; max-width:680px; width:100%; text-align:center; }
 .results-badge {
 display:inline-block;
@@ -644,31 +371,15 @@ background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3);
 color:var(–gold-light); font-size:11px; font-weight:700; letter-spacing:2px;
 text-transform:uppercase; padding:6px 16px; border-radius:20px; margin-bottom:20px;
 }
-.brain-age-display {
-background:rgba(255,255,255,.1); border:2px solid rgba(255,255,255,.25);
-border-radius:24px; padding:28px 32px; margin:20px 0;
-}
-.brain-age-num {
-font-family:‘Playfair Display’,serif; font-size:90px; font-weight:700;
-line-height:1; color:white; display:block;
-}
+.brain-age-display { background:rgba(255,255,255,.1); border:2px solid rgba(255,255,255,.25); border-radius:24px; padding:28px 32px; margin:20px 0; }
+.brain-age-num { font-family:‘Playfair Display’,serif; font-size:90px; font-weight:700; line-height:1; color:white; display:block; }
 .brain-age-label { font-size:14px; color:rgba(255,255,255,.7); font-weight:600; letter-spacing:1px; text-transform:uppercase; }
-.brain-verdict {
-display:inline-flex; align-items:center; gap:8px;
-font-size:20px; font-weight:800; padding:10px 24px; border-radius:50px; margin:12px 0;
-}
-.verdict-good   { background:rgba(59,184,127,.25); color:#7FFFC4; border:2px solid rgba(59,184,127,.5); }
-.verdict-avg    { background:rgba(245,200,66,.25);  color:#FFE066; border:2px solid rgba(245,200,66,.5); }
-.verdict-needs  { background:rgba(224,74,74,.25);   color:#FFB0B0; border:2px solid rgba(224,74,74,.5); }
-
-.score-breakdown {
-background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2);
-border-radius:20px; padding:24px; margin:20px 0; text-align:left;
-}
-.score-row {
-display:flex; align-items:center; gap:12px; padding:10px 0;
-border-bottom:1px solid rgba(255,255,255,.1);
-}
+.brain-verdict { display:inline-flex; align-items:center; gap:8px; font-size:20px; font-weight:800; padding:10px 24px; border-radius:50px; margin:12px 0; }
+.verdict-good  { background:rgba(59,184,127,.25); color:#7FFFC4; border:2px solid rgba(59,184,127,.5); }
+.verdict-avg   { background:rgba(245,200,66,.25); color:#FFE066; border:2px solid rgba(245,200,66,.5); }
+.verdict-needs { background:rgba(224,74,74,.25);  color:#FFB0B0; border:2px solid rgba(224,74,74,.5); }
+.score-breakdown { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:20px; padding:24px; margin:20px 0; text-align:left; }
+.score-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.1); }
 .score-row:last-child { border-bottom:none; }
 .score-icon  { font-size:22px; width:30px; text-align:center; flex-shrink:0; }
 .score-name  { flex:1; font-size:14px; font-weight:600; color:rgba(255,255,255,.85); }
@@ -676,59 +387,24 @@ border-bottom:1px solid rgba(255,255,255,.1);
 .score-max   { font-size:11px; color:rgba(255,255,255,.5); }
 .score-bar-wrap { width:90px; height:8px; background:rgba(255,255,255,.15); border-radius:10px; overflow:hidden; }
 .score-bar-fill { height:100%; border-radius:10px; background:var(–gold); transition:width 1.2s ease; }
-
-.results-tips {
-background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2);
-border-radius:20px; padding:24px; margin:20px 0; text-align:left;
-}
+.results-tips { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); border-radius:20px; padding:24px; margin:20px 0; text-align:left; }
 .results-tips h4 { font-family:‘Playfair Display’,serif; font-size:18px; color:white; margin-bottom:14px; }
-.tip-row { display:flex; gap:10px; padding:7px 0; font-size:13px; color:rgba(255,255,255,.8); }
-.tip-row::before { content:‘💡’; flex-shrink:0; }
-
-/*  RICH DOMAIN TIP CARDS  */
-.domain-tip-card {
-background:rgba(255,255,255,.07);
-border:1px solid rgba(255,255,255,.15);
-border-radius:16px; padding:20px 22px; margin-bottom:14px;
-text-align:left;
-}
+.domain-tip-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.15); border-radius:16px; padding:20px 22px; margin-bottom:14px; text-align:left; }
 .domain-tip-card:last-child { margin-bottom:0; }
-.domain-tip-header {
-display:flex; align-items:center; gap:10px; margin-bottom:10px;
-}
+.domain-tip-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
 .domain-tip-icon { font-size:26px; flex-shrink:0; }
 .domain-tip-title-wrap { flex:1; }
-.domain-tip-title {
-font-family:‘Playfair Display’,serif; font-size:16px; color:white;
-font-weight:700; line-height:1.2; margin-bottom:2px;
-}
-.domain-tip-badge {
-display:inline-flex; align-items:center; gap:4px;
-font-size:10px; font-weight:800; padding:3px 10px; border-radius:20px;
-text-transform:uppercase; letter-spacing:.8px;
-}
-.badge-poor   { background:rgba(224,74,74,.3);   color:#FFB0B0; border:1px solid rgba(224,74,74,.5); }
-.badge-avg    { background:rgba(245,200,66,.25);  color:#FFE066; border:1px solid rgba(245,200,66,.5); }
-.badge-good   { background:rgba(59,184,127,.25);  color:#7FFFC4; border:1px solid rgba(59,184,127,.5); }
-.domain-tip-score {
-font-family:‘Playfair Display’,serif; font-size:20px; font-weight:700; color:white;
-flex-shrink:0;
-}
-.domain-tip-brain {
-font-size:12px; color:rgba(255,255,255,.55); margin-bottom:8px;
-font-weight:600; letter-spacing:.3px;
-}
-.domain-tip-desc {
-font-size:13px; color:rgba(255,255,255,.78); line-height:1.65; margin-bottom:12px;
-}
+.domain-tip-title { font-family:‘Playfair Display’,serif; font-size:16px; color:white; font-weight:700; line-height:1.2; margin-bottom:2px; }
+.domain-tip-badge { display:inline-flex; align-items:center; gap:4px; font-size:10px; font-weight:800; padding:3px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:.8px; }
+.badge-poor { background:rgba(224,74,74,.3);   color:#FFB0B0; border:1px solid rgba(224,74,74,.5); }
+.badge-avg  { background:rgba(245,200,66,.25);  color:#FFE066; border:1px solid rgba(245,200,66,.5); }
+.badge-good { background:rgba(59,184,127,.25);  color:#7FFFC4; border:1px solid rgba(59,184,127,.5); }
+.domain-tip-score { font-family:‘Playfair Display’,serif; font-size:20px; font-weight:700; color:white; flex-shrink:0; }
+.domain-tip-brain { font-size:12px; color:rgba(255,255,255,.55); margin-bottom:8px; font-weight:600; letter-spacing:.3px; }
+.domain-tip-desc  { font-size:13px; color:rgba(255,255,255,.78); line-height:1.65; margin-bottom:12px; }
 .domain-tip-actions { display:flex; flex-direction:column; gap:6px; }
-.tip-action {
-display:flex; gap:8px; align-items:flex-start;
-font-size:12.5px; color:rgba(255,255,255,.8); line-height:1.55;
-padding:6px 10px; background:rgba(255,255,255,.05); border-radius:10px;
-}
+.tip-action { display:flex; gap:8px; align-items:flex-start; font-size:12.5px; color:rgba(255,255,255,.8); line-height:1.55; padding:6px 10px; background:rgba(255,255,255,.05); border-radius:10px; }
 .tip-action-icon { flex-shrink:0; font-size:14px; margin-top:1px; }
-
 .result-btns { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:24px; }
 .result-btn {
 display:inline-flex; align-items:center; gap:8px;
@@ -740,19 +416,10 @@ transition:all .25s; text-decoration:none;
 .result-btn.ghost { background:rgba(255,255,255,.12); color:white; border:2px solid rgba(255,255,255,.3); }
 .result-btn:hover { transform:translateY(-3px); }
 
-/*  MISC UTILITY  */
-.text-muted  { font-size:13px; color:var(–text-light); }
+/* === MISC === */
+.text-muted { font-size:13px; color:var(–text-light); }
 .mt-16 { margin-top:16px; }
 .mt-24 { margin-top:24px; }
-.gap-row { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
-
-/* Score feedback inline */
-.inline-fb {
-display:inline-flex; align-items:center; gap:6px;
-font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8px 0;
-}
-.inline-fb.good  { background:#DCFCE7; color:#166534; }
-.inline-fb.wrong { background:#FEE2E2; color:#991B1B; }
 
 @media (max-width:600px) {
 .test-card { padding:24px 18px; }
@@ -769,1156 +436,784 @@ font-size:14px; font-weight:700; padding:6px 14px; border-radius:20px; margin:8p
 </head>
 <body>
 
-<!--  NAV  -->
+<!-- NAV -->
 
 <nav>
   <div class="nav-brand">
-    <div class="nav-logo">🧠</div>
+    <div class="nav-logo">&#129504;</div>
     <div>
       <div class="nav-name">Brain Age Test</div>
       <div class="nav-sub">Anytime Anywhere Anyone Fitness</div>
     </div>
   </div>
-  <a href="brain-revival-guide.html" class="nav-back">← Back to Guide</a>
+  <a href="brain-revival-guide.html" class="nav-back">&larr; Back to Guide</a>
 </nav>
 
-<!--  PROGRESS BAR  -->
+<!-- PROGRESS BAR -->
 
 <div class="progress-wrap" id="progress-wrap">
   <div class="progress-info">
-    <span class="progress-label" id="progress-label">Test 1 of 6 &mdash; Reaction Speed</span>
-    <span class="progress-time" id="progress-time"></span>
+    <span class="progress-label" id="progress-label">Test 1 of 6</span>
+    <span class="progress-time"  id="progress-time"></span>
   </div>
   <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
 </div>
 
-<!-- 
-     SCREEN: LANDING
- -->
+<!-- LANDING SCREEN -->
 
 <div class="screen active" id="screen-landing">
-  <!-- Animated neural network canvas -->
   <canvas id="neuro-canvas"></canvas>
-
-  <!-- Floating light orbs -->
-
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
-
-  <!-- Moving scan line -->
-
   <div class="scan-line"></div>
-
   <div class="landing-inner">
-    <div class="landing-badge">
-      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#7ecfb0;animation:badgePulse 1.5s ease-in-out infinite;"></span>
-      Cognitive Assessment
+    <div class="landing-badge"><span class="badge-dot"></span> Cognitive Assessment</div>
+    <h1>Test Your<br><span class="gold-text">Brain Age</span></h1>
+    <p>A science-inspired cognitive assessment &mdash; 6 tests in ~5 minutes.<br>Discover your brain&#39;s processing speed, memory, logic &amp; more.</p>
+    <div class="brain-stats-strip">
+      <div class="brain-stat-item"><span class="brain-stat-num">6</span><span class="brain-stat-label">Tests</span></div>
+      <div class="brain-stat-item"><span class="brain-stat-num">~5</span><span class="brain-stat-label">Minutes</span></div>
+      <div class="brain-stat-item"><span class="brain-stat-num">5</span><span class="brain-stat-label">Domains</span></div>
     </div>
-
-```
-<h1>
-  <span class="word-brain">Test Your</span>
-  <span>Brain Age</span>
-</h1>
-
-<p>A science-inspired cognitive assessment &mdash; 6 tests in ~5 minutes.<br>Discover your brain's processing speed, memory, logic &amp; more.</p>
-
-<!-- Stats strip -->
-<div class="brain-stats-strip">
-  <div class="brain-stat-item">
-    <span class="brain-stat-num">6</span>
-    <span class="brain-stat-label">Tests</span>
-  </div>
-  <div class="brain-stat-item" style="border-left:1px solid rgba(126,207,176,0.2);border-right:1px solid rgba(126,207,176,0.2);padding:0 24px;">
-    <span class="brain-stat-num">~5</span>
-    <span class="brain-stat-label">Minutes</span>
-  </div>
-  <div class="brain-stat-item">
-    <span class="brain-stat-num">5</span>
-    <span class="brain-stat-label">Brain Domains</span>
+    <div class="test-preview">
+      <div class="test-prev-card"><span class="icon">&#9889;</span><span class="lbl">Reaction Speed</span></div>
+      <div class="test-prev-card"><span class="icon">&#129504;</span><span class="lbl">Memory Recall</span></div>
+      <div class="test-prev-card"><span class="icon">&#127919;</span><span class="lbl">Attention Focus</span></div>
+      <div class="test-prev-card"><span class="icon">&#128290;</span><span class="lbl">Logic &amp; Patterns</span></div>
+      <div class="test-prev-card"><span class="icon">&#129409;</span><span class="lbl">Language Fluency</span></div>
+      <div class="test-prev-card"><span class="icon">&#128202;</span><span class="lbl">Brain Age Score</span></div>
+    </div>
+    <button class="start-btn" onclick="startTest()">
+      <span class="start-btn-icon">&#128640;</span>
+      <span class="start-btn-text">Begin Test</span>
+    </button>
+    <div class="start-note">Free &middot; No sign-up &middot; All ages &middot; ~5 minutes</div>
+    <div class="start-note" style="margin-top:6px;color:rgba(180,220,205,0.25);">Educational tool &mdash; not a clinical diagnosis</div>
   </div>
 </div>
 
-<!-- 6 test cards -->
-<div class="test-preview">
-  <div class="test-prev-card"><span class="icon">⚡</span><span class="lbl">Reaction Speed</span></div>
-  <div class="test-prev-card"><span class="icon">🧠</span><span class="lbl">Memory Recall</span></div>
-  <div class="test-prev-card"><span class="icon">🎯</span><span class="lbl">Attention Focus</span></div>
-  <div class="test-prev-card"><span class="icon">🔢</span><span class="lbl">Logic &amp; Patterns</span></div>
-  <div class="test-prev-card"><span class="icon">🦁</span><span class="lbl">Language Fluency</span></div>
-  <div class="test-prev-card"><span class="icon">📊</span><span class="lbl">Brain Age Score</span></div>
-</div>
-
-<button class="start-btn" onclick="startTest()">
-  <span>🚀</span>
-  <span class="btn-text">Begin Test</span>
-</button>
-
-<div class="start-note">Free &middot; No sign-up &middot; All ages &middot; ~5 minutes</div>
-<div class="start-note" style="margin-top:6px;color:rgba(180,220,205,0.3);">Educational tool only &mdash; not a clinical diagnosis</div>
-```
-
-  </div>
-</div>
-
-<!-- 
-     SCREEN: TRANSITION (reusable)
- -->
+<!-- TRANSITION SCREEN -->
 
 <div class="screen" id="screen-transition">
   <div class="transition-card">
-    <div class="big-icon" id="trans-icon">⚡</div>
+    <div class="big-icon" id="trans-icon">&#9889;</div>
     <h2 id="trans-title">Reaction Speed Test</h2>
-    <p id="trans-desc">Watch the colour flash on screen &mdash; then tap the matching colour button below as fast as you can!</p>
+    <p id="trans-desc">Watch the colour flash &mdash; tap the matching button as fast as you can!</p>
     <div id="trans-countdown" class="countdown-3" style="display:none;"></div>
-    <button class="action-btn primary" id="trans-btn" onclick="startCountdown()">I'm Ready →</button>
+    <button class="action-btn primary" id="trans-btn" onclick="startCountdown()">I&#39;m Ready &rarr;</button>
   </div>
 </div>
 
-<!-- 
-     SCREEN: TEST 1 &mdash; REACTION SPEED
- -->
+<!-- TEST 1 - REACTION -->
 
 <div class="screen" id="screen-reaction">
   <div class="test-card">
-    <span class="test-icon">⚡</span>
+    <span class="test-icon">&#9889;</span>
     <div class="test-title">Reaction Speed</div>
-    <div class="test-subtitle">Tap the matching colour button below as fast as you can!</div>
-
-```
-<div class="test-timer" id="react-timer">30</div>
-
-<div class="reaction-arena" id="react-arena">
-  <span class="arena-txt" id="arena-txt">Get Ready…</span>
-</div>
-
-<div class="streak-bar" id="streak-bar"></div>
-
-<div class="colour-pad">
-  <button class="colour-btn green"  onclick="colourTap('green')" >🟢 Green</button>
-  <button class="colour-btn yellow" onclick="colourTap('yellow')">🟡 Yellow</button>
-  <button class="colour-btn red"    onclick="colourTap('red')"   >🔴 Red</button>
-  <button class="colour-btn blue"   onclick="colourTap('blue')"  >🔵 Blue</button>
-</div>
-
-<div class="reaction-stats mt-16">
-  <div class="reaction-stat">
-    <div class="val" id="avg-reaction">&mdash;</div>
-    <div class="lbl">Avg Reaction (ms)</div>
-  </div>
-  <div class="reaction-stat">
-    <div class="val" id="react-hits">0 / 0</div>
-    <div class="lbl">Correct / Total</div>
-  </div>
-</div>
-```
-
+    <div class="test-subtitle">Tap the matching colour button as fast as you can!</div>
+    <div class="test-timer" id="react-timer">30</div>
+    <div class="reaction-arena" id="react-arena"><span class="arena-txt" id="arena-txt">Get Ready...</span></div>
+    <div class="streak-bar" id="streak-bar"></div>
+    <div class="colour-pad">
+      <button class="colour-btn green"  onclick="colourTap('green')" >&#128994; Green</button>
+      <button class="colour-btn yellow" onclick="colourTap('yellow')">&#129002; Yellow</button>
+      <button class="colour-btn red"    onclick="colourTap('red')"   >&#128308; Red</button>
+      <button class="colour-btn blue"   onclick="colourTap('blue')"  >&#128309; Blue</button>
+    </div>
+    <div class="reaction-stats mt-16">
+      <div class="reaction-stat"><div class="val" id="avg-reaction">--</div><div class="lbl">Avg Reaction (ms)</div></div>
+      <div class="reaction-stat"><div class="val" id="react-hits">0 / 0</div><div class="lbl">Correct / Total</div></div>
+    </div>
   </div>
 </div>
 
-<!-- 
-     SCREEN: TEST 2 &mdash; MEMORY SHOW
- -->
+<!-- TEST 2 - MEMORY SHOW -->
 
 <div class="screen" id="screen-memory-show">
   <div class="test-card">
-    <span class="test-icon">🧠</span>
-    <div class="test-title">Memory &mdash; Memorise These</div>
-    <div class="test-subtitle">Remember these 5 words. You will be asked to recall them after a few quick questions.</div>
+    <span class="test-icon">&#129504;</span>
+    <div class="test-title">Memory - Memorise These</div>
+    <div class="test-subtitle">Remember these 5 words. You will be asked to recall them shortly.</div>
     <div class="test-timer" id="mem-show-timer">5</div>
     <div class="word-grid" id="word-grid"></div>
-    <div class="text-muted mt-16">Words disappear in <span id="mem-countdown">5</span>s…</div>
+    <div class="text-muted mt-16">Words disappear in <span id="mem-countdown">5</span>s...</div>
   </div>
 </div>
 
-<!-- 
-     SCREEN: TEST 2B &mdash; DISTRACTION QUESTIONS
- -->
+<!-- TEST 2B - DISTRACTION -->
 
 <div class="screen" id="screen-distract">
   <div class="test-card">
-    <span class="test-icon">🔀</span>
+    <span class="test-icon">&#128256;</span>
     <div class="test-title">Quick Questions</div>
-    <div class="test-subtitle">Answer 5 quick questions &mdash; then you'll be asked to recall those words!</div>
-
-```
-<div class="distract-q" id="distract-box">
-  <div class="q-text" id="distract-q-text"></div>
-  <div class="distract-options" id="distract-opts"></div>
-</div>
-
-<div class="text-muted" id="distract-progress">Question 1 of 5</div>
-```
-
+    <div class="test-subtitle">Answer 5 quick questions &mdash; then recall those words!</div>
+    <div class="distract-q" id="distract-box">
+      <div class="q-text" id="distract-q-text"></div>
+      <div class="distract-options" id="distract-opts"></div>
+    </div>
+    <div class="text-muted" id="distract-progress">Question 1 of 5</div>
   </div>
 </div>
 
-<!-- 
-     SCREEN: TEST 2C &mdash; RECALL
- -->
+<!-- TEST 2C - RECALL -->
 
 <div class="screen" id="screen-recall">
   <div class="test-card">
-    <span class="test-icon">💭</span>
+    <span class="test-icon">&#128161;</span>
     <div class="test-title">Memory Recall</div>
     <div class="test-subtitle">Which 5 words did you see? Tap all that you remember.</div>
-
-```
-<div class="recall-grid" id="recall-grid"></div>
-
-<button class="action-btn primary mt-24" onclick="submitRecall()">Submit Recall ✓</button>
-<div class="text-muted mt-16" id="recall-msg"></div>
-```
-
+    <div class="recall-grid" id="recall-grid"></div>
+    <button class="action-btn primary mt-24" onclick="submitRecall()">Submit Recall &#10003;</button>
+    <div class="text-muted mt-16" id="recall-msg"></div>
   </div>
 </div>
 
-<!-- 
-     SCREEN: TEST 3 &mdash; ATTENTION (count back)
- -->
+<!-- TEST 3 - ATTENTION -->
 
 <div class="screen" id="screen-attention">
   <div class="test-card">
-    <span class="test-icon">🎯</span>
-    <div class="test-title">Attention &mdash; Count Back by 7</div>
-    <div class="test-subtitle">What is the next number? Start from 100, subtract 7 each time.</div>
-
-```
-<div class="test-timer" id="attn-timer">60</div>
-
-<div class="countdown-display" id="attn-display">100</div>
-
-<div class="text-muted mt-16" id="attn-prompt">Tap the correct answer below:</div>
-
-<div class="num-pad" id="num-pad" style="margin-top:14px;"></div>
-
-<div style="margin-top:14px; font-size:13px; color:var(--text-light);">
-  Score: <strong id="attn-score">0</strong> correct
-</div>
-```
-
+    <span class="test-icon">&#127919;</span>
+    <div class="test-title">Attention - Count Back by 7</div>
+    <div class="test-subtitle">Start from 100 and subtract 7 each time. Tap the correct answer.</div>
+    <div class="test-timer" id="attn-timer">60</div>
+    <div class="countdown-display" id="attn-display">100</div>
+    <div class="text-muted mt-16">Tap the correct answer:</div>
+    <div class="num-pad" id="num-pad" style="margin-top:14px;"></div>
+    <div style="margin-top:14px;font-size:13px;color:var(--text-light);">Score: <strong id="attn-score">0</strong> correct</div>
   </div>
 </div>
 
-<!-- 
-     SCREEN: TEST 4 &mdash; EXECUTIVE FUNCTION
- -->
+<!-- TEST 4 - LOGIC -->
 
 <div class="screen" id="screen-logic">
   <div class="test-card">
-    <span class="test-icon">🔢</span>
-    <div class="test-title">Logic & Patterns</div>
+    <span class="test-icon">&#128290;</span>
+    <div class="test-title">Logic &amp; Patterns</div>
     <div class="test-subtitle">Spot the pattern &mdash; what comes next?</div>
-
-```
-<div class="test-timer" id="logic-timer">60</div>
-
-<div class="pattern-display" id="pattern-display"></div>
-<div class="text-muted" id="logic-q-type" style="margin-bottom:12px;"></div>
-<div class="pattern-options" id="pattern-options"></div>
-
-<div style="margin-top:14px; font-size:13px; color:var(--text-light);">
-  Score: <strong id="logic-score">0</strong> / <strong id="logic-total">0</strong>
-</div>
-```
-
+    <div class="test-timer" id="logic-timer">60</div>
+    <div class="pattern-display" id="pattern-display"></div>
+    <div class="text-muted" id="logic-q-type" style="margin-bottom:12px;"></div>
+    <div class="pattern-options" id="pattern-options"></div>
+    <div style="margin-top:14px;font-size:13px;color:var(--text-light);">Score: <strong id="logic-score">0</strong> / <strong id="logic-total">0</strong></div>
   </div>
 </div>
 
-<!-- 
-     SCREEN: TEST 5 &mdash; LANGUAGE FLUENCY
- -->
+<!-- TEST 5 - LANGUAGE -->
 
 <div class="screen" id="screen-language">
   <div class="test-card">
-    <span class="test-icon">🦁</span>
+    <span class="test-icon">&#129409;</span>
     <div class="test-title">Language Fluency</div>
     <div class="test-subtitle">Name as many animals as you can in 30 seconds!</div>
-
-```
-<div class="test-timer" id="lang-timer">30</div>
-
-<div class="lang-counter" id="lang-counter">0</div>
-<div class="lang-hint" id="lang-hint">Type an animal name and press Enter (or tap Add)</div>
-
-<div class="lang-input-row">
-  <input class="lang-input" id="lang-input"
-    type="text"
-    inputmode="text"
-    autocomplete="off"
-    autocorrect="off"
-    autocapitalize="off"
-    spellcheck="false"
-    placeholder="e.g. Lion, Eagle, Shark…">
-</div>
-<!-- Use mousedown/touchstart instead of onclick so focus is not stolen -->
-<button class="action-btn primary" id="lang-add-btn" style="margin-bottom:12px;">Add ➕</button>
-
-<div class="lang-chips-wrap">
-  <div class="lang-chips" id="lang-chips"></div>
-</div>
-```
-
+    <div class="test-timer" id="lang-timer">30</div>
+    <div class="lang-counter" id="lang-counter">0</div>
+    <div class="lang-hint" id="lang-hint">Type an animal name and press Enter (or tap Add)</div>
+    <div class="lang-input-row">
+      <input class="lang-input" id="lang-input" type="text" inputmode="text"
+        autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+        placeholder="e.g. Lion, Eagle, Shark...">
+    </div>
+    <button class="action-btn primary" id="lang-add-btn" style="margin-bottom:12px;">Add &#10133;</button>
+    <div class="lang-chips-wrap"><div class="lang-chips" id="lang-chips"></div></div>
   </div>
 </div>
 
-<!-- 
-     SCREEN: RESULTS
- -->
+<!-- RESULTS SCREEN -->
 
 <div class="screen" id="screen-results">
   <div class="results-inner">
-    <div class="results-badge">✅ Test Complete</div>
-
-```
-<div class="brain-age-display">
-  <span class="brain-age-num" id="result-brain-age">&mdash;</span>
-  <span class="brain-age-label">Estimated Brain Age</span>
-</div>
-
-<div id="result-verdict" class="brain-verdict verdict-good"></div>
-<p style="color:rgba(255,255,255,.75); font-size:14px; margin:8px 0 20px; line-height:1.7;" id="result-summary"></p>
-
-<div class="score-breakdown" id="score-breakdown"></div>
-
-<div class="results-tips" id="results-tips">
-  <h4>💡 Your Personalised Tips</h4>
-</div>
-
-<div class="result-btns">
-  <button class="result-btn gold" onclick="restartTest()">🔄 Retake Test</button>
-  <a href="brain-revival-guide.html" class="result-btn ghost">📖 Brain Revival Guide</a>
-</div>
-
-<div style="color:rgba(255,255,255,.4); font-size:11px; margin-top:24px; line-height:1.6;">
-  ⚠️ This test is for educational and motivational purposes only. It is not a clinical diagnosis. Consult a healthcare professional for medical assessment. | Arthur Daniel Phua · Anytime Anywhere Anyone Fitness
-</div>
-```
-
+    <div class="results-badge">&#10003; Test Complete</div>
+    <div class="brain-age-display">
+      <span class="brain-age-num" id="result-brain-age">--</span>
+      <span class="brain-age-label">Estimated Brain Age</span>
+    </div>
+    <div id="result-verdict" class="brain-verdict verdict-good"></div>
+    <p style="color:rgba(255,255,255,.75);font-size:14px;margin:8px 0 20px;line-height:1.7;" id="result-summary"></p>
+    <div class="score-breakdown" id="score-breakdown"></div>
+    <div class="results-tips" id="results-tips"><h4>Your Personalised Brain Health Report</h4></div>
+    <div class="result-btns">
+      <button class="result-btn gold" onclick="restartTest()">&#128260; Retake Test</button>
+      <a href="brain-revival-guide.html" class="result-btn ghost">&#128214; Brain Revival Guide</a>
+    </div>
+    <div style="color:rgba(255,255,255,.35);font-size:11px;margin-top:24px;line-height:1.6;">
+      Educational tool only &mdash; not a clinical diagnosis. | Arthur Daniel Phua &middot; Anytime Anywhere Anyone Fitness
+    </div>
   </div>
 </div>
 
-<!-- 
-     JAVASCRIPT ENGINE
- -->
-
 <script>
-const state = {
-  currentScreen: 'landing',
-  currentTest: 0,
-  reactionScore: 0,
-  memoryScore: 0,
-  attentionScore: 0,
-  logicScore: 0,
-  languageScore: 0,
-  reactHits: 0, reactTotal: 0, reactTimes: [],
-  currentColour: null, colourStart: null,
-  reactInterval: null, reactTimerInterval: null,
-  memWords: [], distractQs: [], distractIdx: 0,
-  attnCurrent: 100, attnCorrect: 0, attnTimerInterval: null,
-  logicQs: [], logicIdx: 0, logicCorrect: 0, logicTimerInterval: null,
-  animals: [], langTimerInterval: null, langTestEnded: false,
+var state={
+  currentScreen:'landing',currentTest:0,
+  reactionScore:0,memoryScore:0,attentionScore:0,logicScore:0,languageScore:0,
+  reactHits:0,reactTotal:0,reactTimes:[],currentColour:null,colourStart:null,
+  reactInterval:null,reactTimerInterval:null,
+  memWords:[],distractQs:[],distractIdx:0,
+  attnCurrent:100,attnCorrect:0,attnTimerInterval:null,
+  logicQs:[],logicIdx:0,logicCorrect:0,logicTimerInterval:null,
+  animals:[],langTimerInterval:null,langTestEnded:false
 };
 
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
-  document.getElementById('screen-' + id).classList.add('active');
-  state.currentScreen = id;
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.getElementById('screen-'+id).classList.add('active');
+  state.currentScreen=id;
+}
+function updateProgress(n,label,time){
+  document.getElementById('progress-wrap').classList.add('visible');
+  document.getElementById('progress-label').textContent=label;
+  document.getElementById('progress-time').textContent=time||'';
+  document.getElementById('progress-fill').style.width=((n/6)*100)+'%';
+}
+function startTest(){showTransition(1);}
+function clearAllTimers(){
+  clearInterval(state.reactInterval);clearInterval(state.reactTimerInterval);
+  clearInterval(state.attnTimerInterval);clearInterval(state.logicTimerInterval);
+  clearInterval(state.langTimerInterval);clearInterval(countdownTimer);
 }
 
-function updateProgress(testNum, label, time) {
-  var pw = document.getElementById('progress-wrap');
-  pw.classList.add('visible');
-  document.getElementById('progress-label').textContent = label;
-  document.getElementById('progress-time').textContent = time || '';
-  document.getElementById('progress-fill').style.width = ((testNum / 6) * 100) + '%';
-}
-
-function startTest() { showTransition(1); }
-
-var transData = [
-  null,
-  { icon: '&#9889;', title: 'Test 1 - Reaction Speed', desc: 'Watch the coloured box flash - then tap the MATCHING colour button as fast as you can! You have 30 seconds.' },
-  { icon: '&#129504;', title: 'Test 2 - Memory', desc: "You'll see 5 words for 5 seconds. Memorise them! Then answer 5 quick questions, and recall the words." },
-  { icon: '&#127919;', title: 'Test 3 - Attention & Focus', desc: 'Start from 100 and keep subtracting 7. Tap the correct answer each time. You have 60 seconds.' },
-  { icon: '&#128290;', title: 'Test 4 - Logic & Patterns', desc: 'Spot the pattern and choose what comes next. 60 seconds, as many as you can.' },
-  { icon: '&#129409;', title: 'Test 5 - Language Fluency', desc: 'Name as many animals as you can in 30 seconds. Type each name and press Enter.' },
+var transData=[null,
+  {icon:'&#9889;', title:'Test 1 - Reaction Speed',   desc:'Watch the colour flash, then tap the MATCHING colour button as fast as you can! 30 seconds.'},
+  {icon:'&#129504;',title:'Test 2 - Memory',           desc:'You will see 5 words for 5 seconds. Memorise them! Answer 5 quick questions, then recall the words.'},
+  {icon:'&#127919;',title:'Test 3 - Attention & Focus',desc:'Start from 100 and keep subtracting 7. Tap the correct answer each time. 60 seconds.'},
+  {icon:'&#128290;',title:'Test 4 - Logic & Patterns', desc:'Spot the pattern and choose what comes next. 60 seconds, as many as you can.'},
+  {icon:'&#129409;',title:'Test 5 - Language Fluency', desc:'Name as many animals as you can in 30 seconds. Type each name and press Enter.'},
 ];
+var countdownTimer=null;
 
-var countdownTimer = null;
-
-function showTransition(testNum) {
-  clearAllTimers();
-  state.currentTest = testNum;
-  var td = transData[testNum];
-  if (!td) { showResults(); return; }
-  document.getElementById('trans-icon').innerHTML = td.icon;
-  document.getElementById('trans-title').textContent = td.title;
-  document.getElementById('trans-desc').textContent = td.desc;
-  var cd = document.getElementById('trans-countdown');
-  cd.style.display = 'none';
-  document.getElementById('trans-btn').style.display = '';
-  updateProgress(testNum - 1, td.title, '');
+function showTransition(n){
+  clearAllTimers();state.currentTest=n;
+  var td=transData[n];if(!td){showResults();return;}
+  document.getElementById('trans-icon').innerHTML=td.icon;
+  document.getElementById('trans-title').textContent=td.title;
+  document.getElementById('trans-desc').textContent=td.desc;
+  var cd=document.getElementById('trans-countdown');
+  cd.style.display='none';
+  document.getElementById('trans-btn').style.display='';
+  updateProgress(n-1,td.title,'');
   showScreen('transition');
 }
-
-function startCountdown() {
-  document.getElementById('trans-btn').style.display = 'none';
-  var cd = document.getElementById('trans-countdown');
-  cd.style.display = 'block';
-  var n = 3;
-  cd.textContent = n;
-  countdownTimer = setInterval(function() {
+function startCountdown(){
+  document.getElementById('trans-btn').style.display='none';
+  var cd=document.getElementById('trans-countdown');cd.style.display='block';
+  var n=3;cd.textContent=n;
+  countdownTimer=setInterval(function(){
     n--;
-    if (n > 0) {
-      cd.textContent = n;
-      cd.style.animation = 'none';
-      void cd.offsetWidth;
-      cd.style.animation = 'countPulse 1s ease-in-out';
-    } else {
-      clearInterval(countdownTimer);
-      launchTest(state.currentTest);
-    }
-  }, 900);
+    if(n>0){cd.textContent=n;cd.style.animation='none';void cd.offsetWidth;cd.style.animation='countPulse 1s ease-in-out';}
+    else{clearInterval(countdownTimer);launchTest(state.currentTest);}
+  },900);
+}
+function launchTest(n){
+  if(n===1)startReactionTest();
+  else if(n===2)startMemoryShow();
+  else if(n===3)startAttentionTest();
+  else if(n===4)startLogicTest();
+  else if(n===5)startLanguageTest();
 }
 
-function launchTest(n) {
-  if (n === 1) startReactionTest();
-  else if (n === 2) startMemoryShow();
-  else if (n === 3) startAttentionTest();
-  else if (n === 4) startLogicTest();
-  else if (n === 5) startLanguageTest();
-}
-
-function clearAllTimers() {
-  clearInterval(state.reactInterval);
-  clearInterval(state.reactTimerInterval);
-  clearInterval(state.attnTimerInterval);
-  clearInterval(state.logicTimerInterval);
-  clearInterval(state.langTimerInterval);
-  clearInterval(countdownTimer);
-}
-
-// ============================================================
-// TEST 1 - REACTION SPEED
-// ============================================================
-var COLOURS = [
-  { key: 'green',  bg: '#3BB87F', label: 'GREEN',  dark: false },
-  { key: 'yellow', bg: '#F5C842', label: 'YELLOW', dark: true  },
-  { key: 'red',    bg: '#E04A4A', label: 'RED',    dark: false },
-  { key: 'blue',   bg: '#4A90D9', label: 'BLUE',   dark: false },
+/* TEST 1 */
+var COLOURS=[
+  {key:'green', bg:'#3BB87F',label:'GREEN', dark:false},
+  {key:'yellow',bg:'#F5C842',label:'YELLOW',dark:true},
+  {key:'red',   bg:'#E04A4A',label:'RED',   dark:false},
+  {key:'blue',  bg:'#4A90D9',label:'BLUE',  dark:false}
 ];
-
-function startReactionTest() {
-  showScreen('reaction');
-  updateProgress(1, 'Test 1 - Reaction Speed', '30s');
-  state.reactHits = 0; state.reactTotal = 0; state.reactTimes = [];
-  state.currentColour = null; state.colourStart = null;
-
-  var sb = document.getElementById('streak-bar');
-  var dots = '';
-  for (var di = 0; di < 20; di++) { dots += '<div class="streak-dot" id="sd-' + di + '"></div>'; }
-  sb.innerHTML = dots;
-
-  var timeLeft = 30;
-  document.getElementById('react-timer').textContent = timeLeft;
-  setTimeout(flashColour, 800);
-
-  state.reactTimerInterval = setInterval(function() {
-    timeLeft--;
-    var el = document.getElementById('react-timer');
-    if (el) { el.textContent = timeLeft; if (timeLeft <= 5) el.classList.add('warning'); }
-    if (timeLeft <= 0) { clearInterval(state.reactTimerInterval); clearInterval(state.reactInterval); endReactionTest(); }
-  }, 1000);
-
-  state.reactInterval = setInterval(flashColour, 2800);
+function startReactionTest(){
+  showScreen('reaction');updateProgress(1,'Test 1 - Reaction Speed','30s');
+  state.reactHits=0;state.reactTotal=0;state.reactTimes=[];state.currentColour=null;state.colourStart=null;
+  var sb=document.getElementById('streak-bar'),dots='';
+  for(var di=0;di<20;di++)dots+='<div class="streak-dot" id="sd-'+di+'"></div>';
+  sb.innerHTML=dots;
+  var tl=30;document.getElementById('react-timer').textContent=tl;
+  setTimeout(flashColour,800);
+  state.reactTimerInterval=setInterval(function(){
+    tl--;var el=document.getElementById('react-timer');
+    if(el){el.textContent=tl;if(tl<=5)el.classList.add('warning');}
+    if(tl<=0){clearInterval(state.reactTimerInterval);clearInterval(state.reactInterval);endReactionTest();}
+  },1000);
+  state.reactInterval=setInterval(flashColour,2800);
 }
-
-function flashColour() {
-  if (state.reactTotal >= 20) return;
-  var c = COLOURS[Math.floor(Math.random() * 4)];
-  state.currentColour = c.key;
-  state.colourStart = performance.now();
-  var arena = document.getElementById('react-arena');
-  var txt = document.getElementById('arena-txt');
-  if (!arena || !txt) return;
-  arena.style.background = c.bg;
-  txt.textContent = c.label;
-  txt.style.color = c.dark ? '#1E2D26' : 'white';
+function flashColour(){
+  if(state.reactTotal>=20)return;
+  var c=COLOURS[Math.floor(Math.random()*4)];
+  state.currentColour=c.key;state.colourStart=performance.now();
+  var arena=document.getElementById('react-arena'),txt=document.getElementById('arena-txt');
+  if(!arena||!txt)return;
+  arena.style.background=c.bg;txt.textContent=c.label;txt.style.color=c.dark?'#1E2D26':'white';
 }
-
-function colourTap(colour) {
-  if (!state.currentColour || state.reactTotal >= 20) return;
-  var rt = Math.round(performance.now() - state.colourStart);
-  var hit = (colour === state.currentColour);
-  state.reactTotal++;
-  if (hit) { state.reactHits++; state.reactTimes.push(rt); }
-  var dot = document.getElementById('sd-' + (state.reactTotal - 1));
-  if (dot) dot.className = 'streak-dot ' + (hit ? 'hit' : 'miss');
-  state.currentColour = null;
-  var arena = document.getElementById('react-arena');
-  var txt = document.getElementById('arena-txt');
-  if (arena) arena.style.background = hit ? 'var(--green)' : 'var(--coral)';
-  if (txt) txt.textContent = hit ? 'CORRECT!' : 'WRONG!';
-  var avgEl = document.getElementById('avg-reaction');
-  if (state.reactTimes.length > 0 && avgEl) {
-    var avg = Math.round(state.reactTimes.reduce(function(a, b) { return a + b; }, 0) / state.reactTimes.length);
-    avgEl.textContent = avg + 'ms';
+function colourTap(colour){
+  if(!state.currentColour||state.reactTotal>=20)return;
+  var rt=Math.round(performance.now()-state.colourStart),hit=(colour===state.currentColour);
+  state.reactTotal++;if(hit){state.reactHits++;state.reactTimes.push(rt);}
+  var dot=document.getElementById('sd-'+(state.reactTotal-1));
+  if(dot)dot.className='streak-dot '+(hit?'hit':'miss');
+  state.currentColour=null;
+  var arena=document.getElementById('react-arena'),txt=document.getElementById('arena-txt');
+  if(arena)arena.style.background=hit?'var(--green)':'var(--coral)';
+  if(txt)txt.textContent=hit?'CORRECT!':'WRONG!';
+  var avgEl=document.getElementById('avg-reaction');
+  if(state.reactTimes.length>0&&avgEl){
+    var avg=Math.round(state.reactTimes.reduce(function(a,b){return a+b;},0)/state.reactTimes.length);
+    avgEl.textContent=avg+'ms';
   }
-  var hitsEl = document.getElementById('react-hits');
-  if (hitsEl) hitsEl.textContent = state.reactHits + ' / ' + state.reactTotal;
-  setTimeout(function() {
-    var a2 = document.getElementById('react-arena');
-    var t2 = document.getElementById('arena-txt');
-    if (a2) a2.style.background = 'var(--border)';
-    if (t2) t2.textContent = 'Wait...';
-  }, 400);
+  var hEl=document.getElementById('react-hits');if(hEl)hEl.textContent=state.reactHits+' / '+state.reactTotal;
+  setTimeout(function(){
+    var a2=document.getElementById('react-arena'),t2=document.getElementById('arena-txt');
+    if(a2)a2.style.background='var(--border)';if(t2)t2.textContent='Wait...';
+  },400);
 }
-
-function endReactionTest() {
-  var accuracy = state.reactTotal > 0 ? (state.reactHits / state.reactTotal) : 0;
-  var avgMs = state.reactTimes.length > 0 ? state.reactTimes.reduce(function(a,b){return a+b;},0) / state.reactTimes.length : 9999;
-  var speedScore = Math.max(0, Math.min(40, Math.round((1 - (avgMs - 200) / 800) * 40)));
-  state.reactionScore = Math.round(accuracy * 60) + speedScore;
-  state.reactionScore = Math.max(0, Math.min(100, state.reactionScore));
+function endReactionTest(){
+  var acc=state.reactTotal>0?(state.reactHits/state.reactTotal):0;
+  var avgMs=state.reactTimes.length>0?state.reactTimes.reduce(function(a,b){return a+b;},0)/state.reactTimes.length:9999;
+  var sp=Math.max(0,Math.min(40,Math.round((1-(avgMs-200)/800)*40)));
+  state.reactionScore=Math.max(0,Math.min(100,Math.round(acc*60)+sp));
   showTransition(2);
 }
 
-// ============================================================
-// TEST 2 - MEMORY
-// ============================================================
-var WORD_BANK = [
-  'Apple','Chair','River','Cloud','Pencil','Music','Candle','Tiger','Market','Bridge',
-  'Feather','Lemon','Castle','Pillow','Garden','Diamond','Rocket','Hammer','Mirror','Balloon',
-  'Journey','Lantern','Blanket','Crystal','Dolphin'
+/* TEST 2 */
+var WORD_BANK=['Apple','Chair','River','Cloud','Pencil','Music','Candle','Tiger','Market','Bridge','Feather','Lemon','Castle','Pillow','Garden','Diamond','Rocket','Hammer','Mirror','Balloon','Journey','Lantern','Blanket','Crystal','Dolphin'];
+var DISTRACT_QS=[
+  {q:'What is 13 + 8?',   opts:['21','20','19','18'],   ans:'21'},
+  {q:'What is 27 - 9?',   opts:['17','18','19','20'],   ans:'18'},
+  {q:'Red + Blue = ?',    opts:['Purple','Green','Orange','Brown'],ans:'Purple'},
+  {q:'Days in a week?',   opts:['5','6','7','8'],        ans:'7'},
+  {q:'What is 6 x 4?',   opts:['22','24','26','20'],    ans:'24'},
+  {q:'Largest animal?',   opts:['Elephant','Hippo','Blue Whale','Giraffe'],ans:'Blue Whale'},
+  {q:'What is 50 / 5?',  opts:['8','9','10','11'],      ans:'10'},
+  {q:'Months in a year?', opts:['10','11','12','13'],    ans:'12'},
+  {q:'What is 15 + 17?',  opts:['30','31','32','33'],    ans:'32'},
+  {q:'Odd one out?',      opts:['Cat','Dog','Eagle','Rabbit'],ans:'Eagle'}
 ];
-
-var DISTRACT_QS = [
-  { q: 'What is 13 + 8?',    opts: ['21','20','19','18'],    ans: '21' },
-  { q: 'What is 27 - 9?',    opts: ['17','18','19','20'],    ans: '18' },
-  { q: 'Red + Blue = ?',     opts: ['Purple','Green','Orange','Brown'], ans: 'Purple' },
-  { q: 'Days in a week?',    opts: ['5','6','7','8'],        ans: '7' },
-  { q: 'What is 6 x 4?',     opts: ['22','24','26','20'],    ans: '24' },
-  { q: 'Largest animal?',    opts: ['Elephant','Hippo','Blue Whale','Giraffe'], ans: 'Blue Whale' },
-  { q: 'What is 50 / 5?',    opts: ['8','9','10','11'],      ans: '10' },
-  { q: 'Months in a year?',  opts: ['10','11','12','13'],    ans: '12' },
-  { q: 'What is 15 + 17?',   opts: ['30','31','32','33'],    ans: '32' },
-  { q: 'Odd one out?',       opts: ['Cat','Dog','Eagle','Rabbit'], ans: 'Eagle' },
-];
-
-function startMemoryShow() {
-  var shuffled = WORD_BANK.slice().sort(function() { return Math.random() - 0.5; });
-  state.memWords = shuffled.slice(0, 5);
-  var dqs = DISTRACT_QS.slice().sort(function() { return Math.random() - 0.5; });
-  state.distractQs = dqs.slice(0, 5);
-  state.distractIdx = 0;
-  state.memoryScore = 0;
-
-  showScreen('memory-show');
-  updateProgress(2, 'Test 2 - Memory Recall', '5s memorise');
-
-  var wg = document.getElementById('word-grid');
-  wg.innerHTML = state.memWords.map(function(w, i) {
-    return '<div class="word-chip" style="animation-delay:' + (i * 0.1) + 's">' + w + '</div>';
-  }).join('');
-
-  var t = 5;
-  document.getElementById('mem-show-timer').textContent = t;
-  document.getElementById('mem-countdown').textContent = t;
-
-  var ti = setInterval(function() {
+function startMemoryShow(){
+  var sh=WORD_BANK.slice().sort(function(){return Math.random()-.5;});
+  state.memWords=sh.slice(0,5);
+  var dq=DISTRACT_QS.slice().sort(function(){return Math.random()-.5;});
+  state.distractQs=dq.slice(0,5);state.distractIdx=0;state.memoryScore=0;
+  showScreen('memory-show');updateProgress(2,'Test 2 - Memory Recall','5s memorise');
+  var wg=document.getElementById('word-grid');
+  wg.innerHTML=state.memWords.map(function(w,i){return '<div class="word-chip" style="animation-delay:'+i*.1+'s">'+w+'</div>';}).join('');
+  var t=5;
+  document.getElementById('mem-show-timer').textContent=t;
+  document.getElementById('mem-countdown').textContent=t;
+  var ti=setInterval(function(){
     t--;
-    var te = document.getElementById('mem-show-timer');
-    var ce = document.getElementById('mem-countdown');
-    if (te) te.textContent = t;
-    if (ce) ce.textContent = t;
-    if (t <= 0) { clearInterval(ti); startDistract(); }
-  }, 1000);
+    var te=document.getElementById('mem-show-timer'),ce=document.getElementById('mem-countdown');
+    if(te)te.textContent=t;if(ce)ce.textContent=t;
+    if(t<=0){clearInterval(ti);showScreen('distract');showDistractQ();}
+  },1000);
+}
+function showDistractQ(){
+  var q=state.distractQs[state.distractIdx];
+  document.getElementById('distract-q-text').textContent=q.q;
+  document.getElementById('distract-progress').textContent='Question '+(state.distractIdx+1)+' of '+state.distractQs.length;
+  var opts=document.getElementById('distract-opts');
+  opts.innerHTML=q.opts.map(function(o){return '<button class="distract-opt" onclick="distractAnswer(this)">'+o+'</button>';}).join('');
+  opts.dataset.ans=q.ans;
+}
+function distractAnswer(btn){
+  var chosen=btn.textContent,correct=document.getElementById('distract-opts').dataset.ans;
+  btn.classList.add(chosen===correct?'correct-flash':'wrong-flash');
+  document.querySelectorAll('.distract-opt').forEach(function(b){b.disabled=true;});
+  setTimeout(function(){state.distractIdx++;if(state.distractIdx<state.distractQs.length)showDistractQ();else showRecall();},600);
+}
+function showRecall(){
+  showScreen('recall');updateProgress(2,'Test 2 - Recall the Words','');
+  var dec=WORD_BANK.filter(function(w){return state.memWords.indexOf(w)===-1;}).sort(function(){return Math.random()-.5;}).slice(0,5);
+  var all=state.memWords.concat(dec).sort(function(){return Math.random()-.5;});
+  document.getElementById('recall-grid').innerHTML=all.map(function(w){return '<button class="recall-btn" onclick="toggleRecall(this)" data-word="'+w+'">'+w+'</button>';}).join('');
+  document.getElementById('recall-msg').textContent='';
+}
+function toggleRecall(btn){btn.classList.toggle('selected');}
+function submitRecall(){
+  var sel=[];document.querySelectorAll('.recall-btn.selected').forEach(function(b){sel.push(b.dataset.word);});
+  var c=0;state.memWords.forEach(function(w){if(sel.indexOf(w)!==-1)c++;});
+  state.memoryScore=c;showTransition(3);
 }
 
-function startDistract() {
-  showScreen('distract');
-  showDistractQ();
-}
-
-function showDistractQ() {
-  var q = state.distractQs[state.distractIdx];
-  document.getElementById('distract-q-text').textContent = q.q;
-  document.getElementById('distract-progress').textContent = 'Question ' + (state.distractIdx + 1) + ' of ' + state.distractQs.length;
-  var opts = document.getElementById('distract-opts');
-  opts.innerHTML = q.opts.map(function(o) {
-    return '<button class="distract-opt" onclick="distractAnswer(this)">' + o + '</button>';
-  }).join('');
-  opts.dataset.ans = q.ans;
-}
-
-function distractAnswer(btn) {
-  var chosen = btn.textContent;
-  var correct = document.getElementById('distract-opts').dataset.ans;
-  var isRight = (chosen === correct);
-  btn.classList.add(isRight ? 'correct-flash' : 'wrong-flash');
-  document.querySelectorAll('.distract-opt').forEach(function(b) { b.disabled = true; });
-  setTimeout(function() {
-    state.distractIdx++;
-    if (state.distractIdx < state.distractQs.length) { showDistractQ(); }
-    else { showRecall(); }
-  }, 600);
-}
-
-function showRecall() {
-  showScreen('recall');
-  updateProgress(2, 'Test 2 - Recall the Words', '');
-  var decoys = WORD_BANK.filter(function(w) { return state.memWords.indexOf(w) === -1; })
-    .sort(function() { return Math.random() - 0.5; }).slice(0, 5);
-  var allOpts = state.memWords.concat(decoys).sort(function() { return Math.random() - 0.5; });
-  var rg = document.getElementById('recall-grid');
-  rg.innerHTML = allOpts.map(function(w) {
-    return '<button class="recall-btn" onclick="toggleRecall(this)" data-word="' + w + '">' + w + '</button>';
-  }).join('');
-  document.getElementById('recall-msg').textContent = '';
-}
-
-function toggleRecall(btn) {
-  btn.classList.toggle('selected');
-}
-
-function submitRecall() {
-  var selected = [];
-  document.querySelectorAll('.recall-btn.selected').forEach(function(b) { selected.push(b.dataset.word); });
-  var correct = 0;
-  state.memWords.forEach(function(w) { if (selected.indexOf(w) !== -1) correct++; });
-  state.memoryScore = correct;
-  showTransition(3);
-}
-
-// ============================================================
-// TEST 3 - ATTENTION
-// ============================================================
-function startAttentionTest() {
-  showScreen('attention');
-  updateProgress(3, 'Test 3 - Attention Focus', '60s');
-  state.attnCurrent = 100;
-  state.attnCorrect = 0;
-  var disp = document.getElementById('attn-display');
-  if (disp) { disp.textContent = 100; disp.className = 'countdown-display'; }
-  var scoreEl = document.getElementById('attn-score');
-  if (scoreEl) scoreEl.textContent = 0;
+/* TEST 3 */
+function startAttentionTest(){
+  showScreen('attention');updateProgress(3,'Test 3 - Attention Focus','60s');
+  state.attnCurrent=100;state.attnCorrect=0;
+  var d=document.getElementById('attn-display');if(d){d.textContent=100;d.className='countdown-display';}
+  var s=document.getElementById('attn-score');if(s)s.textContent=0;
   buildNumPad();
-
-  var timeLeft = 60;
-  document.getElementById('attn-timer').textContent = timeLeft;
-  state.attnTimerInterval = setInterval(function() {
-    timeLeft--;
-    var el = document.getElementById('attn-timer');
-    if (el) { el.textContent = timeLeft; if (timeLeft <= 5) el.classList.add('warning'); }
-    if (timeLeft <= 0) { clearInterval(state.attnTimerInterval); endAttentionTest(); }
-  }, 1000);
+  var tl=60;document.getElementById('attn-timer').textContent=tl;
+  state.attnTimerInterval=setInterval(function(){
+    tl--;var el=document.getElementById('attn-timer');
+    if(el){el.textContent=tl;if(tl<=5)el.classList.add('warning');}
+    if(tl<=0){clearInterval(state.attnTimerInterval);endAttentionTest();}
+  },1000);
 }
-
-function buildNumPad() {
-  var correct = state.attnCurrent - 7;
-  var wrongs = [];
-  while (wrongs.length < 3) {
-    var w = correct + (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * 5) + 1);
-    if (w !== correct && wrongs.indexOf(w) === -1) wrongs.push(w);
-  }
-  var opts = [correct].concat(wrongs).sort(function() { return Math.random() - 0.5; });
-  var np = document.getElementById('num-pad');
-  if (!np) return;
-  np.innerHTML = opts.map(function(n) {
-    return '<button class="num-key" onclick="attnAnswer(' + n + ',' + correct + ')">' + n + '</button>';
-  }).join('');
+function buildNumPad(){
+  var correct=state.attnCurrent-7,wrongs=[];
+  while(wrongs.length<3){var w=correct+(Math.random()<.5?-1:1)*(Math.floor(Math.random()*5)+1);if(w!==correct&&wrongs.indexOf(w)===-1)wrongs.push(w);}
+  var opts=[correct].concat(wrongs).sort(function(){return Math.random()-.5;});
+  var np=document.getElementById('num-pad');if(!np)return;
+  np.innerHTML=opts.map(function(n){return '<button class="num-key" onclick="attnAnswer('+n+','+correct+')">'+n+'</button>';}).join('');
 }
-
-function attnAnswer(chosen, correct) {
-  var disp = document.getElementById('attn-display');
-  if (chosen === correct) {
-    state.attnCorrect++;
-    state.attnCurrent = correct;
-    if (disp) { disp.textContent = correct; disp.className = 'countdown-display right'; }
-    var scoreEl = document.getElementById('attn-score');
-    if (scoreEl) scoreEl.textContent = state.attnCorrect;
-  } else {
-    if (disp) disp.className = 'countdown-display wrong';
-  }
-  document.querySelectorAll('.num-key').forEach(function(b) { b.disabled = true; });
-  setTimeout(function() {
-    var d2 = document.getElementById('attn-display');
-    if (d2) d2.className = 'countdown-display';
-    buildNumPad();
-  }, 450);
+function attnAnswer(chosen,correct){
+  var d=document.getElementById('attn-display');
+  if(chosen===correct){
+    state.attnCorrect++;state.attnCurrent=correct;
+    if(d){d.textContent=correct;d.className='countdown-display right';}
+    var s=document.getElementById('attn-score');if(s)s.textContent=state.attnCorrect;
+  } else {if(d)d.className='countdown-display wrong';}
+  document.querySelectorAll('.num-key').forEach(function(b){b.disabled=true;});
+  setTimeout(function(){var d2=document.getElementById('attn-display');if(d2)d2.className='countdown-display';buildNumPad();},450);
 }
+function endAttentionTest(){state.attentionScore=Math.min(10,state.attnCorrect);showTransition(4);}
 
-function endAttentionTest() {
-  state.attentionScore = Math.min(10, state.attnCorrect);
-  showTransition(4);
-}
-
-// ============================================================
-// TEST 4 - LOGIC & PATTERNS
-// ============================================================
-var LOGIC_QS = [
-  { type: 'Number', seq: ['2','4','8','?'],        opts: ['12','16','10','14'],  ans: '16' },
-  { type: 'Number', seq: ['1','3','6','10','?'],   opts: ['13','14','15','16'], ans: '15' },
-  { type: 'Number', seq: ['100','90','81','?'],    opts: ['72','73','74','75'],  ans: '73' },
-  { type: 'Number', seq: ['3','6','12','?'],       opts: ['18','20','22','24'],  ans: '24' },
-  { type: 'Number', seq: ['5','10','20','?'],      opts: ['30','35','40','45'],  ans: '40' },
-  { type: 'Shape',  seq: ['\uD83D\uDD34','\uD83D\uDD35','\uD83D\uDD34','\uD83D\uDD35','?'], opts: ['\uD83D\uDFE1','\uD83D\uDD34','\uD83D\uDD35','\uD83D\uDFE2'], ans: '\uD83D\uDD34' },
-  { type: 'Shape',  seq: ['\u2B50','\u2B50','\uD83C\uDF19','\u2B50','\u2B50','\uD83C\uDF19','?'], opts: ['\u2B50','\uD83C\uDF19','\uD83D\uDD34','\uD83D\uDCAB'], ans: '\u2B50' },
-  { type: 'Shape',  seq: ['\uD83D\uDFE5','\uD83D\uDFE6','\uD83D\uDFE9','\uD83D\uDFE5','\uD83D\uDFE6','?'], opts: ['\uD83D\uDFE5','\uD83D\uDFE6','\uD83D\uDFE9','\uD83D\uDFE8'], ans: '\uD83D\uDFE9' },
-  { type: 'Number', seq: ['1','1','2','3','5','?'], opts: ['7','8','9','6'],     ans: '8' },
-  { type: 'Number', seq: ['10','8','6','4','?'],    opts: ['1','2','3','0'],     ans: '2' },
+/* TEST 4 */
+var LOGIC_QS=[
+  {type:'Number',seq:['2','4','8','?'],        opts:['12','16','10','14'],ans:'16'},
+  {type:'Number',seq:['1','3','6','10','?'],   opts:['13','14','15','16'],ans:'15'},
+  {type:'Number',seq:['100','90','81','?'],    opts:['72','73','74','75'],ans:'73'},
+  {type:'Number',seq:['3','6','12','?'],       opts:['18','20','22','24'],ans:'24'},
+  {type:'Number',seq:['5','10','20','?'],      opts:['30','35','40','45'],ans:'40'},
+  {type:'Shape', seq:['R','B','R','B','?'],    opts:['Y','R','B','G'],   ans:'R'},
+  {type:'Number',seq:['1','1','2','3','5','?'],opts:['7','8','9','6'],   ans:'8'},
+  {type:'Number',seq:['10','8','6','4','?'],   opts:['1','2','3','0'],   ans:'2'},
+  {type:'Number',seq:['2','5','8','11','?'],   opts:['13','14','15','16'],ans:'14'},
+  {type:'Number',seq:['81','27','9','?'],      opts:['1','2','3','4'],   ans:'3'}
 ];
-
-function startLogicTest() {
-  showScreen('logic');
-  updateProgress(4, 'Test 4 - Logic & Patterns', '60s');
-  state.logicQs = LOGIC_QS.slice().sort(function() { return Math.random() - 0.5; });
-  state.logicIdx = 0;
-  state.logicCorrect = 0;
-  document.getElementById('logic-score').textContent = 0;
-  document.getElementById('logic-total').textContent = 0;
+function startLogicTest(){
+  showScreen('logic');updateProgress(4,'Test 4 - Logic & Patterns','60s');
+  state.logicQs=LOGIC_QS.slice().sort(function(){return Math.random()-.5;});
+  state.logicIdx=0;state.logicCorrect=0;
+  document.getElementById('logic-score').textContent=0;
+  document.getElementById('logic-total').textContent=0;
   showLogicQ();
-
-  var timeLeft = 60;
-  document.getElementById('logic-timer').textContent = timeLeft;
-  state.logicTimerInterval = setInterval(function() {
-    timeLeft--;
-    var el = document.getElementById('logic-timer');
-    if (el) { el.textContent = timeLeft; if (timeLeft <= 5) el.classList.add('warning'); }
-    if (timeLeft <= 0) { clearInterval(state.logicTimerInterval); endLogicTest(); }
-  }, 1000);
+  var tl=60;document.getElementById('logic-timer').textContent=tl;
+  state.logicTimerInterval=setInterval(function(){
+    tl--;var el=document.getElementById('logic-timer');
+    if(el){el.textContent=tl;if(tl<=5)el.classList.add('warning');}
+    if(tl<=0){clearInterval(state.logicTimerInterval);endLogicTest();}
+  },1000);
 }
-
-function showLogicQ() {
-  if (state.logicIdx >= state.logicQs.length) { endLogicTest(); return; }
-  var q = state.logicQs[state.logicIdx];
-  var pd = document.getElementById('pattern-display');
-  var html = '';
-  for (var si = 0; si < q.seq.length; si++) {
-    var item = q.seq[si];
-    var isQ = (item === '?');
-    var cls = isQ ? 'pattern-item ques' : (/[0-9]/.test(item) ? 'pattern-item number' : 'pattern-item shape');
-    html += '<div class="' + cls + '">' + item + '</div>';
-    if (si < q.seq.length - 1) html += '<span class="pattern-arrow">-></span>';
+function showLogicQ(){
+  if(state.logicIdx>=state.logicQs.length){endLogicTest();return;}
+  var q=state.logicQs[state.logicIdx];
+  var pd=document.getElementById('pattern-display'),html='';
+  for(var si=0;si<q.seq.length;si++){
+    var item=q.seq[si],isQ=(item==='?');
+    var cls=isQ?'pattern-item ques':(/[0-9]/.test(item)?'pattern-item number':'pattern-item shape');
+    html+='<div class="'+cls+'">'+item+'</div>';
+    if(si<q.seq.length-1)html+='<span class="pattern-arrow">-&gt;</span>';
   }
-  pd.innerHTML = html;
-  document.getElementById('logic-q-type').textContent = q.type + ' Pattern - What is ?';
-  var po = document.getElementById('pattern-options');
-  var shuffledOpts = q.opts.slice().sort(function() { return Math.random() - 0.5; });
-  var ans = q.ans;
-  po.innerHTML = shuffledOpts.map(function(o) {
-    return '<button class="pattern-opt" onclick="logicAnswer(this)">' + o + '</button>';
-  }).join('');
-  po.dataset.ans = ans;
-  document.getElementById('logic-total').textContent = state.logicIdx;
+  pd.innerHTML=html;
+  document.getElementById('logic-q-type').textContent=q.type+' Pattern - What is ?';
+  var po=document.getElementById('pattern-options');
+  po.innerHTML=q.opts.slice().sort(function(){return Math.random()-.5;}).map(function(o){return '<button class="pattern-opt" onclick="logicAnswer(this)">'+o+'</button>';}).join('');
+  po.dataset.ans=q.ans;
+  document.getElementById('logic-total').textContent=state.logicIdx;
 }
-
-function logicAnswer(btn) {
-  var chosen = btn.textContent;
-  var correct = document.getElementById('pattern-options').dataset.ans;
-  var isRight = (chosen === correct);
-  document.querySelectorAll('.pattern-opt').forEach(function(b) { b.disabled = true; });
-  btn.classList.add(isRight ? 'correct' : 'wrong');
-  if (!isRight) {
-    document.querySelectorAll('.pattern-opt').forEach(function(b) {
-      if (b.textContent.trim() === correct) b.classList.add('correct');
-    });
-  }
-  if (isRight) state.logicCorrect++;
+function logicAnswer(btn){
+  var chosen=btn.textContent,correct=document.getElementById('pattern-options').dataset.ans,isRight=(chosen===correct);
+  document.querySelectorAll('.pattern-opt').forEach(function(b){b.disabled=true;});
+  btn.classList.add(isRight?'correct':'wrong');
+  if(!isRight)document.querySelectorAll('.pattern-opt').forEach(function(b){if(b.textContent.trim()===correct)b.classList.add('correct');});
+  if(isRight)state.logicCorrect++;
   state.logicIdx++;
-  document.getElementById('logic-score').textContent = state.logicCorrect;
-  document.getElementById('logic-total').textContent = state.logicIdx;
-  setTimeout(showLogicQ, 700);
+  document.getElementById('logic-score').textContent=state.logicCorrect;
+  document.getElementById('logic-total').textContent=state.logicIdx;
+  setTimeout(showLogicQ,700);
 }
+function endLogicTest(){clearInterval(state.logicTimerInterval);state.logicScore=Math.min(10,state.logicCorrect);showTransition(5);}
 
-function endLogicTest() {
-  clearInterval(state.logicTimerInterval);
-  state.logicScore = Math.min(10, state.logicCorrect);
-  showTransition(5);
-}
-
-// ============================================================
-// TEST 5 - LANGUAGE FLUENCY
-// ============================================================
-function startLanguageTest() {
-  showScreen('language');
-  updateProgress(5, 'Test 5 - Language Fluency', '30s');
-  state.animals = [];
-  state.langTimerInterval = null;
-  state.langTestEnded = false;
-
-  var counter = document.getElementById('lang-counter');
-  var chips = document.getElementById('lang-chips');
-  var hint = document.getElementById('lang-hint');
-  var timerEl = document.getElementById('lang-timer');
-  var addBtn = document.getElementById('lang-add-btn');
-  var inp = document.getElementById('lang-input');
-
-  if (counter) counter.textContent = '0';
-  if (chips) chips.innerHTML = '';
-  if (hint) hint.textContent = 'Type an animal name and press Enter (or tap Add)';
-  if (timerEl) { timerEl.textContent = '30'; timerEl.className = 'test-timer'; }
-
-  if (inp) {
-    inp.disabled = false;
-    inp.value = '';
-    inp.removeEventListener('keydown', langKeyHandler);
-    inp.addEventListener('keydown', langKeyHandler);
+/* TEST 5 */
+function startLanguageTest(){
+  showScreen('language');updateProgress(5,'Test 5 - Language Fluency','30s');
+  state.animals=[];state.langTimerInterval=null;state.langTestEnded=false;
+  var counter=document.getElementById('lang-counter'),chips=document.getElementById('lang-chips'),
+      hint=document.getElementById('lang-hint'),timerEl=document.getElementById('lang-timer'),
+      addBtn=document.getElementById('lang-add-btn'),inp=document.getElementById('lang-input');
+  if(counter)counter.textContent='0';if(chips)chips.innerHTML='';
+  if(hint)hint.textContent='Type an animal name and press Enter (or tap Add)';
+  if(timerEl){timerEl.textContent='30';timerEl.className='test-timer';}
+  if(inp){inp.disabled=false;inp.value='';inp.removeEventListener('keydown',langKeyHandler);inp.addEventListener('keydown',langKeyHandler);}
+  if(addBtn){
+    addBtn.disabled=false;
+    var nb=addBtn.cloneNode(true);addBtn.parentNode.replaceChild(nb,addBtn);
+    nb.addEventListener('mousedown',function(e){e.preventDefault();addAnimal();});
+    nb.addEventListener('touchstart',function(e){e.preventDefault();addAnimal();},{passive:false});
   }
-  if (addBtn) {
-    addBtn.disabled = false;
-    var newBtn = addBtn.cloneNode(true);
-    addBtn.parentNode.replaceChild(newBtn, addBtn);
-    newBtn.addEventListener('mousedown', function(e) { e.preventDefault(); addAnimal(); });
-    newBtn.addEventListener('touchstart', function(e) { e.preventDefault(); addAnimal(); }, { passive: false });
-  }
-
-  requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
-      var i = document.getElementById('lang-input');
-      if (i && !i.disabled) i.focus();
-    });
-  });
-
-  var timeLeft = 30;
-  state.langTimerInterval = setInterval(function() {
-    timeLeft--;
-    var el = document.getElementById('lang-timer');
-    if (el) { el.textContent = timeLeft; if (timeLeft <= 5) el.classList.add('warning'); }
-    if (timeLeft <= 0) {
-      clearInterval(state.langTimerInterval);
-      state.langTimerInterval = null;
-      endLanguageTest();
-    }
-  }, 1000);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){var i=document.getElementById('lang-input');if(i&&!i.disabled)i.focus();});});
+  var tl=30;
+  state.langTimerInterval=setInterval(function(){
+    tl--;var el=document.getElementById('lang-timer');
+    if(el){el.textContent=tl;if(tl<=5)el.classList.add('warning');}
+    if(tl<=0){clearInterval(state.langTimerInterval);state.langTimerInterval=null;endLanguageTest();}
+  },1000);
 }
-
-function langKeyHandler(e) {
-  if (e.key === 'Enter') { e.preventDefault(); addAnimal(); }
-}
-
-function addAnimal() {
-  if (state.langTestEnded) return;
-  var inp = document.getElementById('lang-input');
-  if (!inp || inp.disabled) return;
-  var val = inp.value.trim();
-  if (!val) { inp.focus(); return; }
-  var norm = val.toLowerCase().replace(/[^a-z\s]/g, '').trim();
-  if (!norm) { inp.value = ''; inp.focus(); return; }
-  if (state.animals.indexOf(norm) !== -1) { inp.value = ''; inp.focus(); return; }
-  state.animals.push(norm);
-  inp.value = '';
-  var chips = document.getElementById('lang-chips');
-  if (chips) {
-    var chip = document.createElement('div');
-    chip.className = 'lang-chip';
-    chip.textContent = val.charAt(0).toUpperCase() + val.slice(1).toLowerCase();
-    chips.appendChild(chip);
-  }
-  var counter = document.getElementById('lang-counter');
-  if (counter) counter.textContent = state.animals.length;
+function langKeyHandler(e){if(e.key==='Enter'){e.preventDefault();addAnimal();}}
+function addAnimal(){
+  if(state.langTestEnded)return;
+  var inp=document.getElementById('lang-input');if(!inp||inp.disabled)return;
+  var val=inp.value.trim();if(!val){inp.focus();return;}
+  var norm=val.toLowerCase().replace(/[^a-z\s]/g,'').trim();
+  if(!norm||state.animals.indexOf(norm)!==-1){inp.value='';inp.focus();return;}
+  state.animals.push(norm);inp.value='';
+  var chips=document.getElementById('lang-chips');
+  if(chips){var chip=document.createElement('div');chip.className='lang-chip';chip.textContent=val.charAt(0).toUpperCase()+val.slice(1).toLowerCase();chips.appendChild(chip);}
+  var counter=document.getElementById('lang-counter');if(counter)counter.textContent=state.animals.length;
   inp.focus();
 }
-
-function endLanguageTest() {
-  if (state.langTestEnded) return;
-  state.langTestEnded = true;
-  if (state.langTimerInterval) { clearInterval(state.langTimerInterval); state.langTimerInterval = null; }
-  var inp = document.getElementById('lang-input');
-  var addBtn = document.getElementById('lang-add-btn');
-  var hint = document.getElementById('lang-hint');
-  if (inp) { inp.disabled = true; inp.blur(); }
-  if (addBtn) addBtn.disabled = true;
-  if (hint) hint.textContent = "Time's up! You named " + state.animals.length + " animal" + (state.animals.length !== 1 ? 's' : '') + ".";
-  state.languageScore = Math.min(10, state.animals.length);
-  setTimeout(function() { showResults(); }, 900);
+function endLanguageTest(){
+  if(state.langTestEnded)return;state.langTestEnded=true;
+  if(state.langTimerInterval){clearInterval(state.langTimerInterval);state.langTimerInterval=null;}
+  var inp=document.getElementById('lang-input'),addBtn=document.getElementById('lang-add-btn'),hint=document.getElementById('lang-hint');
+  if(inp){inp.disabled=true;inp.blur();}if(addBtn)addBtn.disabled=true;
+  if(hint)hint.textContent="Time's up! You named "+state.animals.length+" animal"+(state.animals.length!==1?'s':'')+".";
+  state.languageScore=Math.min(10,state.animals.length);
+  setTimeout(function(){showResults();},900);
 }
 
-// ============================================================
-// RESULTS ENGINE
-// ============================================================
-function showResults() {
+/* RESULTS */
+function showResults(){
   clearAllTimers();
-  var pw = document.getElementById('progress-wrap');
-  if (pw) pw.classList.remove('visible');
+  var pw=document.getElementById('progress-wrap');if(pw)pw.classList.remove('visible');
   showScreen('results');
-
-  var r = state.reactionScore;
-  var m = state.memoryScore;
-  var a = state.attentionScore;
-  var l = state.logicScore;
-  var n = state.languageScore;
-
-  var rN = r;
-  var mN = (m / 5) * 100;
-  var aN = (a / 10) * 100;
-  var lN = (l / 10) * 100;
-  var nN = (n / 10) * 100;
-  var overall = Math.round((rN * 0.25) + (mN * 0.25) + (aN * 0.2) + (lN * 0.2) + (nN * 0.1));
-  var brainAge = Math.round(85 - (overall / 100) * 55);
-
-  document.getElementById('result-brain-age').textContent = brainAge;
-
-  var vEl = document.getElementById('result-verdict');
-  var verdict, verdictCls, summary;
-  if (overall >= 70) {
-    verdict = 'Excellent - Sharp Mind!';
-    verdictCls = 'brain-verdict verdict-good';
-    summary = 'Your cognitive performance is strong! Your brain is responding well across all key areas. Keep maintaining your lifestyle habits and continue challenging your mind daily.';
-  } else if (overall >= 45) {
-    verdict = 'Good - Room to Grow';
-    verdictCls = 'brain-verdict verdict-avg';
-    summary = 'Your brain is performing well in some areas and has room for improvement in others. Consistent lifestyle changes - especially sleep, diet, and exercise - can make a meaningful difference.';
-  } else {
-    verdict = 'Needs Attention - Start Today';
-    verdictCls = 'brain-verdict verdict-needs';
-    summary = 'Your results suggest some areas of cognitive function that could benefit from active improvement. This is not a diagnosis - it is a call to action. Every lifestyle change you make today builds a stronger brain tomorrow.';
-  }
-  vEl.textContent = verdict;
-  vEl.className = verdictCls;
-  document.getElementById('result-summary').textContent = summary;
-
-  var bd = document.getElementById('score-breakdown');
-  var rows = [
-    { icon: '&#9889;', name: 'Reaction Speed',   val: r, max: 100, unit: '' },
-    { icon: '&#129504;', name: 'Memory Recall',  val: m, max: 5,   unit: '/5' },
-    { icon: '&#127919;', name: 'Attention Focus',val: a, max: 10,  unit: '/10' },
-    { icon: '&#128290;', name: 'Logic & Patterns',val: l,max: 10,  unit: '/10' },
-    { icon: '&#129409;', name: 'Language Fluency',val: n,max: 10,  unit: '/10' },
+  var r=state.reactionScore,m=state.memoryScore,a=state.attentionScore,l=state.logicScore,n=state.languageScore;
+  var rN=r,mN=(m/5)*100,aN=(a/10)*100,lN=(l/10)*100,nN=(n/10)*100;
+  var overall=Math.round((rN*.25)+(mN*.25)+(aN*.2)+(lN*.2)+(nN*.1));
+  var brainAge=Math.round(85-(overall/100)*55);
+  document.getElementById('result-brain-age').textContent=brainAge;
+  var vEl=document.getElementById('result-verdict');
+  var verdict,verdictCls,summary;
+  if(overall>=70){verdict='Excellent - Sharp Mind!';verdictCls='brain-verdict verdict-good';summary='Your cognitive performance is strong! Your brain is responding well across all key areas. Keep maintaining your lifestyle habits and continue challenging your mind daily.';}
+  else if(overall>=45){verdict='Good - Room to Grow';verdictCls='brain-verdict verdict-avg';summary='Your brain is performing well in some areas and has room for improvement. Consistent lifestyle changes, especially sleep, diet, and exercise, can make a meaningful difference.';}
+  else{verdict='Needs Attention - Start Today';verdictCls='brain-verdict verdict-needs';summary='Your results suggest some areas of cognitive function that could benefit from active improvement. This is not a diagnosis - it is a call to action. Every lifestyle change you make today builds a stronger brain tomorrow.';}
+  vEl.textContent=verdict;vEl.className=verdictCls;
+  document.getElementById('result-summary').textContent=summary;
+  var bd=document.getElementById('score-breakdown');
+  var rows=[
+    {icon:'&#9889;', name:'Reaction Speed',   val:r,max:100,unit:''},
+    {icon:'&#129504;',name:'Memory Recall',   val:m,max:5,  unit:'/5'},
+    {icon:'&#127919;',name:'Attention Focus', val:a,max:10, unit:'/10'},
+    {icon:'&#128290;',name:'Logic & Patterns',val:l,max:10, unit:'/10'},
+    {icon:'&#129409;',name:'Language Fluency',val:n,max:10, unit:'/10'}
   ];
-  bd.innerHTML = rows.map(function(row) {
-    var pct = Math.round((row.val / row.max) * 100);
-    return '<div class="score-row">' +
-      '<div class="score-icon">' + row.icon + '</div>' +
-      '<div class="score-name">' + row.name + '</div>' +
-      '<div class="score-val">' + row.val + '<span class="score-max">' + row.unit + '</span></div>' +
-      '<div class="score-bar-wrap"><div class="score-bar-fill" style="width:0%" data-pct="' + pct + '"></div></div>' +
-      '</div>';
+  bd.innerHTML=rows.map(function(row){
+    var pct=Math.round((row.val/row.max)*100);
+    return '<div class="score-row"><div class="score-icon">'+row.icon+'</div><div class="score-name">'+row.name+'</div><div class="score-val">'+row.val+'<span class="score-max">'+row.unit+'</span></div><div class="score-bar-wrap"><div class="score-bar-fill" style="width:0%" data-pct="'+pct+'"></div></div></div>';
   }).join('');
-
-  requestAnimationFrame(function() {
-    requestAnimationFrame(function() {
-      document.querySelectorAll('.score-bar-fill').forEach(function(b) { b.style.width = b.dataset.pct + '%'; });
-    });
-  });
-
-  buildResultsTips(r, m, a, l, n, rN, mN, aN, lN, nN);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){document.querySelectorAll('.score-bar-fill').forEach(function(b){b.style.width=b.dataset.pct+'%';});});});
+  buildResultsTips(r,m,a,l,n,rN,mN,aN,lN,nN);
 }
 
-function scoreBadge(pct) {
-  if (pct >= 70) return { cls: 'badge-good', label: 'Strong' };
-  if (pct >= 40) return { cls: 'badge-avg',  label: 'Moderate' };
-  return { cls: 'badge-poor', label: 'Needs Work' };
-}
+function scoreBadge(pct){if(pct>=70)return{cls:'badge-good',label:'Strong'};if(pct>=40)return{cls:'badge-avg',label:'Moderate'};return{cls:'badge-poor',label:'Needs Work'};}
 
-function buildResultsTips(r, m, a, l, n, rN, mN, aN, lN, nN) {
-  var rt = document.getElementById('results-tips');
-
-  var domains = [
-    {
-      icon: '&#9889;', title: 'Reaction Speed & Processing Speed', score: r, maxScore: 100, pct: rN,
-      brainRegion: 'Brain Region: Prefrontal Cortex, White Matter Tracts, Cerebellum',
-      poorDesc: 'Your reaction time is slower than optimal. This reflects reduced efficiency in the brain\'s white matter - the neural pathways that carry signals between the prefrontal cortex and cerebellum. Slow processing speed is one of the earliest markers of cognitive aging and is strongly linked to cardiovascular health in the brain. Poor blood flow, inflammation, and myelin breakdown all slow signal transmission.',
-      avgDesc: 'Your reaction speed is moderate. Your white matter tracts and prefrontal networks are functional but could be sharper. Processing speed responds well to cardiovascular fitness and omega-3 supplementation, which help maintain myelin integrity.',
-      goodDesc: 'Excellent reaction speed! Your white matter integrity and prefrontal-cerebellar networks are working efficiently. Your brain is transmitting signals quickly and accurately - a sign of healthy vascular function and neural connectivity.',
-      actions: [
-        { icon: 'RUN', text: 'Daily aerobic exercise (30 min walk, swim or cycle) is the single most powerful intervention - it directly increases cerebral blood flow, promotes myelin repair, and raises BDNF, the brain\'s "fertiliser." Research from the Mayo Clinic shows measurable improvements in processing speed within 6-8 weeks.' },
-        { icon: 'FISH', text: 'Eat omega-3 rich oily fish 3x/week (salmon, sardines, mackerel). Omega-3 DHA is the main structural fat of myelin sheaths. Low omega-3 = poor signal speed. Daily fish oil (1-2g EPA/DHA) is evidence-backed for white matter protection.' },
-        { icon: 'GAME', text: 'Play reaction-based sports: table tennis, badminton, or reaction apps. These train the cerebellum and fronto-parietal speed networks simultaneously. Even 15 minutes daily shows measurable improvement in 4 weeks.' },
-        { icon: 'SLEEP', text: 'Prioritise 7-9 hours of sleep. Deep sleep is when the brain repairs myelin. Chronic sleep loss degrades white matter faster than almost any other single lifestyle factor.' },
-        { icon: 'DIET', text: 'Control blood pressure and blood sugar. Hypertension and insulin resistance are the two biggest destroyers of cerebral white matter. Reduce refined carbohydrates, salt, and processed foods.' },
-      ]
-    },
-    {
-      icon: '&#129504;', title: 'Short-Term Memory', score: m, maxScore: 5, pct: mN,
-      brainRegion: 'Brain Region: Hippocampus, Entorhinal Cortex, Prefrontal Cortex',
-      poorDesc: 'Your memory recall score suggests your hippocampus - the brain\'s primary memory formation centre - may be under stress. The hippocampus is the first brain region to show damage in Alzheimer\'s disease, but also one of the most responsive to lifestyle intervention. Poor short-term memory can result from sleep deprivation, high cortisol from stress, low omega-3, or insufficient blood flow. The hippocampus is one of only two brain regions capable of growing NEW neurons at any age through neurogenesis - and exercise is its most powerful trigger.',
-      avgDesc: 'Your memory is functional but inconsistent. Your hippocampus is working but may be affected by poor sleep, moderate stress, or suboptimal nutrition. Strengthening memory encoding and recall circuits requires targeted daily practice combined with lifestyle improvement.',
-      goodDesc: 'Your memory recall is strong! Your hippocampus and prefrontal memory circuits are working well. You are encoding and retrieving information effectively. Maintain this by continuing to challenge your memory actively - learn new skills, socialise regularly, and protect your sleep above all else.',
-      actions: [
-        { icon: 'SWIM', text: 'Aerobic exercise 4-5x/week is the gold-standard for hippocampal health. The landmark Erickson et al. study (2011) showed the hippocampus GREW by 1-2% per year with walking 40 min/day - while the control group\'s hippocampus shrank. This is the closest thing to a proven memory reversal treatment.' },
-        { icon: 'BERRY', text: 'Eat blueberries daily (half to one cup). Flavonoids in blueberries cross the blood-brain barrier and directly stimulate neurogenesis in the hippocampus. Animal studies showed reversal of existing short-term memory loss with consistent blueberry consumption. Also: walnuts, dark chocolate, turmeric.' },
-        { icon: 'MEMORY', text: 'Practice the Memory Palace (Method of Loci): assign items you want to remember to specific rooms in a familiar place. This technique directly trains the hippocampal-spatial memory network. Start with your shopping list and build up.' },
-        { icon: 'SLEEP', text: 'Sleep is not optional for memory. During deep sleep (NREM Stage 3), the brain transfers information from short-term to long-term storage. One night of poor sleep halves memory retention. Aim for consistent sleep in a dark, cool room.' },
-        { icon: 'ZEN', text: 'Reduce cortisol through daily meditation or breathing exercises. Chronic stress releases cortisol which physically erodes hippocampal volume over time. Even 10 minutes per day of slow breathing reduces cortisol significantly.' },
-        { icon: 'EGG', text: 'Eat choline-rich foods: eggs (yolk), liver, salmon. Choline is the precursor to acetylcholine - the neurotransmitter most critical for memory. Vitamin D from sunlight or supplements also has the highest receptor density in the hippocampus of any brain region.' },
-      ]
-    },
-    {
-      icon: '&#127919;', title: 'Attention & Working Memory', score: a, maxScore: 10, pct: aN,
-      brainRegion: 'Brain Region: Dorsolateral Prefrontal Cortex, Anterior Cingulate Cortex, Parietal Lobe',
-      poorDesc: 'Your attention and working memory score is low. Working memory - the ability to hold and mentally manipulate information in real time - is primarily controlled by the dorsolateral prefrontal cortex (dlPFC). These regions are highly sensitive to stress, poor sleep, lack of physical activity, and ultra-processed food diets that cause neuroinflammation. Critically, the prefrontal cortex is one of the most responsive brain regions to lifestyle change - it genuinely regrows with the right inputs.',
-      avgDesc: 'Your attention is moderate. You can focus but struggle under mental load or when information must be held and processed simultaneously. Your prefrontal cortex is functional but would benefit from targeted strengthening through meditation, better stress management, and sleep consistency.',
-      goodDesc: 'Your attention and working memory are excellent! Your prefrontal cortex and anterior cingulate circuits are performing strongly. This is a powerful cognitive asset. Protect it by managing stress, sleeping consistently, and continuing to challenge your working memory with complex tasks.',
-      actions: [
-        { icon: 'ZEN', text: 'Meditation is the single most direct way to strengthen the prefrontal cortex. A Harvard study showed that 8 weeks of mindfulness meditation (average 27 min/day) measurably increased grey matter density in the dlPFC and anterior cingulate. Start with 10 minutes of focused breathing daily.' },
-        { icon: 'CHESS', text: 'Play strategy games that demand sustained mental effort: chess, mahjong, bridge, or complex board games. These force the prefrontal cortex to plan ahead, inhibit impulses, and hold multiple variables simultaneously. A randomised trial found 15 min/day of brain training improved executive function in elderly participants in just 4 weeks.' },
-        { icon: 'FOCUS', text: 'Remove digital distraction: constant smartphone checking trains the brain for shallow attention. Set 25-minute "focus blocks" with no notifications - the Pomodoro technique. This conditions the prefrontal cortex to sustain deep concentration.' },
-        { icon: 'GREEN', text: 'Feed the prefrontal cortex: leafy greens (spinach, rocket, kale), fatty fish, avocados, and eggs provide folate, omega-3s, and choline that the dlPFC depends on. Avoid refined sugar and ultra-processed foods that trigger neuroinflammation.' },
-        { icon: 'SLEEP', text: 'Sleep is the prefrontal cortex\'s recovery window. Even mild sleep deprivation (6 hours instead of 8) measurably impairs working memory, decision-making, and impulse control within 24 hours. The prefrontal cortex is the last brain region to recover from sleep loss.' },
-        { icon: 'WALK', text: 'Manage stress actively. Chronic stress shrinks prefrontal grey matter while enlarging the amygdala - the opposite of what you want. Daily walks in nature, journalling, or tai chi measurably lower cortisol and restore prefrontal function over 6-8 weeks.' },
-      ]
-    },
-    {
-      icon: '&#128290;', title: 'Logic, Patterns & Executive Function', score: l, maxScore: 10, pct: lN,
-      brainRegion: 'Brain Region: Prefrontal Cortex, Parietal Lobe, Frontoparietal Network',
-      poorDesc: 'Your logic and pattern recognition score suggests your frontoparietal executive network - the collaboration between the prefrontal cortex and parietal lobe - may need strengthening. This network handles abstract reasoning, pattern detection, problem-solving, and cognitive flexibility. Weaknesses often reflect a combination of reduced prefrontal activation and impaired parietal integration, caused by poor sleep, low omega-3 intake, insufficient mental challenge, or vascular issues.',
-      avgDesc: 'Your pattern recognition and logical reasoning is moderate. You can identify simple patterns but struggle with complex sequences. This reflects a partially trained frontoparietal network. Consistent mental challenges, quality sleep, and an anti-inflammatory diet will meaningfully improve this domain.',
-      goodDesc: 'Excellent logical reasoning and pattern recognition! Your frontoparietal executive network is working fluidly - you can detect complex patterns, reason abstractly, and switch strategies efficiently. Keep challenging yourself with novel, complex problems to maintain this network\'s strength.',
-      actions: [
-        { icon: 'SUDOKU', text: 'Practice number and pattern puzzles daily: Sudoku trains pattern recognition and logical deduction. A study in the Journal of the International Neuropsychological Society showed regular puzzle use directly slows cognitive decline, with frequent players showing brain function 10 years younger than non-players.' },
-        { icon: 'LEARN', text: 'Learn something structurally new - a new language, instrument, or skill like coding, chess, or calligraphy. Learning novel rule systems is the strongest known activator of the frontoparietal network. The brain must form entirely new connections when learning from scratch.' },
-        { icon: 'CHESS', text: 'Play strategy games requiring multi-step planning: chess, Go, or real-time strategy video games. Chess specifically requires holding multiple future scenarios in mind simultaneously, training the exact prefrontal-parietal circuits tested here.' },
-        { icon: 'SLEEP', text: 'Sleep is where pattern consolidation happens. Complex problem-solving dramatically improves after sleep - the brain literally processes and organises patterns during NREM sleep. If you find puzzles harder in the evening, sleep on them; your brain will work on them overnight.' },
-        { icon: 'FISH', text: 'DHA omega-3 (from oily fish or algae supplements) directly supports synaptic plasticity in parietal and prefrontal cortex. Studies link low DHA to impaired abstract reasoning and slower pattern detection. Aim for 2-3 servings of SMASH fish weekly.' },
-        { icon: 'TRAIN', text: 'Try "dual n-back" training - a research-backed working memory task where you track sequences across two channels simultaneously. Multiple studies show transfer effects to fluid intelligence - one of the few brain training tasks with proven generalisation.' },
-      ]
-    },
-    {
-      icon: '&#129409;', title: 'Language Fluency & Verbal Memory', score: n, maxScore: 10, pct: nN,
-      brainRegion: "Brain Region: Left Temporal Lobe, Broca's Area (left frontal), Wernicke's Area",
-      poorDesc: "Your verbal fluency score is low, suggesting reduced activation in the left hemisphere's language network - particularly the left temporal lobe (where word meanings are stored) and Broca's area in the frontal lobe (where words are retrieved and produced). Verbal fluency is one of the earliest cognitive functions to decline in Alzheimer's disease. Low scores have been linked to social isolation, infrequent reading, low B12 or folate levels, and reduced left-hemisphere blood flow. Critical finding: bilingualism delays dementia onset by 4-5 years.",
-      avgDesc: "Your verbal fluency is moderate. You can access vocabulary but may experience 'tip-of-the-tongue' moments or slowed word retrieval under time pressure. Reading, conversation, and vocabulary-building activities directly strengthen these circuits and are among the most effective dementia-prevention strategies available.",
-      goodDesc: "Excellent verbal fluency! Your left temporal and frontal language networks are highly active and well-connected. Strong verbal fluency is one of the best protective factors against cognitive decline - it reflects a dense, well-exercised language network that builds powerful cognitive reserve.",
-      actions: [
-        { icon: 'READ', text: 'Read every day for at least 20 minutes - especially fiction, which engages language, empathy networks, and narrative memory simultaneously. Regular readers show significantly slower cognitive decline. Choose books that challenge your vocabulary rather than only comfortable genres.' },
-        { icon: 'TALK', text: 'Have at least one meaningful conversation daily. Social isolation is directly linked to verbal fluency decline - the language networks need regular activation through real dialogue. Join a group, class, or volunteer - environments that require you to articulate your thoughts regularly.' },
-        { icon: 'LANGUAGE', text: 'Learn a second language - even partially. Bilingualism is one of the most powerful dementia-protective factors known to science. It delays onset by 4-5 years by building a denser, more resilient language network. Apps like Duolingo or language exchange groups are accessible starting points.' },
-        { icon: 'WRITE', text: 'Write regularly: journalling, letters, or creative writing. Writing forces word retrieval, sentence construction, and memory recall simultaneously - training the full left-hemisphere language circuit. Even 10 minutes daily of writing about your day measurably improves word retrieval speed over weeks.' },
-        { icon: 'SING', text: "Sing, read aloud, or join a speaking group. Vocal language production activates motor-language circuits in Broca's area that silent reading does not. Singing in particular engages both hemispheres and has been shown to preserve language function even in advanced dementia." },
-        { icon: 'B12', text: 'Check your B12 and folate levels. B12 deficiency - extremely common in adults over 50 - directly damages the myelin sheaths on language nerve pathways, slowing word retrieval. Eat eggs, fish, dairy, or supplement B12 regularly. Folate (from leafy greens and legumes) supports the same pathways.' },
-      ]
-    },
+function buildResultsTips(r,m,a,l,n,rN,mN,aN,lN,nN){
+  var rt=document.getElementById('results-tips');
+  var D=[
+    {icon:'&#9889;',title:'Reaction Speed & Processing',score:r,max:100,pct:rN,region:'Brain Region: Prefrontal Cortex, White Matter Tracts, Cerebellum',
+     poor:'Your reaction time is slower than optimal. This reflects reduced efficiency in the brain\'s white matter - the neural pathways that carry signals between the prefrontal cortex and cerebellum. Slow processing speed is one of the earliest markers of cognitive aging, strongly linked to cardiovascular health, blood flow, and myelin integrity.',
+     avg:'Your reaction speed is moderate. Your white matter tracts are functional but could be sharper. Processing speed responds well to cardiovascular fitness and omega-3 supplementation, which help maintain myelin integrity.',
+     good:'Excellent reaction speed! Your white matter integrity and prefrontal-cerebellar networks are working efficiently - a sign of healthy vascular function and strong neural connectivity.',
+     actions:[
+       {t:'Daily aerobic exercise (30 min walk, swim or cycle) is the single most powerful intervention. It increases cerebral blood flow, promotes myelin repair, and raises BDNF - the brain\'s fertiliser. Research shows measurable improvements in processing speed within 6-8 weeks.'},
+       {t:'Eat omega-3 rich oily fish 3x/week (salmon, sardines, mackerel). DHA is the main structural fat of myelin sheaths. Low omega-3 equals poor signal speed. Daily fish oil 1-2g EPA/DHA is evidence-backed for white matter protection.'},
+       {t:'Play reaction-based sports: table tennis, badminton, or reaction training apps. These train the cerebellum and fronto-parietal speed networks simultaneously. Even 15 minutes daily shows measurable improvement in 4 weeks.'},
+       {t:'Prioritise 7-9 hours of sleep. Deep sleep is when the brain repairs myelin. Chronic sleep loss degrades white matter faster than almost any other single lifestyle factor.'},
+       {t:'Control blood pressure and blood sugar. Hypertension and insulin resistance are the two biggest destroyers of cerebral white matter. Reduce refined carbohydrates, salt, and processed foods.'}
+     ]},
+    {icon:'&#129504;',title:'Short-Term Memory',score:m,max:5,pct:mN,region:'Brain Region: Hippocampus, Entorhinal Cortex, Prefrontal Cortex',
+     poor:'Your memory recall score suggests your hippocampus may be under stress. The hippocampus is the first brain region to show damage in Alzheimer\'s disease, but also one of the most responsive to lifestyle intervention. Poor memory can result from sleep deprivation, high cortisol from stress, low omega-3, or insufficient blood flow. The hippocampus can grow NEW neurons at any age - and exercise is its most powerful trigger.',
+     avg:'Your memory is functional but inconsistent. Your hippocampus is working but may be affected by poor sleep, moderate stress, or suboptimal nutrition. Strengthening memory circuits requires targeted daily practice combined with lifestyle improvement.',
+     good:'Your memory recall is strong! Your hippocampus and prefrontal memory circuits are working well. Maintain this by challenging your memory actively, socialising regularly, and protecting your sleep above all else.',
+     actions:[
+       {t:'Aerobic exercise 4-5x/week is the gold-standard for hippocampal health. The Erickson et al. study (2011) showed the hippocampus GREW by 1-2% per year with walking 40 min/day, while the control group\'s hippocampus shrank. This is the closest thing to a proven memory reversal treatment.'},
+       {t:'Eat blueberries daily. Flavonoids cross the blood-brain barrier and directly stimulate neurogenesis in the hippocampus. Animal studies showed reversal of short-term memory loss with consistent blueberry consumption. Also: walnuts, dark chocolate, and turmeric.'},
+       {t:'Practice the Memory Palace - assign items you want to remember to specific rooms in a familiar place. This directly trains the hippocampal-spatial memory network used by memory champions worldwide.'},
+       {t:'Sleep is not optional for memory. During deep sleep (NREM Stage 3), the brain transfers information from short-term to long-term storage. One night of poor sleep halves memory retention.'},
+       {t:'Reduce cortisol through daily meditation or breathing exercises. Chronic stress releases cortisol which physically erodes hippocampal volume over time. Even 10 minutes per day of slow breathing reduces cortisol significantly.'},
+       {t:'Eat choline-rich foods: eggs, liver, salmon. Choline is the precursor to acetylcholine - the neurotransmitter most critical for memory. Vitamin D from sunlight also has the highest receptor density in the hippocampus of any brain region.'}
+     ]},
+    {icon:'&#127919;',title:'Attention & Working Memory',score:a,max:10,pct:aN,region:'Brain Region: Dorsolateral Prefrontal Cortex, Anterior Cingulate Cortex, Parietal Lobe',
+     poor:'Your attention and working memory score is low. Working memory is primarily controlled by the dorsolateral prefrontal cortex. These regions are highly sensitive to stress, poor sleep, lack of physical activity, and ultra-processed food diets that cause neuroinflammation. The prefrontal cortex is one of the most responsive brain regions to lifestyle change - it genuinely regrows with the right inputs.',
+     avg:'Your attention is moderate. You can focus but struggle under mental load. Your prefrontal cortex would benefit from targeted strengthening through meditation, better stress management, and sleep consistency.',
+     good:'Your attention and working memory are excellent! Your prefrontal cortex and anterior cingulate circuits are performing strongly. Protect this by managing stress, sleeping consistently, and continuing to challenge your working memory.',
+     actions:[
+       {t:'Meditation is the single most direct way to strengthen the prefrontal cortex. A Harvard study showed 8 weeks of mindfulness meditation measurably increased grey matter density in the dlPFC and anterior cingulate. Start with 10 minutes of focused breathing daily.'},
+       {t:'Play strategy games that demand sustained mental effort: chess, mahjong, bridge, or complex board games. These force the prefrontal cortex to plan ahead, inhibit impulses, and hold multiple variables simultaneously.'},
+       {t:'Remove digital distraction. Constant smartphone checking trains the brain for shallow attention. Set 25-minute focus blocks with no notifications - the Pomodoro technique. This conditions the prefrontal cortex to sustain deep concentration.'},
+       {t:'Feed the prefrontal cortex: leafy greens, fatty fish, avocados, and eggs provide folate, omega-3s, and choline the dlPFC depends on. Avoid refined sugar and ultra-processed foods that trigger neuroinflammation.'},
+       {t:'Sleep is the prefrontal cortex\'s recovery window. Even mild sleep deprivation - 6 hours instead of 8 - measurably impairs working memory and decision-making within 24 hours.'},
+       {t:'Manage stress actively. Chronic stress shrinks prefrontal grey matter while enlarging the amygdala - the opposite of what you want. Daily walks in nature, journalling, or tai chi measurably lower cortisol and restore prefrontal function over 6-8 weeks.'}
+     ]},
+    {icon:'&#128290;',title:'Logic, Patterns & Executive Function',score:l,max:10,pct:lN,region:'Brain Region: Prefrontal Cortex, Parietal Lobe, Frontoparietal Network',
+     poor:'Your logic and pattern recognition score suggests your frontoparietal executive network may need strengthening. This network handles abstract reasoning, pattern detection, problem-solving, and cognitive flexibility. Weaknesses often reflect reduced prefrontal activation and impaired parietal integration, caused by poor sleep, low omega-3, insufficient mental challenge, or vascular issues.',
+     avg:'Your pattern recognition and logical reasoning is moderate. You can identify simple patterns but struggle with complex sequences. Consistent mental challenges, quality sleep, and an anti-inflammatory diet will meaningfully improve this domain.',
+     good:'Excellent logical reasoning and pattern recognition! Your frontoparietal executive network is working fluidly. Keep challenging yourself with novel, complex problems to maintain this network\'s strength.',
+     actions:[
+       {t:'Practice number and pattern puzzles daily: Sudoku trains pattern recognition and logical deduction. Research shows regular puzzle use directly slows cognitive decline, with frequent players showing brain function 10 years younger than non-players.'},
+       {t:'Learn something structurally new - a new language, instrument, or skill like coding, chess, or calligraphy. Learning novel rule systems is the strongest known activator of the frontoparietal network.'},
+       {t:'Play strategy games requiring multi-step planning: chess, Go, or real-time strategy video games. Chess requires holding multiple future scenarios in mind simultaneously, training the exact prefrontal-parietal circuits tested here.'},
+       {t:'Sleep is where pattern consolidation happens. Complex problem-solving dramatically improves after sleep - the brain processes and organises patterns during NREM sleep. Sleep on difficult problems and your brain will work on them overnight.'},
+       {t:'DHA omega-3 from oily fish or algae supplements directly supports synaptic plasticity in parietal and prefrontal cortex. Studies link low DHA to impaired abstract reasoning. Aim for 2-3 servings of oily fish weekly.'},
+       {t:'Try dual n-back training - a research-backed working memory task where you track sequences across two channels simultaneously. Multiple studies show transfer effects to fluid intelligence, one of the few brain training tasks with proven generalisation.'}
+     ]},
+    {icon:'&#129409;',title:'Language Fluency & Verbal Memory',score:n,max:10,pct:nN,region:"Brain Region: Left Temporal Lobe, Broca's Area (left frontal), Wernicke's Area",
+     poor:"Your verbal fluency score is low, suggesting reduced activation in the left hemisphere's language network. Verbal fluency is one of the earliest cognitive functions to decline in Alzheimer's disease. Low scores have been linked to social isolation, infrequent reading, low B12 or folate levels, and reduced left-hemisphere blood flow. Critically: bilingualism delays dementia onset by 4-5 years.",
+     avg:"Your verbal fluency is moderate. You can access vocabulary but may experience tip-of-the-tongue moments under time pressure. Reading, conversation, and vocabulary-building activities directly strengthen these circuits and are among the most effective dementia-prevention strategies available.",
+     good:"Excellent verbal fluency! Your left temporal and frontal language networks are highly active and well-connected. Strong verbal fluency is one of the best protective factors against cognitive decline - it reflects a dense, well-exercised language network.",
+     actions:[
+       {t:'Read every day for at least 20 minutes - especially fiction, which engages language, empathy networks, and narrative memory simultaneously. Regular readers show significantly slower cognitive decline over time.'},
+       {t:'Have at least one meaningful conversation daily. Social isolation is directly linked to verbal fluency decline. Join a group, class, or volunteer - environments that require you to articulate your thoughts regularly.'},
+       {t:'Learn a second language - even partially. Bilingualism is one of the most powerful dementia-protective factors known to science. It delays onset by 4-5 years by building a denser, more resilient language network.'},
+       {t:'Write regularly: journalling, letters, or creative writing. Writing forces word retrieval, sentence construction, and memory recall simultaneously - training the full left-hemisphere language circuit.'},
+       {t:"Sing, read aloud, or join a speaking group. Vocal language production activates motor-language circuits in Broca's area that silent reading does not. Singing has been shown to preserve language function even in advanced dementia."},
+       {t:'Check your B12 and folate levels. B12 deficiency - extremely common in adults over 50 - directly damages the myelin sheaths on language nerve pathways, slowing word retrieval. Eat eggs, fish, dairy, or supplement B12 regularly.'}
+     ]}
   ];
-
-  var tipsHTML = '<h4>Your Personalised Brain Health Report</h4>';
-  domains.forEach(function(d) {
-    var badge = scoreBadge(d.pct);
-    var desc = d.pct >= 70 ? d.goodDesc : (d.pct >= 40 ? d.avgDesc : d.poorDesc);
-    var actionCount = d.pct >= 70 ? 2 : (d.pct >= 40 ? 4 : 6);
-    var scoreDisplay = d.maxScore === 100 ? String(d.score) : d.score + '/' + d.maxScore;
-
-    tipsHTML += '<div class="domain-tip-card">' +
-      '<div class="domain-tip-header">' +
-        '<div class="domain-tip-icon">' + d.icon + '</div>' +
-        '<div class="domain-tip-title-wrap">' +
-          '<div class="domain-tip-title">' + d.title + '</div>' +
-          '<span class="domain-tip-badge ' + badge.cls + '">' + badge.label + '</span>' +
-        '</div>' +
-        '<div class="domain-tip-score">' + scoreDisplay + '</div>' +
-      '</div>' +
-      '<div class="domain-tip-brain">' + d.brainRegion + '</div>' +
-      '<div class="domain-tip-desc">' + desc + '</div>' +
-      '<div class="domain-tip-actions">';
-    for (var ai = 0; ai < Math.min(actionCount, d.actions.length); ai++) {
-      tipsHTML += '<div class="tip-action"><div class="tip-action-icon">' + d.actions[ai].icon + '</div><div>' + d.actions[ai].text + '</div></div>';
-    }
-    tipsHTML += '</div></div>';
+  var html='<h4>Your Personalised Brain Health Report</h4>';
+  D.forEach(function(d){
+    var b=scoreBadge(d.pct);
+    var desc=d.pct>=70?d.good:(d.pct>=40?d.avg:d.poor);
+    var ac=d.pct>=70?2:(d.pct>=40?4:6);
+    var sc=d.max===100?String(d.score):d.score+'/'+d.max;
+    html+='<div class="domain-tip-card"><div class="domain-tip-header"><div class="domain-tip-icon">'+d.icon+'</div><div class="domain-tip-title-wrap"><div class="domain-tip-title">'+d.title+'</div><span class="domain-tip-badge '+b.cls+'">'+b.label+'</span></div><div class="domain-tip-score">'+sc+'</div></div><div class="domain-tip-brain">'+d.region+'</div><div class="domain-tip-desc">'+desc+'</div><div class="domain-tip-actions">';
+    for(var ai=0;ai<Math.min(ac,d.actions.length);ai++)html+='<div class="tip-action"><div class="tip-action-icon">&#128161;</div><div>'+d.actions[ai].t+'</div></div>';
+    html+='</div></div>';
   });
-  rt.innerHTML = tipsHTML;
+  rt.innerHTML=html;
 }
 
-function restartTest() {
-  state.currentTest = 0; state.reactionScore = 0; state.memoryScore = 0;
-  state.attentionScore = 0; state.logicScore = 0; state.languageScore = 0;
-  state.reactHits = 0; state.reactTotal = 0; state.reactTimes = []; state.currentColour = null;
-  state.memWords = []; state.distractQs = []; state.distractIdx = 0;
-  state.attnCurrent = 100; state.attnCorrect = 0;
-  state.logicQs = []; state.logicIdx = 0; state.logicCorrect = 0;
-  state.animals = []; state.langTestEnded = false;
-  var pf = document.getElementById('progress-fill');
-  if (pf) pf.style.width = '0%';
+function restartTest(){
+  state.currentTest=0;state.reactionScore=0;state.memoryScore=0;state.attentionScore=0;state.logicScore=0;state.languageScore=0;
+  state.reactHits=0;state.reactTotal=0;state.reactTimes=[];state.currentColour=null;
+  state.memWords=[];state.distractQs=[];state.distractIdx=0;
+  state.attnCurrent=100;state.attnCorrect=0;
+  state.logicQs=[];state.logicIdx=0;state.logicCorrect=0;
+  state.animals=[];state.langTestEnded=false;
+  var pf=document.getElementById('progress-fill');if(pf)pf.style.width='0%';
   showScreen('landing');
 }
 
-
+/* NEURAL NETWORK CANVAS */
+(function(){
+  function init(){
+    var canvas=document.getElementById('neuro-canvas');if(!canvas)return;
+    var ctx=canvas.getContext('2d'),W,H,nodes=[],animId;
+    var N=55,MAXD=140;
+    function resize(){W=canvas.width=canvas.offsetWidth||window.innerWidth;H=canvas.height=canvas.offsetHeight||window.innerHeight;}
+    function Node(){
+      this.x=Math.random()*W;this.y=Math.random()*H;
+      this.vx=(Math.random()-.5)*.5;this.vy=(Math.random()-.5)*.5;
+      this.r=Math.random()*2.5+1;this.pulse=Math.random()*Math.PI*2;
+      var c=['rgba(92,142,120,','rgba(74,144,217,','rgba(200,169,106,','rgba(126,207,176,'];
+      this.c=c[Math.floor(Math.random()*4)];this.a=Math.random()*.5+.3;
+    }
+    Node.prototype.update=function(){
+      this.x+=this.vx;this.y+=this.vy;this.pulse+=.02;
+      if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1;
+    };
+    Node.prototype.draw=function(){
+      var pr=this.r+Math.sin(this.pulse)*1.2,a=this.a+Math.sin(this.pulse)*.15;
+      var g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,pr*4);
+      g.addColorStop(0,this.c+a+')');g.addColorStop(1,this.c+'0)');
+      ctx.beginPath();ctx.arc(this.x,this.y,pr*4,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+      ctx.beginPath();ctx.arc(this.x,this.y,pr,0,Math.PI*2);ctx.fillStyle=this.c+(a+.3)+')';ctx.fill();
+    };
+    function build(){nodes=[];for(var i=0;i<N;i++)nodes.push(new Node());}
+    function conns(){
+      var now=Date.now()*.001;
+      for(var i=0;i<nodes.length;i++){for(var j=i+1;j<nodes.length;j++){
+        var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<MAXD){
+          var op=(1-d/MAXD)*.25;
+          ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);
+          ctx.strokeStyle='rgba(92,142,120,'+op+')';ctx.lineWidth=.8;ctx.stroke();
+          if(d<90&&Math.sin(now*4+i)>.7){
+            var t=(now*.5+i*.3)%1,sx=nodes[i].x+(nodes[j].x-nodes[i].x)*t,sy=nodes[i].y+(nodes[j].y-nodes[i].y)*t;
+            ctx.beginPath();ctx.arc(sx,sy,1.5,0,Math.PI*2);ctx.fillStyle='rgba(126,207,176,0.8)';ctx.fill();
+          }
+        }
+      }}
+    }
+    function loop(){
+      ctx.fillStyle='rgba(5,13,20,0.25)';ctx.fillRect(0,0,W,H);
+      conns();for(var i=0;i<nodes.length;i++){nodes[i].update();nodes[i].draw();}
+      animId=requestAnimationFrame(loop);
+    }
+    function start(){resize();build();if(animId)cancelAnimationFrame(animId);loop();}
+    function stop(){if(animId){cancelAnimationFrame(animId);animId=null;}}
+    var rt;
+    window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){resize();build();},200);});
+    new MutationObserver(function(){
+      var l=document.getElementById('screen-landing');
+      if(l&&l.classList.contains('active'))start();else stop();
+    }).observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+    start();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
 
 /* ============================================================
-   NEURAL NETWORK CANVAS ANIMATION
-   Draws animated nodes + connecting lines like a brain network
+   NEURAL NETWORK CANVAS BACKGROUND ANIMATION
+   Animated neurons + synaptic connections for landing screen
    ============================================================ */
-(function() {
-  function initNeuroCanvas() {
-    var canvas = document.getElementById('neuro-canvas');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var W, H, nodes, animId;
-    var NODE_COUNT = 55;
-    var MAX_DIST = 140;
-    var colours = ['rgba(92,142,120,', 'rgba(74,144,217,', 'rgba(200,169,106,', 'rgba(126,207,176,'];
+(function initNeuroCanvas() {
+  var canvas = document.getElementById('neuro-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, nodes, animId;
+  var NODE_COUNT = 60;
+  var MAX_DIST   = 140;
 
-    function resize() {
-      W = canvas.width  = canvas.offsetWidth  || window.innerWidth;
-      H = canvas.height = canvas.offsetHeight || window.innerHeight;
-    }
+  function resize() {
+    var landing = document.getElementById('screen-landing');
+    W = canvas.width  = landing ? landing.offsetWidth  : window.innerWidth;
+    H = canvas.height = landing ? landing.offsetHeight : window.innerHeight;
+  }
 
-    function Node() {
-      this.x  = Math.random() * W;
-      this.y  = Math.random() * H;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.r  = Math.random() * 2.5 + 1;
-      this.pulse  = Math.random() * Math.PI * 2;
-      this.colour = colours[Math.floor(Math.random() * colours.length)];
-      this.alpha  = Math.random() * 0.5 + 0.3;
-    }
-
-    Node.prototype.update = function() {
-      this.x += this.vx;
-      this.y += this.vy;
-      this.pulse += 0.02;
-      if (this.x < 0 || this.x > W) this.vx *= -1;
-      if (this.y < 0 || this.y > H) this.vy *= -1;
+  function makeNode() {
+    return {
+      x:     Math.random() * W,
+      y:     Math.random() * H,
+      vx:    (Math.random() - 0.5) * 0.45,
+      vy:    (Math.random() - 0.5) * 0.45,
+      r:     Math.random() * 2.2 + 1,
+      pulse: Math.random() * Math.PI * 2,
+      hue:   [145, 210, 43][Math.floor(Math.random() * 3)],
+      alpha: Math.random() * 0.4 + 0.25
     };
+  }
 
-    Node.prototype.draw = function() {
-      var pulseR = this.r + Math.sin(this.pulse) * 1.2;
-      var a = this.alpha + Math.sin(this.pulse) * 0.15;
-      /* Outer glow */
-      var grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, pulseR * 4);
-      grad.addColorStop(0, this.colour + a + ')');
-      grad.addColorStop(1, this.colour + '0)');
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, pulseR * 4, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
-      ctx.fill();
-      /* Core dot */
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, pulseR, 0, Math.PI * 2);
-      ctx.fillStyle = this.colour + (a + 0.3) + ')';
-      ctx.fill();
-    };
+  function buildNodes() {
+    nodes = [];
+    for (var i = 0; i < NODE_COUNT; i++) nodes.push(makeNode());
+  }
 
-    function buildNodes() {
-      nodes = [];
-      for (var i = 0; i < NODE_COUNT; i++) nodes.push(new Node());
-    }
+  function drawFrame() {
+    ctx.clearRect(0, 0, W, H);
 
-    function drawConnections() {
-      for (var i = 0; i < nodes.length; i++) {
-        for (var j = i + 1; j < nodes.length; j++) {
-          var dx = nodes[i].x - nodes[j].x;
-          var dy = nodes[i].y - nodes[j].y;
-          var dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < MAX_DIST) {
-            var opacity = (1 - dist / MAX_DIST) * 0.25;
-            /* Animate signal pulse along the line */
-            var t = (Date.now() * 0.001 + i * 0.3) % 1;
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = 'rgba(92,142,120,' + opacity + ')';
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-            /* Travelling signal dot */
-            if (dist < 90 && Math.sin(t * Math.PI * 4 + i) > 0.7) {
-              var sx = nodes[i].x + (nodes[j].x - nodes[i].x) * t;
-              var sy = nodes[i].y + (nodes[j].y - nodes[i].y) * t;
+    var i, j, dx, dy, dist, opacity, t, sx, sy, n, pulseR, a, grad;
+
+    /* Draw connections first */
+    for (i = 0; i < nodes.length; i++) {
+      for (j = i + 1; j < nodes.length; j++) {
+        dx   = nodes[i].x - nodes[j].x;
+        dy   = nodes[i].y - nodes[j].y;
+        dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          opacity = (1 - dist / MAX_DIST) * 0.22;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = 'hsla(145,42%,45%,' + opacity + ')';
+          ctx.lineWidth = 0.7;
+          ctx.stroke();
+
+          /* Travelling signal pulse */
+          if (dist < 85) {
+            t  = ((Date.now() * 0.0008) + i * 0.4) % 1;
+            sx = nodes[i].x + (nodes[j].x - nodes[i].x) * t;
+            sy = nodes[i].y + (nodes[j].y - nodes[i].y) * t;
+            if (Math.sin(t * Math.PI * 6 + i) > 0.65) {
               ctx.beginPath();
-              ctx.arc(sx, sy, 1.5, 0, Math.PI * 2);
-              ctx.fillStyle = 'rgba(126,207,176,0.8)';
+              ctx.arc(sx, sy, 1.8, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(126,207,176,0.85)';
               ctx.fill();
             }
           }
@@ -1926,62 +1221,73 @@ function restartTest() {
       }
     }
 
-    function loop() {
-      ctx.clearRect(0, 0, W, H);
-      /* Dark background with slight fade for trail effect */
-      ctx.fillStyle = 'rgba(5,13,20,0.2)';
-      ctx.fillRect(0, 0, W, H);
-      drawConnections();
-      for (var i = 0; i < nodes.length; i++) {
-        nodes[i].update();
-        nodes[i].draw();
-      }
-      animId = requestAnimationFrame(loop);
+    /* Draw nodes */
+    for (i = 0; i < nodes.length; i++) {
+      n      = nodes[i];
+      n.pulse += 0.018;
+      pulseR  = n.r + Math.sin(n.pulse) * 1;
+      a       = n.alpha + Math.sin(n.pulse) * 0.1;
+
+      /* Glow halo */
+      grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, pulseR * 5);
+      grad.addColorStop(0, 'hsla(' + n.hue + ',50%,60%,' + a + ')');
+      grad.addColorStop(1, 'hsla(' + n.hue + ',50%,60%,0)');
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, pulseR * 5, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      /* Core dot */
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, pulseR, 0, Math.PI * 2);
+      ctx.fillStyle = 'hsla(' + n.hue + ',60%,70%,' + (a + 0.25) + ')';
+      ctx.fill();
+
+      /* Move */
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < -10)  n.x = W + 10;
+      if (n.x > W+10) n.x = -10;
+      if (n.y < -10)  n.y = H + 10;
+      if (n.y > H+10) n.y = -10;
     }
 
-    function start() {
-      resize();
-      buildNodes();
-      if (animId) cancelAnimationFrame(animId);
-      loop();
-    }
-
-    function stop() {
-      if (animId) cancelAnimationFrame(animId);
-    }
-
-    /* Start when landing screen is visible, stop otherwise */
-    var resizeTimer;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function() {
-        resize();
-        buildNodes();
-      }, 200);
-    });
-
-    /* Watch for screen changes */
-    var observer = new MutationObserver(function() {
-      var landing = document.getElementById('screen-landing');
-      if (landing && landing.classList.contains('active')) {
-        start();
-      } else {
-        stop();
-      }
-    });
-
-    var screensContainer = document.body;
-    observer.observe(screensContainer, { attributes: true, subtree: true, attributeFilter: ['class'] });
-
-    /* Initial start */
-    start();
+    animId = requestAnimationFrame(drawFrame);
   }
 
-  /* Run after DOM is ready */
+  function start() {
+    resize();
+    buildNodes();
+    if (animId) cancelAnimationFrame(animId);
+    drawFrame();
+  }
+
+  function stop() {
+    if (animId) { cancelAnimationFrame(animId); animId = null; }
+  }
+
+  /* Watch for screen changes to save battery when not on landing */
+  var observer = new MutationObserver(function() {
+    var landing = document.getElementById('screen-landing');
+    if (landing && landing.classList.contains('active')) {
+      if (!animId) start();
+    } else {
+      stop();
+    }
+  });
+  observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['class'] });
+
+  var resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(start, 200);
+  });
+
+  /* Kick off */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNeuroCanvas);
+    document.addEventListener('DOMContentLoaded', start);
   } else {
-    initNeuroCanvas();
+    start();
   }
 })();
 
