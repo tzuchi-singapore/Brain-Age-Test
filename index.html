@@ -202,9 +202,9 @@ animation:btnRotate 3s linear infinite; z-index:0;
 
 /* === SHARED TEST CARD === */
 .test-card {
-background:white; border-radius:28px; padding:36px 32px;
+background:white; border-radius:28px; padding:32px 24px;
 box-shadow:0 8px 48px var(–shadow); max-width:680px; width:100%;
-text-align:center; position:relative; overflow:hidden;
+text-align:center; position:relative; overflow:visible;
 }
 .test-card::before {
 content:’’; position:absolute; top:0; left:0; right:0; height:5px;
@@ -266,13 +266,18 @@ text-shadow:0 1px 3px rgba(0,0,0,.3);
 .streak-dot.miss { background:var(–coral); border-color:var(–coral); }
 
 /* === TEST 2 - MEMORY === */
-.word-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:20px 0; }
+.word-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:24px 0; min-height:60px; align-content:flex-start; }
 .word-chip {
 background:linear-gradient(135deg,var(–forest),var(–sage-dark));
 color:white; padding:10px 20px; border-radius:40px;
-font-size:16px; font-weight:700; letter-spacing:.5px;
-opacity:1;
-animation:popIn .35s ease-out forwards;
+font-size:18px; font-weight:800; letter-spacing:.5px;
+opacity:1 !important;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:100px;
+box-shadow:0 4px 16px rgba(44,95,74,0.3);
+transform:none !important;
 }
 @keyframes popIn { 0%{transform:scale(0.5) rotate(-5deg);opacity:0} 60%{transform:scale(1.08) rotate(2deg);opacity:1} 100%{transform:scale(1) rotate(0);opacity:1} }
 .distract-q {
@@ -309,7 +314,7 @@ border-radius:24px; padding:24px 40px; transition:all .2s;
 .countdown-display.right { background:linear-gradient(135deg,#C8F0DC,#A8E0C0); color:var(–green); animation:bumpUp .3s; }
 @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-8px)} 60%{transform:translateX(8px)} }
 @keyframes bumpUp { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
-.num-pad { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; max-width:360px; margin:0 auto; }
+.num-pad { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; max-width:340px; margin:0 auto; }
 .num-key {
 height:60px; border-radius:14px; border:2px solid var(–border);
 background:white; font-size:20px; font-weight:800; color:var(–text-dark);
@@ -535,13 +540,15 @@ transition:all .25s; text-decoration:none;
 <!-- TEST 2 - MEMORY SHOW -->
 
 <div class="screen" id="screen-memory-show">
-  <div class="test-card">
+  <div class="test-card" style="min-height:380px;">
     <span class="test-icon">&#129504;</span>
     <div class="test-title">Memory - Memorise These</div>
-    <div class="test-subtitle">Remember these 5 words. You will be asked to recall them shortly.</div>
+    <div class="test-subtitle">Remember ALL 5 words! They disappear soon.</div>
     <div class="test-timer" id="mem-show-timer">5</div>
-    <div class="word-grid" id="word-grid"></div>
-    <div class="text-muted mt-16">Words disappear in <span id="mem-countdown">5</span>s...</div>
+    <div class="word-grid" id="word-grid" style="margin:20px 0;min-height:80px;"></div>
+    <div style="font-size:15px;font-weight:700;color:var(--coral);margin-top:8px;">
+      &#9201; Disappearing in <span id="mem-countdown">5</span> seconds!
+    </div>
   </div>
 </div>
 
@@ -795,7 +802,15 @@ function startMemoryShow(){
   state.distractQs=dq.slice(0,5);state.distractIdx=0;state.memoryScore=0;
   showScreen('memory-show');updateProgress(2,'Test 2 - Memory Recall','5s memorise');
   var wg=document.getElementById('word-grid');
-  wg.innerHTML=state.memWords.map(function(w,i){return '<div class="word-chip" style="animation-delay:'+(i*0.08)+'s;opacity:0" onanimationend="this.style.opacity=1">'+w+'</div>';}).join('');
+  wg.innerHTML='';
+  state.memWords.forEach(function(w, i){
+    var chip=document.createElement('div');
+    chip.className='word-chip';
+    chip.textContent=w;
+    chip.style.opacity='1';
+    chip.style.visibility='visible';
+    wg.appendChild(chip);
+  });
   var t=5;
   document.getElementById('mem-show-timer').textContent=t;
   document.getElementById('mem-countdown').textContent=t;
