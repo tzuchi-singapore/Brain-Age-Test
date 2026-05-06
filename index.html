@@ -545,14 +545,14 @@ transition:all .25s; text-decoration:none;
 
 <!-- TEST 2 - MEMORY SHOW -->
 
-<div class="screen" id="screen-memory-show">
-  <div class="test-card" style="min-height:380px;">
-    <span class="test-icon">&#129504;</span>
-    <div class="test-title">Memory - Memorise These</div>
-    <div class="test-subtitle">Remember ALL 5 words! They disappear soon.</div>
-    <div class="test-timer" id="mem-show-timer">5</div>
-    <div class="word-grid" id="word-grid" style="margin:20px 0;min-height:80px;"></div>
-    <div style="font-size:15px;font-weight:700;color:var(--coral);margin-top:8px;">
+<div class="screen" id="screen-memory-show" style="background:#f0f7f3;">
+  <div style="background:#ffffff;border-radius:24px;padding:28px 20px;max-width:580px;width:100%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,0.12);">
+    <div style="font-size:48px;margin-bottom:8px;">&#129504;</div>
+    <div style="font-family:Georgia,serif;font-size:24px;font-weight:700;color:#1E2D26;margin-bottom:6px;">Memorise These Words</div>
+    <div style="font-size:14px;color:#6B8577;margin-bottom:16px;">Remember all 5 words — they disappear soon!</div>
+    <div style="display:inline-block;background:#2C5F4A;color:#ffffff;font-size:28px;font-weight:900;padding:6px 24px;border-radius:12px;margin-bottom:20px;" id="mem-show-timer">5</div>
+    <div id="word-grid" style="display:flex;flex-direction:column;gap:10px;align-items:center;margin:0 auto 20px;width:100%;"></div>
+    <div style="font-size:16px;font-weight:800;color:#E07B5A;">
       &#9201; Disappearing in <span id="mem-countdown">5</span> seconds!
     </div>
   </div>
@@ -806,40 +806,43 @@ function startMemoryShow(){
   state.memWords=sh.slice(0,5);
   var dq=DISTRACT_QS.slice().sort(function(){return Math.random()-.5;});
   state.distractQs=dq.slice(0,5);state.distractIdx=0;state.memoryScore=0;
-  showScreen('memory-show');updateProgress(2,'Test 2 - Memory Recall','5s memorise');
+  showScreen('memory-show');
+  updateProgress(2,'Test 2 - Memory Recall','5s memorise');
+
+  /* Build words using innerHTML with fully self-contained inline styles */
   var wg=document.getElementById('word-grid');
-  wg.innerHTML='';
-  state.memWords.forEach(function(w){
-    var chip=document.createElement('div');
-    chip.textContent=w;
-    chip.style.cssText=[
-      'background:#2C5F4A',
-      'color:#FFFFFF',
-      'padding:12px 24px',
-      'border-radius:40px',
-      'font-size:20px',
-      'font-weight:900',
-      'font-family:Nunito,sans-serif',
-      'letter-spacing:1px',
-      'display:inline-flex',
-      'align-items:center',
-      'justify-content:center',
-      'min-width:110px',
-      'box-shadow:0 4px 20px rgba(0,0,0,0.25)',
-      'border:3px solid #A8C9B8',
-      'opacity:1',
-      'visibility:visible',
-      'margin:4px'
-    ].join(';');
-    wg.appendChild(chip);
+  var colors=['#1a6b3a','#0d5c8a','#7a2d8c','#b54a00','#1a5c6e'];
+  var html='';
+  state.memWords.forEach(function(w,i){
+    html+='<div style="'
+      +'width:90%;'
+      +'max-width:320px;'
+      +'background:'+colors[i]+';'
+      +'color:#ffffff;'
+      +'font-size:22px;'
+      +'font-weight:900;'
+      +'font-family:Arial,Helvetica,sans-serif;'
+      +'text-align:center;'
+      +'padding:14px 20px;'
+      +'border-radius:12px;'
+      +'margin:0 auto;'
+      +'letter-spacing:2px;'
+      +'text-transform:uppercase;'
+      +'display:block;'
+      +'box-sizing:border-box;'
+      +'">'+w+'</div>';
   });
+  wg.innerHTML=html;
+
   var t=5;
-  document.getElementById('mem-show-timer').textContent=t;
-  document.getElementById('mem-countdown').textContent=t;
+  var timerEl=document.getElementById('mem-show-timer');
+  var cdEl=document.getElementById('mem-countdown');
+  if(timerEl)timerEl.textContent=t;
+  if(cdEl)cdEl.textContent=t;
   var ti=setInterval(function(){
     t--;
-    var te=document.getElementById('mem-show-timer'),ce=document.getElementById('mem-countdown');
-    if(te)te.textContent=t;if(ce)ce.textContent=t;
+    if(timerEl)timerEl.textContent=t;
+    if(cdEl)cdEl.textContent=t;
     if(t<=0){clearInterval(ti);showScreen('distract');showDistractQ();}
   },1000);
 }
