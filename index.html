@@ -268,16 +268,22 @@ text-shadow:0 1px 3px rgba(0,0,0,.3);
 /* === TEST 2 - MEMORY === */
 .word-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:24px 0; min-height:60px; align-content:flex-start; }
 .word-chip {
-background:linear-gradient(135deg,var(–forest),var(–sage-dark));
-color:white; padding:10px 20px; border-radius:40px;
-font-size:18px; font-weight:800; letter-spacing:.5px;
-opacity:1 !important;
+background:#2C5F4A;
+color:#FFFFFF;
+padding:12px 24px;
+border-radius:40px;
+font-size:20px;
+font-weight:900;
+letter-spacing:1px;
+opacity:1;
 display:inline-flex;
 align-items:center;
 justify-content:center;
-min-width:100px;
-box-shadow:0 4px 16px rgba(44,95,74,0.3);
-transform:none !important;
+min-width:110px;
+box-shadow:0 4px 20px rgba(0,0,0,0.25);
+border:3px solid #A8C9B8;
+text-shadow:none;
+font-family:‘Nunito’,sans-serif;
 }
 @keyframes popIn { 0%{transform:scale(0.5) rotate(-5deg);opacity:0} 60%{transform:scale(1.08) rotate(2deg);opacity:1} 100%{transform:scale(1) rotate(0);opacity:1} }
 .distract-q {
@@ -750,7 +756,7 @@ function flashColour(){
   state.currentColour=c.key;state.colourStart=performance.now();
   var arena=document.getElementById('react-arena'),txt=document.getElementById('arena-txt');
   if(!arena||!txt)return;
-  arena.style.background=c.bg; arena.style.border='none';txt.textContent=c.label;txt.style.color=c.dark?'#1E2D26':'white';
+  arena.style.background=c.bg; arena.style.border='none'; arena.style.color=c.dark?'#1E2D26':'#ffffff';txt.textContent=c.label;txt.style.color=c.dark?'#1E2D26':'white';
 }
 function colourTap(colour){
   if(!state.currentColour||state.reactTotal>=20)return;
@@ -760,8 +766,8 @@ function colourTap(colour){
   if(dot)dot.className='streak-dot '+(hit?'hit':'miss');
   state.currentColour=null;
   var arena=document.getElementById('react-arena'),txt=document.getElementById('arena-txt');
-  if(arena)arena.style.background=hit?'var(--green)':'var(--coral)';
-  if(txt){txt.textContent=hit?'CORRECT!':'WRONG!';txt.style.color='white';txt.style.fontSize='24px';}
+  if(arena)arena.style.background=hit?'#3BB87F':'#E07B5A';
+  if(txt){txt.textContent=hit?'CORRECT!':'WRONG!';txt.style.color='#ffffff';txt.style.fontSize='24px';txt.style.fontWeight='900';}
   var avgEl=document.getElementById('avg-reaction');
   if(state.reactTimes.length>0&&avgEl){
     var avg=Math.round(state.reactTimes.reduce(function(a,b){return a+b;},0)/state.reactTimes.length);
@@ -770,7 +776,7 @@ function colourTap(colour){
   var hEl=document.getElementById('react-hits');if(hEl)hEl.textContent=state.reactHits+' / '+state.reactTotal;
   setTimeout(function(){
     var a2=document.getElementById('react-arena'),t2=document.getElementById('arena-txt');
-    if(a2){a2.style.background='#E8F0EC';a2.style.border='3px dashed var(--border)';} if(t2){t2.textContent='Watch for colour!';t2.style.color='#888';t2.style.fontSize='18px';}if(t2){t2.textContent='Watch for colour!';t2.style.color='#888';t2.style.fontSize='18px';}
+    if(a2){a2.style.background='#E8F0EC';a2.style.border='3px dashed #D4E6DC';} if(t2){t2.textContent='Watch for colour!';t2.style.color='#888';t2.style.fontSize='18px';}if(t2){t2.textContent='Watch for colour!';t2.style.color='#888';t2.style.fontSize='18px';}
   },400);
 }
 function endReactionTest(){
@@ -803,12 +809,28 @@ function startMemoryShow(){
   showScreen('memory-show');updateProgress(2,'Test 2 - Memory Recall','5s memorise');
   var wg=document.getElementById('word-grid');
   wg.innerHTML='';
-  state.memWords.forEach(function(w, i){
+  state.memWords.forEach(function(w){
     var chip=document.createElement('div');
-    chip.className='word-chip';
     chip.textContent=w;
-    chip.style.opacity='1';
-    chip.style.visibility='visible';
+    chip.style.cssText=[
+      'background:#2C5F4A',
+      'color:#FFFFFF',
+      'padding:12px 24px',
+      'border-radius:40px',
+      'font-size:20px',
+      'font-weight:900',
+      'font-family:Nunito,sans-serif',
+      'letter-spacing:1px',
+      'display:inline-flex',
+      'align-items:center',
+      'justify-content:center',
+      'min-width:110px',
+      'box-shadow:0 4px 20px rgba(0,0,0,0.25)',
+      'border:3px solid #A8C9B8',
+      'opacity:1',
+      'visibility:visible',
+      'margin:4px'
+    ].join(';');
     wg.appendChild(chip);
   });
   var t=5;
