@@ -235,9 +235,12 @@ transition:all .25s; letter-spacing:.3px;
 .reaction-arena {
 width:100%; height:200px; border-radius:20px;
 display:flex; align-items:center; justify-content:center;
-font-family:‘Playfair Display’,serif; font-size:28px; font-weight:700;
-color:white; cursor:pointer; transition:background .12s,transform .08s;
-user-select:none; margin:18px 0; background:var(–border); position:relative;
+font-family:‘Playfair Display’,serif; font-size:26px; font-weight:700;
+color:#333; cursor:pointer; transition:background .12s,transform .08s;
+user-select:none; margin:18px 0;
+background:#E8F0EC;
+border: 3px dashed var(–border);
+position:relative;
 }
 .reaction-arena:active { transform:scale(.97); }
 .arena-txt { pointer-events:none; }
@@ -268,9 +271,10 @@ text-shadow:0 1px 3px rgba(0,0,0,.3);
 background:linear-gradient(135deg,var(–forest),var(–sage-dark));
 color:white; padding:10px 20px; border-radius:40px;
 font-size:16px; font-weight:700; letter-spacing:.5px;
-animation:popIn .4s cubic-bezier(.34,1.56,.64,1) both;
+opacity:1;
+animation:popIn .35s ease-out forwards;
 }
-@keyframes popIn { from{transform:scale(0) rotate(-5deg);opacity:0} to{transform:scale(1) rotate(0);opacity:1} }
+@keyframes popIn { 0%{transform:scale(0.5) rotate(-5deg);opacity:0} 60%{transform:scale(1.08) rotate(2deg);opacity:1} 100%{transform:scale(1) rotate(0);opacity:1} }
 .distract-q {
 background:linear-gradient(135deg,#F0F7F3,#E8F4EE);
 border:2px solid var(–sage-light); border-radius:16px; padding:20px 24px; margin:16px 0;
@@ -513,11 +517,11 @@ transition:all .25s; text-decoration:none;
     <div class="test-title">Reaction Speed</div>
     <div class="test-subtitle">Tap the matching colour button as fast as you can!</div>
     <div class="test-timer" id="react-timer">30</div>
-    <div class="reaction-arena" id="react-arena"><span class="arena-txt" id="arena-txt">Get Ready...</span></div>
+    <div class="reaction-arena" id="react-arena"><span class="arena-txt" id="arena-txt" style="font-size:20px;font-weight:700;color:#888;">Tap the matching colour below!</span></div>
     <div class="streak-bar" id="streak-bar"></div>
     <div class="colour-pad">
       <button class="colour-btn green"  onclick="colourTap('green')" >&#128994; Green</button>
-      <button class="colour-btn yellow" onclick="colourTap('yellow')">&#129002; Yellow</button>
+      <button class="colour-btn yellow" onclick="colourTap('yellow')">&#128993; Yellow</button>
       <button class="colour-btn red"    onclick="colourTap('red')"   >&#128308; Red</button>
       <button class="colour-btn blue"   onclick="colourTap('blue')"  >&#128309; Blue</button>
     </div>
@@ -739,7 +743,7 @@ function flashColour(){
   state.currentColour=c.key;state.colourStart=performance.now();
   var arena=document.getElementById('react-arena'),txt=document.getElementById('arena-txt');
   if(!arena||!txt)return;
-  arena.style.background=c.bg;txt.textContent=c.label;txt.style.color=c.dark?'#1E2D26':'white';
+  arena.style.background=c.bg; arena.style.border='none';txt.textContent=c.label;txt.style.color=c.dark?'#1E2D26':'white';
 }
 function colourTap(colour){
   if(!state.currentColour||state.reactTotal>=20)return;
@@ -750,7 +754,7 @@ function colourTap(colour){
   state.currentColour=null;
   var arena=document.getElementById('react-arena'),txt=document.getElementById('arena-txt');
   if(arena)arena.style.background=hit?'var(--green)':'var(--coral)';
-  if(txt)txt.textContent=hit?'CORRECT!':'WRONG!';
+  if(txt){txt.textContent=hit?'CORRECT!':'WRONG!';txt.style.color='white';txt.style.fontSize='24px';}
   var avgEl=document.getElementById('avg-reaction');
   if(state.reactTimes.length>0&&avgEl){
     var avg=Math.round(state.reactTimes.reduce(function(a,b){return a+b;},0)/state.reactTimes.length);
@@ -759,7 +763,7 @@ function colourTap(colour){
   var hEl=document.getElementById('react-hits');if(hEl)hEl.textContent=state.reactHits+' / '+state.reactTotal;
   setTimeout(function(){
     var a2=document.getElementById('react-arena'),t2=document.getElementById('arena-txt');
-    if(a2)a2.style.background='var(--border)';if(t2)t2.textContent='Wait...';
+    if(a2){a2.style.background='#E8F0EC';a2.style.border='3px dashed var(--border)';} if(t2){t2.textContent='Watch for colour!';t2.style.color='#888';t2.style.fontSize='18px';}if(t2){t2.textContent='Watch for colour!';t2.style.color='#888';t2.style.fontSize='18px';}
   },400);
 }
 function endReactionTest(){
@@ -791,7 +795,7 @@ function startMemoryShow(){
   state.distractQs=dq.slice(0,5);state.distractIdx=0;state.memoryScore=0;
   showScreen('memory-show');updateProgress(2,'Test 2 - Memory Recall','5s memorise');
   var wg=document.getElementById('word-grid');
-  wg.innerHTML=state.memWords.map(function(w,i){return '<div class="word-chip" style="animation-delay:'+i*.1+'s">'+w+'</div>';}).join('');
+  wg.innerHTML=state.memWords.map(function(w,i){return '<div class="word-chip" style="animation-delay:'+(i*0.08)+'s;opacity:0" onanimationend="this.style.opacity=1">'+w+'</div>';}).join('');
   var t=5;
   document.getElementById('mem-show-timer').textContent=t;
   document.getElementById('mem-countdown').textContent=t;
